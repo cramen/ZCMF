@@ -1,0 +1,23 @@
+<?=$this->docType('XHTML1_TRANSITIONAL')?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+<?=$this->headTitle(Z_Seo::getTitle())?>
+
+<?=$this->headMeta()->appendHttpEquiv('Content-Type','text/html; charset=UTF-8')
+	->appendName('keywords', Z_Seo::getKeywords())
+	->appendName('description', Z_Seo::getDescription());?>
+
+<?=$this->headLink()
+	->headLink(array('rel' => 'shortcut icon', 'href' => '/favicon.ico'))
+	->appendStylesheet( '/img/style.css' )?>
+
+<?=$this->headScript()
+	->appendFile('/sys/js/jquery.js')
+	->appendFile('/js/main.js')?>
+
+</head>
+<body>
+	<?=$this->layout()->content?>
+</body>
+</html>

@@ -1,0 +1,22 @@
+  <h1>Ошибка</h1>
+
+  <?php if ('development' == APPLICATION_ENV): ?>
+  <h2><?php echo $this->message ?></h2>
+
+  <h3>Информация:</h3>
+  <p>
+      <b>Сообщение:</b> <?=($this->exception instanceof Exception)?$this->exception->getMessage():''?>
+  </p>
+
+  <h3>Трассировка:</h3>
+  <pre><?=($this->exception instanceof Exception)?$this->exception->getTraceAsString():''?>
+  </pre>
+
+  <h3>Параметры запроса:</h3>
+  <pre><?=($this->exception instanceof Exception)?var_export($this->request->getParams(), true):''?>
+  </pre>
+  <?php else: ?>
+  
+  <?=$this->z_Config('error_text')?>
+  
+  <?php endif;?>

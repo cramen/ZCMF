@@ -1,0 +1,144 @@
+<div class="ui-state-active ui-corner-all z-navtitle">
+	<?php $bccount=0; foreach ($this->breadcrumbs as $breadcrumb):$bccount++;?>
+		<a title="<?=$this->escape($breadcrumb['value'])?>" class="z-ajax" href="<?=$this->url($breadcrumb['url'])?>"><?php echo $this->escape($breadcrumb['title'])?></a>
+		<?php if(count($this->breadcrumbs)>$bccount) echo "&nbsp;-";?>
+	<?php endforeach;?>
+:&nbsp;Список
+</div>
+<div class="z-admin-buttontool">
+	<?php if ($this->can_edit):?>
+		<a class="ui-button ui-state-default ui-corner-all z-button z-ajax" href="<?=$this->url(array('action'=>'add'))?>">Добавить</a>
+	<?php endif;?>
+	<?php if (!empty($this->buttons)):?>
+		<?php foreach ($this->buttons as $button):?>
+			<a class="ui-button ui-state-default ui-corner-all z-button z-ajax" href="<?=$button['url']?>"><?=$button['title']?></a>
+		<?php endforeach;?>
+	<?php endif;?>
+</div>
+
+
+<div class="ui-state-active ui-corner-all z-admin-resettool">
+	<?php if ($this->order):?>
+		<a class="z-ajax" href="<?=$this->url(array('order'=>NULL,'orderdir'=>NULL))?>">Убрать сортировку</a>
+	<?php endif;?>
+</div>
+
+<div class="clear"></div>
+
+<table class="ui-state-active ui-corner-all z-grid"<?=$this->sortable?' id="sortable" rel="'.$this->url(array('action'=>'reorder','neworder'=>'newordertemplate')).'"':''?>>
+	<thead>
+	<tr class="ui-widget-header z-grid-header">
+		<th width="1%">№</th>
+		<?php if ($this->can_edit):?>
+			<th width="1%"></th>
+		<?php endif;?>
+		<?php foreach ($this->columns as $field=>$column):?>
+			<th<?=$column->width?' width="'.$column->width.'"':'';?>>
+				<div>
+					<?php if ($this->orderLinks && $column->orderLinks && !($this->order==$field && $this->orderdir=='asc')):?>
+						<div class="ui-state-default ui-corner-all z-grid-sortable" style="float: left;">
+						<a href="<?=$this->url(array('order'=>$field,'orderdir'=>'asc'))?>" class="ui-icon ui-icon-triangle-1-n z-ajax"></a>
+						</div>
+					<?php endif;?>
+					<span style="float: left;"><?=$column->title?$column->title:$field?></span>
+					<?php if ($this->orderLinks && $column->orderLinks && !($this->order==$field && $this->orderdir=='desc')):?>
+						<div class="ui-state-default ui-corner-all z-grid-sortable" style="float: left;">
+						<a href="<?=$this->url(array('order'=>$field,'orderdir'=>'desc'))?>" class="ui-icon ui-icon-triangle-1-s z-ajax" style="float: left;"></a>
+						</div>
+					<?php endif;?>
+					<?php
+					//фильтры пользователя
+					if($filter = $column->filter):
+						$filterName = 'filter_'.$this->table.'_'.$field;?>
+						<div class="clear"></div>
+						<?php if ($filter->type=='select' && $filter->items):
+							$filterIems = $column->filter->items->toArray();
+							$filterIems[''] = 'Все';
+						?>
+							<?=$this->formSelect($filterName,$this->escape($column->filterValue),array(
+								'class'		=>	'z-grid-filter-input',
+								'rel'		=>	$this->url(array('action'=>'getfilterurl',$filterName=>NULL)),
+							),$filterIems)?>
+						<?php else:?>
+							<?=$this->formText($filterName,$this->escape($column->filterValue),
+								array(
+								'class'		=>	'z-grid-filter-input',
+								'rel'		=>	$this->url(array('action'=>'getfilterurl',$filterName=>NULL)),
+							));?>
+						<?php endif;?>
+						<?php if ($column->filterValue!==NULL):?>
+							<div class="ui-state-hover ui-corner-all z-grid-sortable" style="float: left;">
+							<a href="<?=$this->url(array($filterName=>NULL))?>" class="ui-icon ui-icon-minus z-ajax" style="float: left;"></a>
+							</div>
+						<?php endif;?>
+					<?php endif;?>
+				</div>
+			</th>
+		<?php endforeach;?>
+		<?php if ($this->can_move && $this->sortable):?>
+			<th width="1%"></th>
+			<th width="1%"></th>
+		<?php endif;?>
+		<?php if ($this->can_delete):?>
+			<th width="1%"></th>
+		<?php endif;?>
+	</tr>
+	</thead>
+	<tbody>
+	<?php if (count($this->paginator)): $itemNumber = 0;?>
+	<?php foreach ($this->paginator as $item): $itemNumber++; $item = new Zend_Config($item,true);?>
+		<tr <?//=$itemNumber%2==0?'class="ui-state-hover"':'class="ui-widget-content"'?> class="ui-widget-content" id="<?=$item->id?>">
+			<td><?php echo $itemNumber+(($this->paginator->getCurrentPageNumber()-1)*$this->paginator->getItemCountPerPage());?></td>
+			<?php if ($this->can_edit):?>
+			<td>
+				<div class="ui-state-default ui-corner-all z-grid-controlpanel">
+					<a href="<?=$this->url(array('action'=>'edit','id'=>$item->id))?>" class="ui-icon ui-icon-pencil z-ajax"></a> 
+				</div>
+			</td>
+			<?php endif;?>
+			<?php foreach ($this->columns as $field=>$column):
+					if ($column->eval)
+					{
+						$eval = $this->template($column->eval,$item);
+						$evalValue = eval($eval);
+						$item->$field = $evalValue;
+					}
+					if ($column->template)
+					{
+						$item->$field = $this->template($column->template,$item);
+					}
+					if ($column->escape)
+					{
+						$item->$field = $this->escape($item->$field);
+					}
+				?>
+				<td><?=$item->$field?></td>
+			<?php endforeach;?>
+			<?php if ($this->can_move && $this->sortable):?>
+			<td>
+				<div class="ui-state-default ui-corner-all z-grid-controlpanel">
+					<a title="Сдвинуть вверх" href="<?=$this->url(array('action'=>'move','direction'=>'up','id'=>$item->id))?>" class="ui-icon ui-icon-triangle-1-n z-ajax"></a>
+					<a title="Сдвинуть вниз" href="<?=$this->url(array('action'=>'move','direction'=>'down','id'=>$item->id))?>" class="ui-icon ui-icon-triangle-1-s z-ajax"></a>
+					<a title="Поместить в начало списка" href="<?=$this->url(array('action'=>'move','direction'=>'upup','id'=>$item->id))?>" class="ui-icon ui-icon-circle-triangle-n z-ajax"></a>
+					<a title="Поместить в конец списка" href="<?=$this->url(array('action'=>'move','direction'=>'downdown','id'=>$item->id))?>" class="ui-icon ui-icon-circle-triangle-s z-ajax"></a>
+				</div>
+			</td>
+			<td class="z-grid-grad-handle">
+				<div class="ui-state-default ui-corner-all z-grid-controlpanel">
+					<span title="Переместить элемент" class="ui-icon ui-icon-arrowthick-2-n-s" style="cursor: move"></span>
+				</div>
+			</td>
+			<?php endif;?>
+			<?php if ($this->can_delete):?>
+			<td>
+				<div class="ui-state-error ui-corner-all z-grid-controlpanel">
+					<a href="<?=$this->url(array('action'=>'delete','id'=>$item->id))?>" class="ui-icon ui-icon-circle-close z-ajax"></a> 
+				</div>
+			</td>
+			<?php endif;?>
+		</tr>
+	<?php endforeach; ?>
+	<?php endif; ?>
+	</tbody>
+</table>
+<?php echo $this->paginationControl($this->paginator,'Sliding','paginator.phtml');?>

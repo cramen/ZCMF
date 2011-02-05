@@ -1,0 +1,14 @@
+<div class="ui-state-active ui-corner-all z-navtitle">
+<a class="z-ajax" href="<?=$this->url(array('action'=>'tables'))?>">Таблицы</a> :&nbsp;Удаление
+</div>
+
+<div class="clear"></div><br /><br />
+<div class="ui-state-active ui-corner-all z-itemtitle" style="text-align: center;">
+<?php echo $this->escape($this->table)?>
+</div>
+<div class="clear"></div><br /><br />
+
+<div style="text-align: center;">
+<a class="ui-button ui-state-default ui-corner-all z-button z-ajax" href="<?=$this->url(array('confirmed'=>1))?>">Удалить</a>
+<a class="ui-button ui-state-default ui-corner-all z-button z-ajax" href="<?=$this->url(array('action'=>'tables','id'=>NULL,'confirmed'=>NULL))?>">Отмена</a>
+</div>

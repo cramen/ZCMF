@@ -1,0 +1,5 @@
+<form method="post" action="/<?=Zend_Controller_Front::getInstance()->getRequest()->getModuleName()?>/z_user/logout" class="z-form" id="z-form-login">
+<?=Z_Auth::getInstance()->getUser()->getLogin()?>
+<?= $this->form->logout?>
+<?= $this->form->submit?>
+</form>

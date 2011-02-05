@@ -1,0 +1,117 @@
+@CHARSET "UTF-8";
+
+/* reset */
+html{color:#000;background:#FFF;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,
+code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;vertical-align: top;outline: none;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
+li{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+q:before,q:after{content:'';}
+abbr,acronym {border:0;font-variant:normal;}
+/* to preserve line-height and selector appearance */
+sup {vertical-align:text-top;}
+sub {vertical-align:text-bottom;}
+input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}
+/*to enable resizing for IE*/
+input,textarea,select{*font-size:100%;}
+/*because legend doesn't inherit in IE */
+legend{color:#000;}
+
+/*Вспомогательные стили*/
+.clear {clear:both;}
+.left {float: left;}
+.right {float: right;}
+.hidden {display: none;}
+.nowrap {white-space: nowrap;}
+.nopadding {padding: 0;}
+.nomargin {margin: 0;}
+
+BODY {font-family: 'arial', 'tahoma', sans-serif; font-size: 10pt; min-width: 1000px;}
+
+/*главная таблица*/
+#z-table-main {width: 100%;}
+#z-table-main-left {width: 250px;}
+#z-table-main-content {}
+#z-content {border-right: none;}
+
+/*Шапка*/
+#z-header {margin: 0 0 .5em 0;border-left: none;border-top: none;border-right: none;}
+#z-header .left {font-size: 1.1em; padding-left: .8em;}
+#z-header .right {font-size: 1em;}
+
+#z-login input {border: none;}
+#z-login .z-login-input {padding: 0 .3em; width: 100px; }
+#z-login input.submit {padding: 0 .3em; cursor: pointer;}
+#z-login table span {margin-left: 1em;}
+
+/*Флеш сообщение*/
+#z-flash-container {margin: 0 0 .5em 0; padding: .3em; display: none;border-right: none;}
+#z-flash-hide {margin: 0; padding: 0;}
+
+/*Меню*/
+#z-menu{font-size: 1.1em; margin: 0 .5em 0 0;}
+#z-menu .head{padding: .2em .8em;border-left: none;border-bottom: none;}
+#z-menu .body{padding: .3em .3em .3em 0;border-left: none;border-top: none;}
+#z-menu .body ul {list-style-type: none;padding-left: .8em;}
+#z-menu .body li a:HOVER {text-decoration: underline;}
+
+
+
+/*Контент*/
+#z-content {font-size: 1.1em;}
+#content-header {padding: .2em .8em; border-bottom: none; border-right: none;}
+#content-body {padding: .2em 0 .2em 0; border-top: none; border-right: none;}
+#z-content .z-button {font-size: .8em;}
+#z-content .z-button-top {margin-left: .2em;}
+
+/*Грид*/
+#z-grid {width: 100%; margin: .5em 0 0 0;}
+#z-grid .z-grid-header {border-right: none; border-left: none;}
+#z-grid .z-grid-header th {padding: .1em .3em;}
+#z-grid .z-grid-content {border-right: none; border-left: none; border-bottom: none;}
+#z-grid .z-grid-content tr {border-right: none; border-left: none; border-bottom: none;}
+#z-grid .z-grid-content td {padding: .2em .3em;}
+#z-grid .z-grid-content td.nopadding {padding: .2em 0;}
+#z-grid .z-grid-content a.move{cursor: move;}
+#z-grid-searchbar {float: right; padding: .3em; margin-bottom: .3em; border-right: none;}
+#z-grid-searchbar table tr td {padding-right: .4em;padding-bottom: .2em;}
+
+.z-paginator {text-align: center;}
+.z-paginator a{text-decoration: none;}
+
+
+/*Каталог*/
+#z-catalog {margin-top: 1em;}
+#z-catalog ul {}
+#z-catalog ul ul{padding-left: 1em; margin: .2em 0 0 0;}
+#z-catalog>ul>li{ border-left: none;border-right: none;}
+#z-catalog ul li {padding: .2em 0 .2em .3em;  border-bottom: none; border-right: none;}
+#z-catalog ul ul li{}
+#z-catalog ul li span {padding: 0 0 0 .3em; border-bottom: none; border-right: none; border-top: none;}
+#z-catalog ul li table{display: inline; float: left; margin-right: .2em;}
+#z-catalog ul li table td{padding: 0 .1em;}
+#z-catalog .leftspace{padding-left: .6em;}
+#z-catalog .rightspace{padding-right: .6em;}
+#z-catalog ul li a.move{cursor: move;}
+	
+/*Формы*/
+#z-content .z-form {margin: 1em .5em;}
+#z-content .z-form .z-form-inputItem {margin: .3em 0 1.2em 0;}
+#z-content .z-form .z-form-inputItem input {width: 100%;}
+#z-content .z-form .z-form-inputItem textarea {width: 100%; height: 200px;}
+#z-content .z-form .z-form-inputItem input.z-form-checkbox {width: auto;}
+#z-content .z-form .z-form-inputItem p {font-size: .8em; font-style: italic;}
+/*#z-content .z-form .z-form-inputItem .z-form-description{font-size: .8em; font-style: italic;<	}
+#z-content .z-form .z-form-inputItem .z-form-description p{font-size: .8em; font-style: italic;}*/
+#z-content .z-form .z-form-inputItem ul {margin: 0 0 .3em 0; padding: .1em .3em;}
+#z-content .z-form label {font-weight: bold;}
+#z-content .z-form .z-admin-label {font-size: 1.3em; margin: .3em 0 1em 0;}
+#z-content .z-form fieldset legend {font-size: 1.3em; cursor: pointer; text-decoration: underline;}
+#z-content .z-form fieldset legend:HOVER {text-decoration: none;}
+#z-content .z-form fieldset dl {padding: 1em 0 0 0; display: block;}
+#z-content .z-form fieldset.z_form_buttons dl {display: block;}
+#z-content .z-form label.required:after {content: "*";}

@@ -1,0 +1,67 @@
+<?=$this->doctype()?> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <?$this->headTitle()->append('Z Администратор');
+    echo $this->headTitle();?>
+    <?=$this->headMeta()->appendHttpEquiv('Content-Type','text/html; charset=UTF-8')?>
+    <?=$this->headLink()
+	    ->headLink(array('rel' => 'shortcut icon', 'href' => '/favicon.ico'))
+	    ->appendStylesheet( '/sys/img/style.css' )
+	    ->appendStylesheet( '/sys/elfinder/css/elfinder.css' )
+	    ->appendStylesheet( '/sys/img/ui/'.$this->config->zadmin->theme.'/theme.css' )?>
+    <?=$this->headScript()
+	    ->appendFile('/sys/js/jquery.js')
+	    ->appendFile('/sys/js/jquery-timers.js')
+	    ->appendFile('/sys/js/jquery-php.js')
+	    ->appendFile('/sys/js/jquery-ui.js')
+	    ->appendFile('/sys/js/jquery-ui-i18n.js')
+	    ->appendFile('/sys/js/jquery-tablednd.js')
+	    ->appendFile('/sys/js/z-admin.js')
+	    ->appendFile('/sys/js/z-admin-plugins.js')
+	    ->appendFile('/sys/js/z-admin-file-uploader.js')
+	    ->appendFile('/sys/js/z-admin-catalog.js')//
+	    ->appendFile('/sys/js/tiny_mce/tiny_mce.js')
+	    ->appendFile('/sys/js/tiny_mce/jquery.tinymce.js')
+	    ->appendFile('/sys/elfinder/js/elfinder.min.js')
+	    ->appendFile('/sys/elfinder/js/i18n/elfinder.ru.js')
+	    ->appendFile('/sys/edit_area/edit_area_full.js');
+
+    $module = Zend_Controller_Front::getInstance()->getRequest()->getModuleName();
+    ?>
+  </head>
+  <body>
+    <div class="ui-widget">
+      <div class="ui-widget-header" id="z-header">
+	<div class="left"><a href="/<?=$module;?>" class='z-ajax'>Z - Администратор</a></div>
+	<div class="right" id="z-login"></div>
+	<div class="clear"></div>
+      </div>
+    </div>
+    <table id="z-table-main">
+      <tr>
+	<td id="z-table-main-left">
+	  <div class="ui-widget" id="z-menu"><div class="ui-state-default ui-corner-all">Загрузка</div></div>
+	</td>
+	<td id="z-table-main-content">
+	  <div class="ui-state-error ui-corner-left" id="z-flash-container">
+	    <a class="ui-state-error ui-corner-all right" href="#" id="z-flash-hide">
+	      <span class="ui-icon ui-icon-close"></span>
+	    </a>
+	    <div id="z-flash-content">HELLO WORLD!!!</div></div>
+	  <div class="ui-widget" id="z-content">Загрузка...</div>
+	</td>
+      </tr>
+    </table>
+    <script type="text/javascript">
+      $(function(){
+	z_menu_show = function(){
+	  z_ajax_go('/<?=$module;?>/z_menu/index');
+	}
+
+	z_menu_show();
+	z_ajax_go('/<?=$module;?>/z_user/login');
+	$(".z-button").button();
+      })
+    </script>
+  </body>
+</html>

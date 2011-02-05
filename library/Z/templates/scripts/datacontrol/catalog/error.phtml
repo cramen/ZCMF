@@ -1,0 +1,25 @@
+<div class="ui-state-active ui-corner-all z-navtitle">
+	Ошибка: <?php echo $this->message ?>
+</div>
+
+  <?php if ('development' == APPLICATION_ENV): ?>
+
+  <div style="margin: 10px 0;">
+      <label>Сообщение:</label> <?php echo $this->exception->getMessage() ?>
+  </div>
+
+  <label style="font-size: 120%;">Трассировка:</label>
+  <div style="margin: 10px 0;">
+  <?php echo str_replace("\n","<br /><br />",$this->exception->getTraceAsString()) ?>
+  </div>
+
+  <label style="font-size: 120%;">Параметры запроса:</label>
+  <div style="margin: 10px 0;">
+  	<ul>
+  	<?php foreach ($this->request->getParams() as $key=>$el):?>
+  		<?=$key?>: <?=$el?><br />
+  	<?php endforeach;?>
+  	</ul>
+  </div>
+  <?php else:?>
+  <?php endif ?>

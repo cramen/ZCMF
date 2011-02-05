@@ -1,0 +1,46 @@
+<div class="ui-state-active ui-corner-all z-navtitle">
+<a class="z-ajax" href="<?=$this->url(array('action'=>'tables','id'=>NULL))?>">Таблицы</a> - 
+<a class="z-ajax" href="<?=$this->url()?>"><?=$this->table?></a> :&nbsp;Поля
+</div>
+<div class="z-admin-buttontool">
+		<a class="ui-button ui-state-default ui-corner-all z-button z-ajax" href="<?=$this->url(array('action'=>'addfield'))?>">Добавить</a>
+</div>
+
+
+
+<div class="clear"></div>
+
+
+
+<table class="ui-state-active ui-corner-all z-grid"<?=$this->sortable?' id="sortable" rel="'.$this->url(array('action'=>'reorder','neworder'=>'newordertemplate')).'"':''?>>
+	<thead>
+	<tr class="ui-widget-header z-grid-header">
+			<th width="1%">№</th>
+<!--			<th width="1%"></th>-->
+			<th width="100%">Название</th>
+			<th width="1%"></th>
+	</tr>
+	</thead>
+	<tbody>
+	<?php if (count($this->fields)): $itemNumber = 0;?>
+	<?php foreach ($this->fields as $item): $itemNumber++;?>
+		<tr class="ui-widget-content <?=($itemNumber%2==0?'ui-state-default':'ui-state-selected')?>">
+			<td><?php echo $itemNumber;?></td>
+<!--			<td>-->
+<!--				<div class="ui-state-default ui-corner-all z-grid-controlpanel">-->
+<!--					<a href="<?=$this->url(array('action'=>'edit','id'=>$item))?>" class="ui-icon ui-icon-pencil z-ajax"></a> -->
+<!--				</div>-->
+<!--			</td>-->
+			<td>
+				<?=$item?>
+			</td>
+			<td>
+				<div class="ui-state-error ui-corner-all z-grid-controlpanel">
+					<a href="<?=$this->url(array('action'=>'deletefield','field'=>$item))?>" class="ui-icon ui-icon-circle-close z-ajax"></a> 
+				</div>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+	<?php endif; ?>
+	</tbody>
+</table>

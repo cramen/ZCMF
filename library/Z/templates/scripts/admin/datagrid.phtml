@@ -1,0 +1,150 @@
+<? $this->placeholder('z_grid_filter')->captureStart() ?>
+<div class="ui-widget ui-widget-content ui-corner-bl" id="z-grid-searchbar">
+	<table>
+		<?php
+		$filterColumns=0;
+		foreach ($this->z_grid_columns as $field=>$column):
+		?>
+		<tr>
+
+			<?php if (isset($column['filter']) && $column['filter']):
+				$filterColumns++;
+				$filterName = 'filter_'.$this->resourceId.'_'.$field;?>
+			<td>
+				<?=$column['title']?>
+			</td>
+			<td>
+			<?php
+					if (is_array($column['filter_items']))
+					{
+						$column['filter_items'] = array(''=>'[ВСЕ]')+$column['filter_items'];
+						echo $this->formSelect($filterName,$column['filter_value'],array(
+						'class'		=>	'z-grid-filter-input combobox',
+						'rel'		=>	$this->url(array('action'=>'getfilterurl',$filterName=>NULL)),
+						),$column['filter_items']);
+					}
+					else
+					{
+						echo $this->formText($filterName,$column['filter_value'],
+						array(
+						'class'		=>	'ui-state-active ui-corner-all z-grid-filter-input',
+						'rel'		=>	$this->url(array('action'=>'getfilterurl',$filterName=>NULL)),
+						));
+					}?>
+
+			</td>
+			<td class="nomargin nopadding">
+				<? if ($column['filter_value']!=NULL):?>
+				<div class="ui-button ui-button-text-only">
+					<a href="<?=$this->url(array($filterName=>NULL))?>" class="ui-icon ui-icon-close z-ajax" title="Убрать фильтр"></a>
+				</div>
+				<?endif;?>
+			</td>
+			<?endif;?>
+		<?php endforeach;?>
+	</table>
+</div>
+<? $this->placeholder('z_grid_filter')->captureEnd() ?>
+<? if ($filterColumns) echo $this->placeholder('z_grid_filter'); ?>
+
+	<table class="ui-widget ui-corner-all" id="z-grid" rel="<?=$this->url(array('action'=>'reorder'))?>">
+		<thead class="ui-widget-header ui-corner-top z-grid-header">
+			<tr>
+				<th width="1%">
+					№
+				</th>
+				<?php if ($this->can_edit):?>
+					<td width="1%"></td>
+				<?php endif;?>
+				<?php foreach ($this->z_grid_columns as $field=>$column): if (isset($column['visible']) && !$column['visible']) continue; ?>
+					<th<?=isset($column['width']) && $column['width']?' width="'.$column['width'].'"':''?>>
+						<table>
+						<thead>
+						<tr>
+						
+						<?php if (isset($column['orderlink']) && $column['orderlink']):?>
+							<th>
+								<div class="ui-button ui-button-text-only">
+									<span class="ui-icon ui-icon-triangle-<?=$column['ordered']?($column['orderdir']?'1-s':'1-n'):'2-n-s'?>"></span>
+								</div>
+							</th>
+							<th>
+								<a href="<?=$this->url(array($this->resourceId.'_orderfield'=>$field,$this->resourceId.'_orderdir'=>($column['orderdir']?NULL:'desc')))?>" class="z-ajax"><?=$column['title']?></a>
+							</th>
+							<?php if($column['ordered']):?>
+							<th>
+								<div class="ui-button ui-button-text-only">
+									<a href="<?=$this->url(array($this->resourceId.'_orderfield'=>NULl,$this->resourceId.'_orderdir'=>NULL))?>" class="ui-icon ui-icon-close z-ajax" title="Убрать сортировку"></a>
+								</div>
+							</th>
+							<?php endif;?>
+						<?php else:?>
+							<th><?=$column['title']?></th>
+						<?php endif;?>
+						</tr>
+						</thead>
+						</table>
+					</th>
+				<?php endforeach;?>
+				<?php if($this->sortable):?>
+					<th width="1%">
+					</th>
+					<th width="1%">
+					</th>
+					<th width="1%">
+					</th>
+					<th width="1%">
+					</th>
+					<th width="1%">
+					</th>
+				<?php endif;?>
+				<th width="1%">
+				</th>
+			</tr>
+		</thead>
+		<tbody class="ui-widget-content ui-corner-bottom z-grid-content">
+<?php $num=0; foreach ($this->z_grid_data as $item): $num++;?>
+			<tr id="<?=$item['id']?>" class="ui-widget-content">
+				<td>
+					<?=$num?>
+				</td>
+				<?php if ($this->can_edit):?>
+					<td class="nowrap">
+						<?=$this->admin_Actionkey($this->url(array('action'=>'edit','id'=>$item['id'])),'ui-icon-pencil')?>
+					</td>
+				<?php endif;?>
+				<?php foreach ($this->z_grid_columns as $field=>$column): if (isset($column['visible']) && !$column['visible']) continue;?>
+					<td>
+						<?php
+							$item[$field] = isset($item[$field])?$item[$field]:'';
+							$item[$field] = isset($column['eval']) && $column['eval']?eval($this->template($column['eval'],$item)):$item[$field];
+							$item[$field] = isset($column['template']) && $column['template']?$this->template($column['template'],$item):$item[$field];
+							$item[$field] = isset($column['escape']) && $column['escape']?$this->escape($item[$field]):$item[$field];
+						?>
+						<?=$item[$field]?><br>
+					</td>
+				<?php endforeach;?>
+				<?php if($this->sortable):?>
+					<td class="nowrap nopadding">
+						<?=$this->admin_Actionkey($this->url(array('action'=>'reorder','id'=>$item['id'],'direction'=>'up')),'ui-icon-triangle-1-n',array('title'=>'Вверх'))?>
+					</td>
+					<td class="nowrap nopadding">
+						<?=$this->admin_Actionkey($this->url(array('action'=>'reorder','id'=>$item['id'],'direction'=>'down')),'ui-icon-triangle-1-s',array('title'=>'Вниз'))?>
+					</td>
+					<td class="nowrap nopadding">
+						<?=$this->admin_Actionkey($this->url(array('action'=>'reorder','id'=>$item['id'],'direction'=>'top')),'ui-icon-circle-triangle-n',array('title'=>'В начало списка'))?>
+					</td>
+					<td class="nowrap nopadding">
+						<?=$this->admin_Actionkey($this->url(array('action'=>'reorder','id'=>$item['id'],'direction'=>'bottom')),'ui-icon-circle-triangle-s',array('title'=>'В конец списка'))?>
+					</td>
+					<td class="drad-handle nopadding">
+						<?=$this->admin_Actionkey('#','ui-icon-arrowthick-2-n-s',array('title'=>'Переместить','class'=>'move','state'=>'ui-state-active','onclick'=>'return false;','noajax'=>true))?>
+					</td>
+				<?php endif;?>
+				<td>
+					<?=($this->can_delete && (!isset($item['z_can_delete']) || (isset($item['z_can_delete']) && $item['z_can_delete']==1)))?$this->admin_Actionkey($this->url(array('action'=>'delete','id'=>$item['id'])),'ui-icon-close',array('title'=>'Удалить','state'=>'ui-state-error')):''?>
+				</td>
+			</tr>
+<?php endforeach;?>
+		</tbody>
+	</table>

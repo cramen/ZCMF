@@ -1,0 +1,7 @@
+<?=$this->admin_Head($this->admin_Breadcrumbs($this->breadcrumbs).':Изменение').
+$this->admin_Bodybegin()?>
+<?php if ($this->can_delete):?><a href="<?=$this->url(array('action'=>'delete'));?>" class="z-button z-button-top z-delete z-ajax">Удалить</a><?php endif;?>
+
+<?=$this->form?>
+
+<?=$this->admin_Bodyend()?>

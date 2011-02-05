@@ -1,0 +1,52 @@
+
+<div class="ui-widget-header ui-corner-tl" id="content-header">
+	Заголовок/<a href="#">Хлебные крошки</a>
+</div>
+<div class="ui-widget-content ui-corner-bl" id="content-body">
+	
+	<a href="#" class="z-button">Добавить</a>
+	<a href="#" class="z-button">Удалить</a>
+	<a href="#" class="z-button">Редактировать</a>
+	
+	<div class="ui-state-default ui-corner-all" id="content-advtool">
+		Доп. панель
+	</div>
+	<div class="clear"></div>
+
+<div id="z-catalog">
+	<ul>
+		<?php for($i=0; $i<10; $i++):?>
+		<li class="ui-widget-content">
+			<?=$this->admin_Actionkey($this->url(array()),'ui-icon-close',array('title'=>'Удалить','state'=>'ui-state-error right'))?>
+			<table>
+				<tr>
+					<td>
+						<?=$this->admin_Actionkey($this->url(array()),'ui-icon-folder-open',array('title'=>'Подкаталог'))?>
+					</td>
+					<td>
+						<?=$this->admin_Actionkey($this->url(array()),'ui-icon-pencil',array('title'=>'Редактировать'))?>
+					</td>
+					<td>
+						<?=$this->admin_Actionkey($this->url(array()),'ui-icon-plus',array('title'=>'Добавить подкаталог'))?>
+					</td>
+					<td>
+						<?=$this->admin_Actionkey($this->url(array()),'ui-icon-arrowthick-2-n-s',array('title'=>'Вверх','class'=>'move','state'=>'ui-state-active','onclick'=>'return false;','noajax'=>true))?>
+					</td>
+				</tr>
+			</table>
+			запись 1
+			<span class="ui-widget-content">
+				<a href="#">qweqweqwe</a>
+			</span>
+			<span class="ui-widget-content">
+				asdasdasd
+			</span>
+			<div>
+				<ul>
+				</ul>
+			</div>
+		</li>
+		<?php endfor;?>
+	</ul>
+</div>
+</div>

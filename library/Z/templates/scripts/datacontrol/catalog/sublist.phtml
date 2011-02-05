@@ -1,0 +1,75 @@
+<?php 
+
+jQuery::evalScript('z_admin_catalog_init();');
+if ($this->sortable)
+{
+	jQuery::evalScript('z_admin_catalog_sortable('.$this->catalogParent.');');	
+}
+
+
+$nameSpace = new Zend_Session_Namespace('z_'.$this->resourceId.'_openstate');
+?>
+
+		<?php foreach ($this->items as $item):?>
+		
+		<?php
+		 $itemId = $item['id'];
+		 $itemOpened = $nameSpace->$itemId;
+		 if ($itemOpened == true)
+		 {
+		 	jQuery::evalScript('z_ajax_go("'.$this->url(array('z_catalog_sysparentid'=>$item['id'])).'");');
+		 }
+		?>
+		
+		<li class="ui-widget-content" id="<?=$item['id']?>">
+			<?=$this->can_delete?$this->admin_Actionkey($this->url(array('action'=>'delete','id'=>$item['id'],'z_catalog_sysparentid'=>NULL)),'ui-icon-close',array('title'=>'Удалить '.$item[$this->default_field],'state'=>'ui-state-error right')):''?>
+			<table>
+				<tr>
+					<td>
+						<?php if ($item['z_have_subcat']):?>
+						<?=$this->admin_Actionkey($this->url(array('action'=>'list','z_catalog_sysparentid'=>$item['id'])),$itemOpened?'ui-icon-folder-open':'ui-icon-folder-collapsed',array('title'=>'Подкаталог','class'=>'z-catalog-open','noajax'=>true,'rel'=>$this->url(array('action'=>'zrememberopenstate','z_catalog_sysparentid'=>$item['id']))))?>
+						<?php else:?>
+						<?=$this->admin_Actionkey('#','ui-icon-locked',array('title'=>'','onclick'=>'return false;','noajax'=>true))?>
+						<?php endif;?>
+					</td>
+					<td>
+						<?=$this->admin_Actionkey($this->url(array('action'=>'edit','id'=>$item['id'],'z_catalog_sysparentid'=>NULL)),'ui-icon-pencil',array('title'=>'Редактировать'))?>
+					</td>
+					<td>
+						<?=$this->admin_Actionkey($this->url(array('action'=>'add','parentid'=>$item['id'],'z_catalog_sysparentid'=>NULL)),'ui-icon-plus',array('title'=>'Добавить подкаталог'))?>
+					</td>
+					<?php if($this->sortable):?>
+						<td>
+							<?=$this->admin_Actionkey('#','ui-icon-arrowthick-2-n-s',array('title'=>'Вверх','class'=>'move move'.$this->catalogParent,'state'=>'ui-state-active','onclick'=>'return false;','noajax'=>true))?>
+						</td>
+					<?php endif;?>
+					<td class="leftspace">
+						<?=$item[$this->default_field]?>
+					</td>
+					<?php foreach ($this->columns as $field=>$column):?>
+						<?php if ($column['on_have_subcat'] || (!$column['on_have_subcat'] && !$item['z_have_subcat'])):?>
+							<td class="leftspace">
+								<span class="ui-widget-content">
+									<?php
+										$item[$field] = isset($column['eval']) && $column['eval']?eval($this->template($column['eval'],$item)):(isset($item[$field])?$item[$field]:'');
+										$item[$field] = isset($column['template']) && $column['template']?$this->template($column['template'],$item):$item[$field];
+										$item[$field] = isset($column['escape']) && $column['escape']?$this->escape($item[$field]):$item[$field];
+									?>
+									<?=$item[$field]?>
+								</span>
+							</td>
+						<?php endif;?>
+					<?php endforeach;?>
+					<td>
+					</td>
+				</tr>
+			</table>
+			<div class="clear"></div>
+
+			<div>
+				<ul id="catalog<?=$item['id']?>" <?=$itemOpened?'':'style="display: none;"'?> rel="<?=$this->url(array('action'=>'reorder','z_catalog_sysparentid'=>NULL))?>">
+				</ul>
+			</div>
+			
+		</li>
+		<?php endforeach;;?>

@@ -1,0 +1,13 @@
+AddDefaultCharset utf-8
+php_value memory_limit 64M
+SetEnv APPLICATION_ENV development
+#SetEnv APPLICATION_ENV production
+
+php_flag magic_quotes_gpc off
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^.*$ index.php [NC,L]
