@@ -133,7 +133,7 @@ z_overlay_show = function()
 	var ovcount = $("#z-overlay").length;
 	if (ovcount==0)
 	{
-		$("body").prepend('<div class="ui-widget-overlay z-overlay" id="z-overlay" style="z-index: 10000;"></div>');
+		$("body").append('<div class="ui-widget-overlay z-overlay" id="z-overlay" style="z-index: 10000;"></div>');
 	}
 	z_overlay_count++;
 }

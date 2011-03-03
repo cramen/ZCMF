@@ -22,8 +22,28 @@ catch (Exception $e)
 
 if (!$allow) die('Доступ запрещен');
 
-$model = new Z_Model_Statpage();
-$items = $model->fetchAll(array(),'title asc');
+
+function listPages($list)
+{
+	if (!is_array($list)) return;
+	$result = "<ul>";
+	foreach ($list as $key=>$el)
+	{
+		$result .= "<li>";
+		if (is_array($el))
+		{
+			$result .= $key."<br />".listPages($el);
+		}
+		else
+		{
+			$result .= '<a href="#" onclick="return m_set_url(\''.$key.'\')" >'.$el.'</a>';
+		}
+		$result .= "</li>";
+	}
+	$result .= "</ul>";
+	return $result;
+}
+
 
 ?>
 
@@ -44,11 +64,9 @@ function m_set_url(url) {
 }
 		</script> 
 	</head> 
-	<body> 
-		<ul>
-<?php foreach ($items as $el):?>
-			<li><a href="#" onclick="return m_set_url('/page/<?=$el->sid?>')"><?=$el->title?></a>
-<?php endforeach;?>
-		</ul> 
+	<body>
+	
+	<?php echo listPages(Z_Resource_Aggregator::getInstance()->getList());?>
+	
 	</body> 
 </html>

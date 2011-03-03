@@ -328,7 +328,7 @@ CREATE TABLE `z_privileges_connect` (
   PRIMARY KEY (`id`),
   KEY `fk_privilege_id` (`privilege_id`),
   KEY `fk_rule_id` (`rule_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=154 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=158 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -337,7 +337,7 @@ CREATE TABLE `z_privileges_connect` (
 
 LOCK TABLES `z_privileges_connect` WRITE;
 /*!40000 ALTER TABLE `z_privileges_connect` DISABLE KEYS */;
-INSERT INTO `z_privileges_connect` VALUES (97,7,29),(108,7,38),(109,7,39),(110,7,41),(111,7,42),(112,1,43),(113,3,43),(114,7,44),(143,1,45),(144,3,45),(145,7,46);
+INSERT INTO `z_privileges_connect` VALUES (97,7,29),(108,7,38),(109,7,39),(110,7,41),(112,1,43),(113,3,43),(114,7,44),(143,1,45),(144,3,45),(145,7,46),(157,7,42);
 /*!40000 ALTER TABLE `z_privileges_connect` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -442,7 +442,7 @@ CREATE TABLE `z_resources_columns` (
   `on_have_subcat` int(1) NOT NULL DEFAULT '1',
   `visible` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -533,7 +533,7 @@ CREATE TABLE `z_resources_forms_params` (
   `is_eval` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `formid` (`formid`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -618,7 +618,7 @@ CREATE TABLE `z_roles` (
   `title` varchar(255) NOT NULL,
   `z_can_delete` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -674,7 +674,7 @@ CREATE TABLE `z_rules` (
   PRIMARY KEY (`id`),
   KEY `fk_roleId` (`role_id`),
   KEY `fk_resourceId` (`resource_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -767,7 +767,7 @@ CREATE TABLE `z_titles` (
   `keywords_block` int(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `orderid` (`orderid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -822,7 +822,7 @@ CREATE TABLE `z_users` (
   `z_can_delete` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `fk_z_users_z_roles1` (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -844,4 +844,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-02-05 17:24:36
+-- Dump completed on 2011-02-22 13:41:02

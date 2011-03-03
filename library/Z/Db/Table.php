@@ -21,7 +21,7 @@ class Z_Db_Table extends Zend_Db_Table_Abstract
     {
       foreach ($where as $key=>$value)
       {
-	$select->where($key,$value);
+		$select->where($key,$value);
       }
     }
     if (!empty($order)) $select->order($order);

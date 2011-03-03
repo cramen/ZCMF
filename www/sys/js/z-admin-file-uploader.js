@@ -91,6 +91,7 @@ $.fn.extend( {
 									$("#" + data.iframe).unbind("load");
 									z_overlay_hide();
 									window.scroll(0, 0);
+									$("#"+data.iframe).remove();
 								})
 					});
 			return true;

@@ -1,5 +1,10 @@
 AddDefaultCharset utf-8
+
+php_value display_errors 1
+php_value error_reporting 2047
+
 php_value memory_limit 64M
+
 SetEnv APPLICATION_ENV development
 #SetEnv APPLICATION_ENV production
 
