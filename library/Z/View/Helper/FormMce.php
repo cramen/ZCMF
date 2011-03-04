@@ -120,7 +120,7 @@ file_browser_callback: function(field_name, url, type, win) {
 		$xhtml = '<textarea name="' . $this->view->escape($name) . '"'
 		. ' id="' . $this->view->escape($id) . '"'
 		. $this->_htmlAttribs($attribs) . '>'
-		. $value . '</textarea>';
+		. $value . '</textarea><a href="#" class="" onclick="tinymce.execCommand(\'mceToggleEditor\',false,\''.$id.'\');">Вкл/Выкл редактор.</a>';
 
 		return $xhtml;
 	}
