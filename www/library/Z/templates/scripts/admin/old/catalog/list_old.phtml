@@ -1,0 +1,95 @@
+<?php
+    	$nameSpace = new Zend_Session_Namespace($this->controller.'_openstate');
+    	$defaultField = $this->field;
+?>
+
+<div class="ui-state-active ui-corner-all z-navtitle">
+	<?php $bccount=0; foreach ($this->breadcrumbs as $breadcrumb):$bccount++;?>
+		<a title="<?=$this->escape($breadcrumb['value'])?>" class="z-ajax" href="<?=$this->url($breadcrumb['url'])?>"><?php echo $this->escape($breadcrumb['title'])?></a>
+		<?php if(count($this->breadcrumbs)>$bccount) echo "&nbsp;-";?>
+	<?php endforeach;?>
+:&nbsp;Список
+</div>
+<div class="z-admin-buttontool">
+	<?php if ($this->can_edit):?>
+		<a class="ui-button ui-state-default ui-corner-all z-button z-ajax" href="<?=$this->url(array('action'=>'add'))?>">Добавить</a>
+	<?php endif;?>
+	<?php if (!empty($this->buttons)):?>
+		<?php foreach ($this->buttons as $button):?>
+			<a class="ui-button ui-state-default ui-corner-all z-button z-ajax" href="<?=$button['url']?>"><?=$button['title']?></a>
+		<?php endforeach;?>
+	<?php endif;?>
+</div>
+
+<div class="clear"></div>
+
+<ul class="ui-widget-content ui-corner-all z-catalog <?=$this->can_move?'sortable0':''?>" rel="<?=$this->url(array('action'=>'reorder'))?>">
+	<?php
+if ($this->items->count()>0):
+	$lastLevel = $this->items->get(0)->z_level;
+	$lastId=0;
+	
+	if ($this->can_move) jQuery::evalScript('z_admin_catalog_sortable(0);');
+	foreach ($this->items as $item):
+		$currentLevel = $item->z_level;
+		$currentId = $item->id;
+		?>
+
+		<?php if ($lastLevel > $currentLevel):?>
+			<?=str_repeat('</li></ul>',$lastLevel-$currentLevel)?>
+		<?php endif;?>
+		<?php if ($lastLevel < $currentLevel):
+			jQuery::evalScript('z_admin_catalog_sortable('.$item->parentid.');');//посылаем скрипт инициализации сортировки
+		?>
+			<ul class="<?=$this->can_move?'sortable'.$item->parentid:''?> <?=$nameSpace->$lastId?'':'hidden'?>" rel="<?=$this->url(array('action'=>'reorder'))?>" style="z-index: <?=$currentLevel*1000?>">
+		<?php endif;?>
+			<li id="<?=$item->id?>" rel="<?=$this->url(array('action'=>'rememberopenstate'))?>">
+			<div class="ui-state-active ui-corner-all z-catalog-item">
+				<?php if($item->z_node)://если это папка, то рисуем иконку папки?>
+					<a href="#" class="ui-icon <?=$nameSpace->$currentId?'ui-icon-folder-open':'ui-icon-folder-collapsed'?> z-catalog-open"></a>
+				<?php else:?>
+					<span class="ui-icon"></span>
+				<?php endif;?>
+				<?php if ($this->can_edit)://иконка редактирования?>
+					<a href="<?=$this->url(array('action'=>'edit','id'=>$item->id))?>" title="Изменить" class="ui-icon ui-icon-pencil z-ajax"></a>
+				<?php endif;?>
+				<?php if ($this->can_add)://иконка добавления подраздела?>
+					<a href="<?=$this->url(array('action'=>'add','parentid'=>$item->id))?>" title="Добавить подрадел" class="ui-icon ui-icon-plus z-ajax"></a>
+				<?php endif;?>
+				<?php if ($this->can_move)://иконка перемещения?>
+					<a style="cursor: move;" href="<?=$this->url(array('action'=>'add','parentid'=>$item->id))?>" title="Переместить" class="ui-icon ui-icon-arrowthick-2-n-s z-ajax move<?=$item->parentid?>"></a>
+				<?php endif;?>
+				<span><?=$item->$defaultField?></span>
+				&nbsp;
+				<?php foreach ($this->columns as $field=>$column):
+					if ($column->no_nodes && $item->z_node)
+						continue;
+					if ($column->eval)
+					{
+						$eval = $this->template($column->eval,$item);
+						$evalValue = eval($eval);
+						$item->$field = $evalValue;
+					}
+					if ($column->template)
+					{
+						$item->$field = $this->template($column->template,$item);
+					}
+					?>
+					<span class="ui-state-active ui-corner-all z-catalog-item-field"><?=$item->$field?></span>
+				<?php endforeach;?>				
+				
+				<?php if ($this->can_delete):?>
+					<div class="ui-state-error ui-corner-all z-catalog-controlpanel">
+						<a href="<?=$this->url(array('action'=>'delete','id'=>$item->id))?>" class="ui-icon ui-icon-circle-close z-ajax"></a> 
+					</div>
+				<?php endif;?>
+			</div>
+ 
+			
+			
+	<?
+	$lastLevel = $currentLevel;
+	$lastId = $item->id;
+	endforeach;
+endif;?>
+</ul>

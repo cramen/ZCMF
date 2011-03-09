@@ -1,0 +1,25 @@
+<?
+if (Z_FlashMessenger::getMessages())
+{
+	$flash_html_begin = '';
+	$flash_html_end = '<br/>';
+	$flash_html = addcslashes(Z_FlashMessenger::getMessagesHtml($flash_html_begin,$flash_html_end),'"');
+	jQuery::evalScript('z_flash_show_message("'.$flash_html.'");');
+}
+foreach ($this->jQuery()->getOnLoadActions() as $onLoadAction)
+{
+	jQuery::evalScript($onLoadAction);
+}
+if ($this->layout()->content)
+{
+//	jQuery::evalScript('z_admin_init();');
+	jQuery($this->target)->html($this->layout()->content);
+}
+jQuery::init();
+//print_r(jQuery::$jQuery->response);
+if (isset($_POST['z-ajax-form']))
+	echo htmlspecialchars(json_encode(jQuery::$jQuery->response));
+else
+	echo json_encode(jQuery::$jQuery->response);
+//print_r(jQuery::$jQuery->response);
+//jQuery::getResponse();

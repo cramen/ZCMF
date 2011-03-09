@@ -1,0 +1,24 @@
+<form method="post" action="/<?=Zend_Controller_Front::getInstance()->getRequest()->getModuleName()?>/z_user/login" class="z-form" id="z-form-login">
+	<table>
+		<tr>
+			<td>
+				<span class="ui-icon ui-icon-person"></span>
+			</td>
+			<td>
+				<?=$this->form->login?>
+			</td>
+			<td>
+				<span class="ui-icon ui-icon-key"></span>
+			</td>
+			<td>
+				<?= $this->form->password?>
+			</td>
+			<td>
+				<?= $this->form->remember?>
+			</td>
+			<td>
+				<?= $this->form->submit?>
+			</td>
+		</tr>
+	</table>
+</form>

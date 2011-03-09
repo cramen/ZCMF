@@ -1,0 +1,28 @@
+<?php
+    	$nameSpace = new Zend_Session_Namespace($this->controller.'_openstate');
+    	$defaultField = $this->field;
+?>
+
+<div class="ui-state-active ui-corner-all z-navtitle">
+	<?php $bccount=0; foreach ($this->breadcrumbs as $breadcrumb):$bccount++;?>
+		<a title="<?=$this->escape($breadcrumb['value'])?>" class="z-ajax" href="<?=$this->url($breadcrumb['url'])?>"><?php echo $this->escape($breadcrumb['title'])?></a>
+		<?php if(count($this->breadcrumbs)>$bccount) echo "&nbsp;-";?>
+	<?php endforeach;?>
+:&nbsp;Список
+</div>
+<div class="z-admin-buttontool">
+	<?php if ($this->can_edit):?>
+		<a class="ui-button ui-state-default ui-corner-all z-button z-ajax" href="<?=$this->url(array('action'=>'add'))?>">Добавить</a>
+	<?php endif;?>
+	<?php if (!empty($this->buttons)):?>
+		<?php foreach ($this->buttons as $button):?>
+			<a class="ui-button ui-state-default ui-corner-all z-button z-ajax" href="<?=$button['url']?>"><?=$button['title']?></a>
+		<?php endforeach;?>
+	<?php endif;?>
+</div>
+
+<div class="clear"></div>
+
+<ul class="ui-widget-content ui-corner-all z-catalog <?=$this->can_move?'sortable0':''?>" rel="<?=$this->url(array('action'=>'reorder'))?>">
+<?=$this->render('admin/catalog/sublist.phtml')?>
+</ul>

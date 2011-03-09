@@ -1,0 +1,25 @@
+<?php if ($this->pageCount>1): ?>
+<div class="ui-widget-header ui-corner-bottom z-paginator">
+
+<?php if (isset($this->previous)): ?>
+  <a class="z-ajax" href="<?=$this->url(array('page' => $this->first)); ?>">&lt;&lt;</a>&nbsp;<a class="z-ajax" href="<?=$this->url(array('page' => $this->previous)); ?>">&lt;</a>
+<?php else: ?>
+  <span class="ui-state-disabled">&lt;&lt;</span>&nbsp;<span class="ui-state-disabled">&lt;</span>
+<?php endif; ?>
+&nbsp;
+<?php foreach ($this->pagesInRange as $page): ?>
+  <?php if ($page != $this->current): ?>
+    <a class="z-ajax" href="<?=$this->url(array('page' => $page)); ?>"><?=$page; ?></a>&nbsp;
+  <?php else: ?>
+    <span class="ui-state-disabled"><?=$page; ?></span>&nbsp;
+  <?php endif; ?>
+<?php endforeach; ?>
+&nbsp;
+<?php if (isset($this->next)): ?>
+  <a class="z-ajax" href="<?=$this->url(array('page' => $this->next)); ?>">&gt;</a>&nbsp;<a class="z-ajax" href="<?=$this->url(array('page' => $this->last)); ?>">&gt;&gt;</a>
+<?php else: ?>
+  <span class="ui-state-disabled">&gt;</span>&nbsp;<span class="ui-state-disabled">&gt;&gt;</span>
+<?php endif; ?>
+
+</div>
+<?php endif; ?>

@@ -1,0 +1,24 @@
+<?=$this->admin_Head($this->admin_Breadcrumbs($this->breadcrumbs).':Просмотр').
+$this->admin_Bodybegin()?>
+
+	<?php if ($this->can_add):?><a href="<?=$this->url(array('action'=>'add','parentid'=>NULL))?>" class="z-button z-ajax">Добавить</a><?php endif;?>
+	<?php foreach ($this->additional_buttons as $additional_button):?>
+		<a href="<?=$additional_button['url']?>" class="z-button z-additional-button <?=$additional_button['class']?>"><?=$additional_button['title']?></a>
+	<?php endforeach;?>
+
+<div id="z-catalog">
+	<ul id="catalog0" rel="<?=$this->url(array('action'=>'reorder'))?>">
+<?=$this->render('datacontrol/catalog/sublist.phtml')?>
+	</ul>
+</div>
+
+<?=$this->admin_Bodyend()?>
+
+<?php 
+	 jQuery::evalScript('$(".z-additional-button").click(function(){
+		var url = $(this).attr("href");
+		z_ajax_go(url);
+		return false;
+	});');
+
+?>

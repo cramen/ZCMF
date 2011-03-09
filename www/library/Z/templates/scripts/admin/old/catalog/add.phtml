@@ -1,0 +1,11 @@
+<div class="ui-state-active ui-corner-all z-navtitle">
+	<?php $bccount=0; foreach ($this->breadcrumbs as $breadcrumb):$bccount++;?>
+		<a title="<?=$this->escape($breadcrumb['value'])?>" class="z-ajax" href="<?=$this->url($breadcrumb['url'])?>"><?php echo $this->escape($breadcrumb['title'])?></a>
+		<?php if(count($this->breadcrumbs)>$bccount) echo "&nbsp;-";?>
+	<?php endforeach;?>
+:&nbsp;Добавление
+</div>
+
+<div class="ui-state-active ui-corner-all z-form-add">
+<?php echo $this->form?>
+</div>

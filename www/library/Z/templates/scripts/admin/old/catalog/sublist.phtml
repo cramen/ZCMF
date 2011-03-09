@@ -1,0 +1,66 @@
+<?php
+    	$nameSpace = new Zend_Session_Namespace($this->controller.'_openstate');
+    	$defaultField = $this->field;
+
+
+if (count($this->items)>0):
+	$curParentId = $this->items[0]['parentid'];
+   	jQuery::evalScript('z_admin_catalog_sortable('.$curParentId.');');
+	foreach ($this->items as $item):
+	$curId = $item['id'];
+	if ($nameSpace->$curId)
+	{
+		jQuery::evalScript('z_ajax_go("'.$this->url(array('caralog_sysparentid'=>$curId)).'");');
+		jQuery::evalScript('z_admin_catalog_open("'.$curId.'");');
+	}
+	?>
+
+			<li id="<?=$item['id']?>" rel="<?=$this->url(array('action'=>'rememberopenstate'))?>">
+			<div class="ui-state-active ui-corner-all z-catalog-item">
+				<?php if ($item['z_node']):?>
+					<a href="<?=$this->url(array('caralog_sysparentid'=>$curId))?>" class="ui-icon ui-icon-folder-collapsed z-catalog-open"></a>
+				<?php else:?>
+					<a href="#" onClick="return false;" class="ui-icon ui-icon-cancel"></a>
+				<?php endif;?>
+				<?php if ($this->can_edit)://иконка редактирования?>
+					<a href="<?=$this->url(array('action'=>'edit','id'=>$item['id']))?>" title="Изменить" class="ui-icon ui-icon-pencil z-ajax"></a>
+				<?php endif;?>
+				<?php if ($this->can_add)://иконка добавления подраздела?>
+					<a href="<?=$this->url(array('action'=>'add','parentid'=>$item['id']))?>" title="Добавить подрадел" class="ui-icon ui-icon-plus z-ajax"></a>
+				<?php endif;?>
+				<?php if ($this->can_move)://иконка перемещения?>
+					<a style="cursor: move;" href="#" onClick="return false;" title="Переместить" class="ui-icon ui-icon-arrowthick-2-n-s move<?=$item['parentid']?>"></a>
+				<?php endif;?>
+				<span><?=$item[$defaultField]?></span>
+				&nbsp;
+				<?php foreach ($this->columns as $field=>$column):
+					if ($column->no_nodes && isset($item['z_node']) && $item['z_node'])
+						continue;
+					if ($column->eval)
+					{
+						$eval = $this->template($column->eval,$item);
+						$evalValue = eval($eval);
+						$item[$field] = $evalValue;
+					}
+					if ($column->template)
+					{
+						$item[$field] = $this->template($column->template,$item);
+					}
+					?>
+					<span class="ui-state-active ui-corner-all z-catalog-item-field"><?=$item[$field]?></span>
+				<?php endforeach;?>				
+				
+				<?php if ($this->can_delete):?>
+					<div class="ui-state-error ui-corner-all z-catalog-controlpanel">
+						<a href="<?=$this->url(array('action'=>'delete','id'=>$item['id']))?>" class="ui-icon ui-icon-circle-close z-ajax"></a> 
+					</div>
+				<?php endif;?>
+			</div>
+				<ul id="catalog<?=$curId?>" class="<?=$this->can_move?'sortable'.$item['id']:''?> hidden" rel="<?=$this->url(array('action'=>'reorder'))?>">
+				</ul>
+			</li>
+ 
+			
+			
+	<?endforeach;
+endif;?>

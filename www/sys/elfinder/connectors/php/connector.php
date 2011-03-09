@@ -52,7 +52,7 @@ class elFinderLogger implements elFinderILogger {
 $opts = array(
 	'root'            => '../../../../upload/',                       // path to root directory
 	'URL'             => '/upload/', // root directory URL
-	'rootAlias'       => 'Home',       // display this instead of root directory name
+	'rootAlias'       => 'Начало',       // display this instead of root directory name
 	//'uploadAllow'   => array('images/*'),
 	'uploadDeny'    => array("php"),
 	//'uploadOrder'   => 'deny,allow'

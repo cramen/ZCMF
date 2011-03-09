@@ -1,7 +1,7 @@
 <?php
 // Define path to application directory
 defined('APPLICATION_PATH')
-    || define('APPLICATION_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'application');
+    || define('APPLICATION_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR.'application');
 
 // Define path to site
 defined('SITE_PATH')

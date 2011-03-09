@@ -1,0 +1,4 @@
+<div class="ui-widget-header ui-corner-tr head">Меню</div>
+<div class="ui-widget-content ui-state-active ui-corner-br body">
+<?=$this->navigation($this->container)->setAcl(Z_Acl::getInstance())->setRole(Z_Auth::getInstance()->getUser()->getRole())->menu()?>
+</div>
