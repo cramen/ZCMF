@@ -50,11 +50,6 @@ class Z_Config {
 		return $this->getValue();
 	}
 	
-	public function __toString()
-	{
-		return $this->getValue();
-	}
-	
 }
 
 ?>
