@@ -1,0 +1,8 @@
+<?php
+	$this->placeholder('top')->set('<h1>Обратная связь</h1><p>Вы можете написать нам. Мы обязательно ответим.</p>');
+	Z_Seo::addTitle('Обратная связь');
+?>
+
+
+
+<?php echo $this->form?$this->form:$this->z_Config('feedback_text')?>

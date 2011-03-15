@@ -1,0 +1,5 @@
+	<ul class="menu">
+<?php foreach ($this->items as $item):?>
+		<li <?php echo $item->id==$this->activeId?'class="active"':''?>><a href="<?php echo $item->url?>"><?php echo $item->title?></a></li>
+<?php endforeach;?>
+	</ul>

@@ -1,0 +1,117 @@
+production: 
+
+  phpSettings: 
+    display_startup_errors: 1
+    display_errors: 1
+    
+  includePaths: 
+    library: APPLICATION_PATH/../library
+    
+  autoloaderNamespaces: 
+    - Z
+    - S
+    
+  bootstrap: 
+    path: APPLICATION_PATH/Bootstrap.php
+    class: Bootstrap
+    
+  resources:
+   
+    session:
+      save_path: APPLICATION_PATH/data/session
+      remember_me_seconds: 864000    
+  
+    frontController:
+      controllerDirectory: APPLICATION_PATH/controllers
+      moduleDirectory: APPLICATION_PATH/modules
+      defaultModule: default
+      plugins:
+        urititle: Z_Controller_Plugin_DbUriTitle
+          
+    view:
+        encoding: UTF-8
+        doctype: HTML5
+        helperPath:
+          Z_View_Helper: Z/View/Helper
+          ZendX_JQuery_View_Helper: ZendX/JQuery/View/Helper
+        filterPath:
+          Z_Filter: Z/Filter
+        filter:
+          - Template
+        
+    layout: 
+      layout: layout
+        
+    locale: 
+      default: ru_RU.UTF-8
+        
+    db: 
+      adapter: PDO_MYSQL
+      params: 
+        host: 127.0.0.1
+        username: root
+        password: root
+        dbname: zcmf
+        charset: UTF8
+        profiler: 
+      isDefaultTableAdapter: 1
+        
+    router:
+      routes:
+        pageroute:
+          route: page/:id
+          defaults: 
+            controller: page
+            action: show
+        newsgroup:
+          route: news/:group/:page/*
+          defaults: 
+            controller: news
+            action: index
+            group: 0
+            page: 1
+        newscard:
+          route: news/:group/card/:id/*
+          defaults:
+            controller: news
+            action: card
+            group: 0
+        robots:
+          route: robots.txt
+          defaults: 
+            controller: robots
+            action: index
+        
+  zadmin: 
+    theme: redmond
+    
+  site: 
+    title: 
+      order: prepend
+      separator:  — 
+    cache_on: 1
+    cache_life_time: 600
+    
+    resource: 
+      aggregator: 
+        statpages: 
+          title: Публикации
+          model: Z_Model_Statpage
+        newsgroup: 
+          title: Новости
+          model: Site_Model_News_Groups
+          
+development: 
+  _extends: production
+
+  phpSettings: 
+    display_startup_errors: 1
+    display_errors: 1
+    error_reporting: 32767
+  
+  resources: 
+    db: 
+      params: 
+        profiler: 1
+  site: 
+    cache_on: 

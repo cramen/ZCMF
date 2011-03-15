@@ -1,0 +1,29 @@
+<?php
+	$this->placeholder('top')->set('<h1>'.$this->group->title.'</h1>'.$this->group->description);
+	Z_Seo::addTitle($this->group->title);
+?>
+
+            <div class="partners">
+            
+<?php foreach ($this->items as $item):?>
+
+                <div class="partner">
+                   	<?php if ($item->pic):?>
+                    	<div class="logo"><img src="<?php echo $this->z_Preview($item->pic,array('w'=>200))?>" alt="" /></div>
+                   	<?php endif;?>
+                
+                    <div class="info">
+                        <h3><?php echo $item->title?></h3>
+                        <?php if($item->url):?>
+                        	<a href="<?php echo $item->url?>"><?php echo $item->url?></a><br />
+                        <?php endif;?>
+                        <?php echo $item->text?>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+<?php endforeach;?>
+
+            </div>
+            
+<?php echo $this->paginationControl($this->items,'Sliding','paginator.phtml')?>

@@ -1,0 +1,35 @@
+<?php
+	$this->placeholder('top')->set('<h1>'.$this->group->title.'</h1>'.$this->group->description);
+	Z_Seo::addTitle($this->group->title);
+?>
+
+<?php if ($this->groups->count()>0):?>
+	<?php $this->placeholder('right')->captureStart()?>
+		<h3>Другие разделы</h3>
+		<?php foreach ($this->groups as $group):?>
+			<a href="<?php echo $this->url(array('group'=>$group->id),'videogroup')?>"><?php echo $group->title?></a><br />
+		<?php endforeach;?>
+	<?php $this->placeholder('right')->captureEnd()?>
+<?php endif;?>
+
+            <div class="video">
+            
+<?php foreach ($this->items as $item):?>
+
+                <div class="item">
+                    <h3><?php echo $item->title?></h3>
+                    <span class="date"><?php echo date('d-m-Y',strtotime($item->date))?></span>
+                    <hr />
+                    <div class="info">
+                        <?php echo $item->description?>
+                    </div>
+                    <div class="player">
+                        <?php echo $item->code?>
+                    </div>
+                </div>
+
+<?php endforeach;?>
+
+            </div>
+            
+<?php echo $this->paginationControl($this->items,'Sliding','paginator.phtml')?>

@@ -1,0 +1,46 @@
+<?php
+if ($this->group)
+{
+	$this->placeholder('top')->set('<h1>'.$this->group->title.'</h1>'.$this->group->description);
+	Z_Seo::addTitle($this->group->title);
+}
+else
+{
+	$this->placeholder('top')->set('<h1>Новости</h1>');
+	Z_Seo::addTitle('Новости');
+}
+?>
+
+            <div class="news">
+            
+<?php foreach ($this->items as $item):?>
+
+                <div class="item">
+                
+                	<?php if ($item->text):?>
+                    <h3><a href="<?php echo $this->url(array('action'=>'card','id'=>$item->id,'group'=>$this->group?$this->group->id:0),'newscard')?>"><?php echo $item->title?></a></h3>
+                    <?php else:?>
+                    <h3><?php echo $item->title?></h3>
+                    <?php endif;?>
+                    
+                    <span class="date"><?php echo date('d-m-Y',strtotime($item->date))?></span>
+                    <hr />
+                    <div class="info">
+                    	<?php if ($item->pic):?>
+                    	<img src="<?php echo $this->z_Preview($item->pic,array('w'=>120))?>" alt="" class="logo" />
+                    	<?php endif;?>
+                        <?php echo $item->description?>
+
+	                	<?php if ($item->text):?>
+                        <a href="<?php echo $this->url(array('action'=>'card','id'=>$item->id,'group'=>$this->group?$this->group->id:0),'newscard')?>">Читать далее...</a>
+	                    <?php endif;?>
+                        
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+<?php endforeach;?>
+
+            </div>
+            
+<?php echo $this->paginationControl($this->items,'Sliding','paginator.phtml')?>

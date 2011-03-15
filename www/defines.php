@@ -18,4 +18,4 @@ set_include_path(implode(PATH_SEPARATOR, array(
 )));
 
 /** Zend_Application */
-require_once 'Zend/Application.php';  
+require_once 'Zend/Application.php';

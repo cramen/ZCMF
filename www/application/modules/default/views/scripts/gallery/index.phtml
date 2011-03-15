@@ -1,0 +1,19 @@
+<?php
+	$this->placeholder('top')->set('<h1>Галерея</h1>');
+	Z_Seo::addTitle('Галерея');
+?>
+            <div class="gallery">
+            
+<?php foreach ($this->items as $item):?>
+
+                <div class="item">
+                    <div class="logo" style="background-image: url('<?php echo $this->z_Preview($item->pic,array('w'=>200,'h'=>124))?>')">
+                        <a href="<?php echo $this->url(array('group'=>$item->id),'gallerygroup')?>"><img src="/img/gallery_image_borders.png" alt="" width="200" height="124px" /></a>
+                    </div>
+                    <div class="info"><?php echo $item->title?></div>
+                </div>
+
+<?php endforeach;?>
+
+                <div class="clear"></div>
+            </div>

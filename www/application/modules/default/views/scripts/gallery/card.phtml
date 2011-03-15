@@ -1,0 +1,43 @@
+<?php
+$this->headScript()->appendFile('/js/hs.js');
+$this->headLink()
+	->appendStylesheet( '/img/hs/highslide.css' )
+	->appendStylesheet( '/img/hs/highslide-ie6.css', null, "lte IE7");
+
+Z_Seo::addTitle($this->group->title);
+$this->placeholder('top')->set('<h3>'.$this->group->title.'</h3>'.$this->group->description);
+?>
+
+<script type="text/javascript">
+<!--
+	$(function(){
+		hs.graphicsDir = '/img/hs/graphics/';
+		hs.align = 'center';
+		hs.transitions = ['expand', 'crossfade'];
+		hs.outlineType = 'rounded-white';
+		hs.fadeInOut = true;
+	});
+//-->
+</script>
+
+            <div class="gallery">
+            
+<?php foreach ($this->items as $item):?>
+
+                <div class="item">
+                    <div class="logo" style="background-image: url('<?php echo $this->z_Preview($item->pic,array('w'=>200,'h'=>124))?>')">
+                        <a onclick="return hs.expand(this);" href="<?php echo $this->z_Preview($item->pic,array('w'=>600))?>"><img src="/img/gallery_image_borders.png" alt="" width="200" height="124px" /></a>
+                    </div>
+                    <div class="info">
+                    	<?php if($item->url):?>
+                        	<a href="<?php echo $item->url?>"><?php echo $item->url?></a><br />
+                        <?php endif;?>
+<?php echo $item->description?></div>
+                </div>
+
+<?php endforeach;?>
+
+                <div class="clear"></div>
+            </div>
+            
+<?php echo $this->paginationControl($this->items,'Sliding','paginator.phtml')?>

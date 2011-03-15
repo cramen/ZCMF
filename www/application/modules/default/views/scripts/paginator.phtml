@@ -1,0 +1,19 @@
+<?php if ($this->pageCount>1): ?>
+	<div class="paginate">
+	
+		<a title="На первую страницу" href="<?php echo $this->url(array('page' => (string)$this->first)); ?>" >&laquo;</a>
+		
+		<a title="На предыдущую страницу" href="<?php echo $this->url(array('page' => (string)($this->previous?$this->previous:1))); ?>" >&lsaquo;</a>
+		
+		<?php foreach ($this->pagesInRange as $page): ?>
+		
+		    <a href="<?php echo $this->url(array('page' => (string)($page?$page:1))); ?>" <?php echo $page == $this->current?'class="active"':'' ?>><?php echo $page; ?></a>
+		    
+		<?php endforeach; ?>
+		
+		<a title="На следующую страницу" href="<?php echo $this->url(array('page' => (string)($this->next?$this->next:'1'))); ?>" >&rsaquo;</a>
+		
+		<a title="На последнюю страницу" href="<?php echo $this->url(array('page' => (string)$this->last)); ?>" >&raquo;</a>
+		
+	</div>
+<?php endif; ?>
