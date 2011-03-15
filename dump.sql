@@ -293,7 +293,7 @@ CREATE TABLE `z_config` (
 
 LOCK TABLES `z_config` WRITE;
 /*!40000 ALTER TABLE `z_config` DISABLE KEYS */;
-INSERT INTO `z_config` VALUES (6,'2010-04-20 13:16:04','Копирайты','copy','text','<a href=\"http://jane-safo.ru\">Дизайн</a>  Евгения Сафонова<br />\r\n<a href=\"http://cramen.ru\">Верстка и программирование</a> Антон Еськин<br />\r\n<strong>©ramen 2009-2011 ZCMF</strong>'),(13,'2010-05-15 11:13:48','Текст страницы ошибки','error_text','html','<p><strong>Страница, которую вы читаете, не существует.</strong></p>\r\n<p>Если вы считаете, что мы завели вас сюда специально, опубликовав неверную ссылку, сообщите об этом&nbsp;нам.</p>'),(16,'2010-05-31 11:09:16','Счетчик','counter','text','<a href=\"http://validator.w3.org/check?uri=referer\"><img src=\"http://www.w3.org/Icons/valid-xhtml10\" alt=\"Valid XHTML 1.0 Strict\" height=\"31\" width=\"88\" /></a>'),(18,'2010-06-01 13:26:25','E-Mail администратора','email','string','cramen@cramen.ru'),(19,'2011-03-03 09:47:56','robots.txt','robots.txt','text','User-agent:*\r\nDisallow: /redirect*\r\nDisallow: /captcha*\r\n\r\nUser-agent: Yandex\r\nDisallow: /redirect*\r\nDisallow: /captcha*\r\n'),(20,'2011-03-15 16:06:42','Текст, отображаемый после отправки флрмв обратной связи','feedback_text','html','<p>Благодарим Вас за письмо. Мы обязательно свяжемся с Вами.</p>');
+INSERT INTO `z_config` VALUES (6,'2010-04-20 13:16:04','Копирайты','copy','text','<a href=\"http://jane-safo.ru\">Дизайн</a>  Евгения Сафонова<br />\r\n<a href=\"http://cramen.ru\">Верстка и программирование</a> Антон Еськин<br />\r\n<strong>©ramen 2009-2011 ZCMF</strong>'),(13,'2010-05-15 11:13:48','Текст страницы ошибки','error_text','html','<p><strong>Страница, которую вы читаете, не существует.</strong></p>\r\n<p>Если вы считаете, что мы завели вас сюда специально, опубликовав неверную ссылку, сообщите об этом&nbsp;нам.</p>'),(16,'2010-05-31 11:09:16','Счетчик','counter','text','<a href=\"http://validator.w3.org/check?uri=referer\"><img src=\"http://www.w3.org/Icons/valid-xhtml10\" alt=\"Valid XHTML 1.0 Strict\" height=\"31\" width=\"88\" /></a>'),(18,'2010-06-01 13:26:25','E-Mail администратора','email','string',''),(19,'2011-03-03 09:47:56','robots.txt','robots.txt','text','User-agent:*\r\nDisallow: /redirect*\r\nDisallow: /captcha*\r\n\r\nUser-agent: Yandex\r\nDisallow: /redirect*\r\nDisallow: /captcha*\r\n'),(20,'2011-03-15 16:06:42','Текст, отображаемый после отправки флрмв обратной связи','feedback_text','html','<p>Благодарим Вас за письмо. Мы обязательно свяжемся с Вами.</p>');
 /*!40000 ALTER TABLE `z_config` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -510,7 +510,7 @@ CREATE TABLE `z_mails` (
 
 LOCK TABLES `z_mails` WRITE;
 /*!40000 ALTER TABLE `z_mails` DISABLE KEYS */;
-INSERT INTO `z_mails` VALUES (1,'feedback_admin','Шаблон письма администратору при отправке формы обратной связи','<div>\r\n<p>{{fio}} - ФИО</p>\r\n</div>\r\n<p>{{email}} - email отправителя</p>\r\n<div>\r\n<p>{{text}} - текст письма</p>\r\n</div>','<p><strong>Вам написал(а) и на сайте письмо </strong>{{fio}}</p>\r\n<p>email отправителя: {{email}}</p>\r\n<p>текст письма:</p>\r\n<p>{{text}}</p>','','','Новое письмо на сайте!');
+INSERT INTO `z_mails` VALUES (1,'feedback_admin','Шаблон письма администратору при отправке формы обратной связи','<div>\r\n<p>{{fio}} - ФИО</p>\r\n</div>\r\n<p>{{email}} - email отправителя</p>\r\n<div>\r\n<p>{{text}} - текст письма</p>\r\n</div>','<p><strong>Вам написал(а) на сайте письмо </strong>{{fio}}</p>\r\n<p>email отправителя: {{email}}</p>\r\n<p>текст письма:</p>\r\n<p>{{text}}</p>','','','Новое письмо на сайте!');
 /*!40000 ALTER TABLE `z_mails` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1101,4 +1101,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-03-15 19:57:27
+-- Dump completed on 2011-03-15 20:26:01
