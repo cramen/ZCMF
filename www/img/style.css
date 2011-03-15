@@ -373,10 +373,10 @@ input {
     width: 90%;
 }
 
- #content form dl dd textarea {
-     width: 90%;
-     height: 200px;
- }
+#content form dl dd textarea {
+    width: 90%;
+    height: 200px;
+}
 
 #content .right form dl dd textarea {
     height: 100px;
@@ -414,6 +414,9 @@ input {
 #content form dl dd input[type=submit]:hover {
     background: #FFF;
     border: 1px solid #999;
+}
+#content form dl dd img {
+    display: block;
 }
 
 /*Partners*/

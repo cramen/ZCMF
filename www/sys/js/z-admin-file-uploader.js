@@ -89,9 +89,9 @@ $.fn.extend( {
 									response = jQuery.parseJSON(response); 
 									php.success(response);
 									$("#" + data.iframe).unbind("load");
-									z_overlay_hide();
 									window.scroll(0, 0);
 									$("#"+data.iframe).remove();
+									z_overlay_hide();
 								})
 					});
 			return true;

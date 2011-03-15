@@ -19,7 +19,7 @@ class Site_Form_Feedback extends Zend_Form
 		)));
 		$this->addElement(new Zend_Form_Element_Captcha('cap', array(
 		    'label' =>	"Код подтверждения",
-			'style'	=>	'width: 100px;',
+			'style'	=>	'width: 120px;',
 		    'captcha' => array(
 			'captcha'	=>	'Image',
 				'font'		=>	APPLICATION_PATH.DIRECTORY_SEPARATOR.'data'.DIRECTORY_SEPARATOR.'captcha'.DIRECTORY_SEPARATOR.'font.ttf',
@@ -28,7 +28,7 @@ class Site_Form_Feedback extends Zend_Form
 				'wordLen' 	=>	4,
 				'fontSize'		=>	27,
 				'height'	=>	65,
-				'width'		=>	190,
+				'width'		=>	120,
 				'gcFreq'	=>	1,
 				'dotNoiseLevel'	=>	0,
 				'lineNoiseLevel'	=>	0,
