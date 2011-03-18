@@ -1,7 +1,7 @@
 <?=$this->admin_Head('Главная')?>
 <?=$this->admin_Bodybegin()?>
 	<div style="text-align: left; margin: 3em 8em; padding: 1em 1em .5em 1em;" class="ui-state-active ui-corner-all">
-		Вы находитесь на главной странице системы управления сайтом.<br />
+		Вы находитесь на главной странице системы управления сайтом ZCMF v<?php echo Z_Version::$value?>.<br />
 		<?php if (Z_Auth::getInstance()->getUser()->getLogin()=='guest'):?>
 		Для получения доступа воспользуйтесь формой входа в верхнем правом углу.<br />
 		<?php else:?>

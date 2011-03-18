@@ -554,40 +554,6 @@ class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controller_Action
 		{
 			$catalogParent = $this->_getParam('z_catalog_sysparentid',0);
 
-//			if ($catalogParent!=0)
-//			{
-//		    	$controller = $this->getResourceInfo()->resourceId;
-//		    	$nameSpaceId = 'z_'.$controller.'_openstate';
-//		    	$nameSpace = new Zend_Session_Namespace($nameSpaceId);
-//		    	if ($nameSpace->$catalogParent === true)
-//		    	{
-//		    		if ($this->_getParam('z_catalog_openkey'))
-//		    		{
-//			    		$nameSpace->$catalogParent = false;
-//			    		$this->disableRenderView();
-//			    		jQuery::evalScript('$("#catalog'.$catalogParent.'").html("");');
-//			    		return;
-//		    		}
-//		    	}
-//		    	else
-//		    	{
-//		    		$nameSpace->$catalogParent = true;
-//		    	}
-
-
-//		    	$state = $this->_getParam('state');
-//		    	if ($id && $state && $state!='null')
-//		    	{
-//		    		if ($state == 'block')
-//		    			$nameSpace->$id = true;
-//		    		else
-//		    			$nameSpace->$id = false;
-//		    	}
-			//	    	$this->disableRenderView();
-//			}
-
-
-
 			$select->where('parentid=?',$catalogParent);
 
 			$items = $select->query()->fetchAll();
@@ -635,6 +601,24 @@ class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controller_Action
 		}
 		$this->ajaxGo($this->view->url($paramsArray));
 	}
+
+    public function indexateAction()
+    {
+        if ($ids = $this->getRequest()->getParam('ids'))
+        {
+            $data = $this->z_model->fetchAll(array('id in (?)'=>$ids));
+        }
+        else
+        {
+            $data = $this->z_model->fetchAll();
+        }
+        foreach ($data as $el)
+        {
+            $this->addToIndex($el->toArray());
+        }
+        $this->ajaxGo($this->view->url(array('action'=>$this->z_defaultAction)));
+        $this->disableRenderView();
+    }
 
 	public function addOverridePreValidate($param)
 	{
@@ -718,7 +702,7 @@ class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controller_Action
 		//добавляем документ
 		$searchIndex->addDocument($doc);
 	}
-	
+
 	protected function deleteFromIndex($id)
 	{
 		$searchIndex = Z_Search::getInstance();

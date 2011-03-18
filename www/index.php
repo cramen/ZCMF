@@ -18,6 +18,6 @@ $application->run();
 //if ($pfs)
 //foreach ($pfs as $pfel)
 //{
-//	echo $pfel->getElapsedSecs()."\t".$pfel->getQuery().'<br />';
+//	echo $pfel->getElapsedSecs()."\t".$pfel->getQuery().'<br />------------------<br />';
 //}
 //echo $pf->getTotalElapsedSecs();

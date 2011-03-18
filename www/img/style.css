@@ -285,9 +285,10 @@ input {
 }
 
 #content ul, #content ol{
-    list-style-type: disc;
+    list-style-type: circle;
     list-style-position: inside;
     margin-left: 20px;
+    margin-bottom: 1em;
     font-size: 0.9em;
 }
 #content ol {list-style-type: decimal; list-style-position: inside;}

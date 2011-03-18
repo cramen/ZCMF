@@ -1,5 +1,7 @@
 <?php
 
+exit;
+
 include 'defines.php';
 
 // Create application, bootstrap, and run
