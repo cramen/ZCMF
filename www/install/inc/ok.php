@@ -1,10 +1,8 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
  * User: cramen
  * Date: 29.03.11
  * Time: 14:46
- * To change this template use File | Settings | File Templates.
  */
 
 class install_ok
