@@ -1,6 +1,8 @@
 <?php
 include 'defines.php';
 
+exit;
+
 // Create application, bootstrap, and run
 $application = new Zend_Application(
 	APPLICATION_ENV,

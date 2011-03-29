@@ -131,7 +131,6 @@ class Z_User
 		{
 			if ($this->data['password'] != $user->password)
 			{
-				$salt = $this->_genSalt();
 				$this->data['password'] = self::_cryptPassword($this->data['password']);
 			}
 			

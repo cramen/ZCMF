@@ -86,6 +86,13 @@ class Z_File_Image_Resizer
 			$rm = $wm / $hm;
 
 		$dx=0; $dy=0; $sx=0; $sy=0; $dw=0; $dh=0; $sw=0; $sh=0; $w=0; $h=0;
+		
+//		$w = $wx;
+//		$h = $hx;
+		
+//		$sw = $this->data[0];
+//		$sh = $this->data[1];
+		
 
 		if($r > $rx && $r > $rm) {
 			$w = $wx;
@@ -120,11 +127,39 @@ class Z_File_Image_Resizer
 		} else {
 			throw new Exception("Can't resize the image");
 		}
+		
+
+/*		if($r < $rx) {
+			$dh = $h;
+			$hh = $dh;
+			$ww = (int)(($this->data[0]*$hh)/$this->data[1]);
+
+
+			$dx = (int)(($w/2)-($ww/2));
+			$dy = 0;
+			
+			$dw = $ww;
+			$dh = $hh;
+		}
+		else
+		{
+		    $ww = $w;
+		    $hh = (int)(($this->data[1]*$ww)/$this->data[0]);
+		    
+		    $dx = 0;
+		    $dw = $w;
+		    
+		    $dy = (int)(($h/2)-($hh/2));
+		    $dh = $hh;
+		    
+		
+		}*/
+
 
 		$this->copy = imagecreatetruecolor($w, $h);
 		imagealphablending( $this->copy, false );
 		imagesavealpha( $this->copy, true);
-		$transparentColor = imagecolorallocatealpha($this->copy, 255, 255, 255, 127);
+		$transparentColor = imagecolorallocatealpha($this->copy, 255, 255, 255, 0);
 		imagefilledrectangle($this->copy, 0, 0, $w-1, $h-1, $transparentColor);
 		
 		$this->copy_width = $w;

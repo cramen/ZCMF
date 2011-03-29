@@ -1,0 +1,395 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+input {
+    outline: none;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+:focus {
+    outline: 0;
+}
+
+ins {
+    text-decoration: none;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font: 10px/2em Arial, Tahoma, Verdana, sans-serif;
+    width: 100%;
+    height: 100%;
+}
+
+a {
+    color: blue;
+    outline: none;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+p {
+    margin: 0 0 1em 0;
+}
+
+img {
+    border: none;
+}
+
+input {
+    vertical-align: middle;
+    padding: 0;
+    margin: 0;
+}
+
+.wrapper {
+    width: 930px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden; /*border-left: 1px solid red;*/
+/*border-right: 1px solid red;*/
+}
+
+.clear {
+    clear: both;
+    font-size: 0;
+    line-height: 0;
+    height: 0;
+}
+
+#spacer {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin-bottom: -86px;
+}
+
+/* Header
+-----------------------------------------------------------------------------*/
+#header {
+    height: 96px;
+    background: #242424;
+    border-bottom: 1px solid #444444;
+}
+
+#header .wrapper {
+    height: 96px;
+}
+
+#logo {
+    display: block;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 153px;
+    height: 62px;
+    background: url("logo.gif");
+}
+
+/* Blueline
+-----------------------------------------------------------------------------*/
+#blueline {
+    background: #118cc0;
+    border-top: 1px solid #5acffb;
+    border-bottom: 1px solid #5acffb;
+    font-size: 1.4em;
+    color: #FFF;
+    padding: 15px 0 15px 0px;
+}
+
+#blueline .wrapper {
+    padding: 0 0 0 30px;
+    width: 900px;
+}
+
+#blueline h1, #blueline h2, #blueline h3, #blueline h4 {
+    color: #FFDE00;
+    font-size: 1.7em;
+    line-height: 1.7em;
+}
+
+#blueline hr {
+    border-bottom: 1px solid #12AFF4;
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid #005B83;
+}
+
+/* Content
+-----------------------------------------------------------------------------*/
+#content {
+    padding: 20px 0 106px 0;
+    min-height: 300px;
+    font-size: 1.4em;
+    line-height: 1.6em;
+}
+
+#content .wrapper {
+    padding: 0 10px 0 30px;
+    width: 890px;
+}
+
+#content h1, #content h2, #content h3, #content h4, #content h5 {
+    color: #118CC0;
+    padding: .8em 0 .8em 0;
+}
+
+#content h1 {
+    font-size: 1.8em;
+}
+
+#content h2 {
+    font-size: 1.6em;
+}
+
+#content h3 {
+    font-size: 1.3em;
+}
+
+#content h4 {
+    font-size: 1.15em;
+}
+
+#content h5 {
+    font-size: 1em;
+}
+
+#content hr {
+    border-bottom: 1px solid #12AFF4;
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid #95d3ee;
+}
+
+#content a {
+    color: #118CC0;
+}
+
+#content ul, #content ol {
+    list-style-type: circle;
+    list-style-position: inside;
+    margin-left: 20px;
+    margin-bottom: 1em;
+    font-size: 0.9em;
+}
+
+#content ol {
+    list-style-type: decimal;
+    list-style-position: inside;
+}
+
+#content .errors {
+    color: red;
+}
+
+/* Form
+-----------------------------------------------------------*/
+
+#content form {
+    padding: 10px 0;
+}
+
+#content .right form {
+    font-size: .8em;
+}
+
+#content form dl {
+    display: block;
+    padding: .8em;
+    margin: 0 1em 0 0;
+    background: #fff;
+    border: 1px solid #81c0db;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    overflow: hidden;
+
+    position: relative;
+}
+
+#content form dl dt {
+    margin: 1em 0 0 0;
+}
+
+#content form dl dt label {
+    color: #118CC0; /*color: #666;*/
+    font-size: 1.2em;
+}
+
+#content form dl dt label.required {
+    font-weight: bold;
+}
+
+/*#content .right form dl dt label {*/
+/*font-size: 1em;*/
+/*}*/
+
+#content form dl dd {
+}
+
+#content form dl dd input[type=text], #content form dl dd input[type=password], #content form dl dd select, #content form dl dd textarea {
+    width: 54%;
+    padding: .1em .3em;
+    background: #F6F6F6;
+    border: 1px solid #CCC;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+
+    overflow: hidden;
+}
+
+#content form dl dd input[type=text]:hover, #content form dl dd select:hover, #content form dl dd textarea:hover,
+#content form dl dd input[type=text]:focus, #content form dl dd select:focus, #content form dl dd textarea:focus {
+    background: #FFF;
+    border: 1px solid #999;
+}
+
+#content form dl dd textarea {
+    width: 90%;
+    height: 200px;
+}
+
+#content .right form dl dd textarea {
+    height: 100px;
+}
+
+#content form dl dd ul.errors {
+    color: #ef4949;
+    font-size: .8em;
+}
+
+#content form dl dd input[type=submit] {
+    padding: .3em .5em;
+    margin-bottom: .6em;
+    font-size: 1.2em;
+    color: #444;
+    background: #EEE;
+
+    cursor: pointer;
+
+    border: 1px solid #CCC;
+
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+
+}
+
+#content form dl dd input[type=submit]:hover {
+    background: #FFF;
+    border: 1px solid #999;
+}
+
+#content form dl dd img {
+    display: block;
+}
+
+/* Footer
+-----------------------------------------------------------------------------*/
+#footer {
+    margin: -86px auto 0;
+    height: 76px;
+    background: #242424;
+    border-top: 10px solid #171717;
+    color: #6B6B6B;
+    font-size: 12px;
+}
+
+#footer .wrapper {
+    height: 76px;
+    position: relative;
+}
+
+/* Menu
+--------------------------------------------*/
+#footer ul.menu {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #FFF;
+    font-size: 13px;
+    list-style: none;
+}
+
+#footer ul.menu li {
+    display: block;
+    float: left;
+    height: 18px;
+    margin-left: 20px;
+    padding-bottom: 12px;
+}
+
+#footer ul.menu li a {
+/*text-decoration: none;*/
+    color: #6B6B6B;
+}
+
+#footer ul.menu li.active a {
+    color: #999;
+}
+
+/* Counters
+--------------------------------------------*/
+#footer div.counter {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    height: 31px;
+}
+
+#footer div.counter img {
+    margin-left: 10px;
+}
+
+/* Copy
+--------------------------------------------*/
+#footer div.copy {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+#footer div.copy a {
+    color: #999;
+}
+
+

@@ -34,6 +34,7 @@ if (file_exists($filePreviewPathName)) {
     header('Content-Length: ' . filesize($filePreviewPathName));
     ob_clean();
     flush();
+//    echo $filePreviewPathName;
     readfile($filePreviewPathName);
     exit;
 }
