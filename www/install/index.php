@@ -31,6 +31,6 @@ if ($stepClass->run())
     $step++;
     header('Location: /install/?'.http_build_query(array('step'=>$step)));
 }
-
+ob_clean();
 echo $view->render('view.html');
 
