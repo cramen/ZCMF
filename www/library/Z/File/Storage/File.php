@@ -85,7 +85,7 @@ class Z_File_Storage_File
 	 */
 	public function getFullName()
 	{
-		return $this->getPath() . DIRECTORY_SEPARATOR . $this->get('name');
+		return $this->getPath() . '/' . $this->get('name');
 	}
 	
 	/**
@@ -94,7 +94,7 @@ class Z_File_Storage_File
 	 */
 	public function getSiteName()
 	{
-		return $this->getSitePath() . DIRECTORY_SEPARATOR . $this->getName();
+		return $this->getSitePath() . '/' . $this->getName();
 	}
 	
 	/**

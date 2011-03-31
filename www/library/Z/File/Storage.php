@@ -20,7 +20,7 @@ array('a','b','c','d','e','f',
 	
 	public function __construct($param = array())
 	{
-		$this->_storageDir = isset($param['storage']) ? $param['storage'] : SITE_PATH. DIRECTORY_SEPARATOR . 'storage';
+		$this->_storageDir = isset($param['storage']) ? $param['storage'] : SITE_PATH. '/' . 'storage';
 	}
 
 	/**
@@ -60,7 +60,7 @@ array('a','b','c','d','e','f',
 				'name' => $name,
 				'realname' => $param['realname'],
 				'path' => $folder,
-				'fullpath' => $this->_storageDir . DIRECTORY_SEPARATOR . $folder));
+				'fullpath' => $this->_storageDir . '/' . $folder));
 		return $this->save($file);
 	}
 
@@ -104,7 +104,7 @@ array('a','b','c','d','e','f',
                 shuffle(self::$_dirChars);
                 for($i = 0; $i < $length; $i++)
                         $name .= self::$_dirChars[$i];
-                if(!is_dir($this->_storageDir . DIRECTORY_SEPARATOR . $name))
+                if(!is_dir($this->_storageDir . '/' . $name))
 					return $name;
             }
             return false;
@@ -130,7 +130,7 @@ array('a','b','c','d','e','f',
         if (0 == count($result))
             return null;
 		$data = $result->current()->toArray();
-		$data['fullpath'] = $this->_storageDir . DIRECTORY_SEPARATOR .  $data['path'];
+		$data['fullpath'] = $this->_storageDir . '/' .  $data['path'];
         return new Z_File_Storage_File($data);
 	}
 
@@ -143,9 +143,9 @@ array('a','b','c','d','e','f',
 	 */
 	protected function copyFileNewDir($src, $destFolder, $destName)
 	{
-		$dir = $this->_storageDir . DIRECTORY_SEPARATOR .  $destFolder;
+		$dir = $this->_storageDir . '/' .  $destFolder;
 		$dirCreated = is_dir($dir) ? true : mkdir($dir);
-		return $dirCreated && copy($src, $dir . DIRECTORY_SEPARATOR . $destName);
+		return $dirCreated && copy($src, $dir . '/' . $destName);
 	}
 
 	/**
