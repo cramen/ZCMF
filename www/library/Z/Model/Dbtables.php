@@ -15,5 +15,9 @@ class Z_Model_Dbtables extends Z_Db_Table {
 	 */
 	protected $_name = 'z_dbtables';
 
+    protected $_dependentTables = array(
+        'Z_Model_Dbtablesfields',
+    );
+
 }
 

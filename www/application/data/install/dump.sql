@@ -323,7 +323,7 @@ CREATE TABLE `z_dbtables` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -365,7 +365,7 @@ CREATE TABLE `z_dbtables_fields` (
   PRIMARY KEY (`id`),
   KEY `dbtable_id` (`dbtable_id`),
   KEY `orderid` (`orderid`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -752,7 +752,7 @@ INSERT INTO `z_resources` VALUES (62,'acl_resourceforms','list',12,60,'Форм�
 INSERT INTO `z_resources` VALUES (63,'acl_resourceformsparams','list',62,63,'Параметры','Z_Model_Resourceformsparams','band','','title','formid','title','',15,1,1,1,1,0,0,'bottom',0,1);
 INSERT INTO `z_resources` VALUES (64,'acl_resourcerefers','list',12,62,'Связи','Z_Model_Resourcerefers','band','','field','resourceid','field','',15,1,1,1,1,0,0,'bottom',0,1);
 INSERT INTO `z_resources` VALUES (65,'acl_resourcebuttons','list',12,65,'Кнопки','Z_Model_Resourcebuttons','band','','title','resourceid','orderid','',15,1,1,1,1,0,1,'bottom',0,1);
-INSERT INTO `z_resources` VALUES (66,'z_dbtables','list',23,66,'Конструктор БД','Z_Model_Dbtables','band','','title','','title asc','',15,1,1,1,1,0,0,'bottom',1,1);
+INSERT INTO `z_resources` VALUES (66,'z_dbtables','list',23,66,'Конструктор БД','Z_Model_Dbtables','band','','title','','title asc','',15,1,1,1,1,1,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (67,'z_dbtablesfields','list',66,67,'Поля','Z_Model_Dbtablesfields','band','','title','dbtable_id','orderid','',15,1,1,1,1,0,1,'bottom',0,1);
 INSERT INTO `z_resources` VALUES (71,'system','',0,68,'Система','','band','','title','','id','',15,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (72,'z_phpinfo','index',71,71,'PHPinfo','','band','','title','','id','',15,1,1,1,1,0,0,'bottom',1,1);
@@ -767,7 +767,6 @@ INSERT INTO `z_resources` VALUES (81,'gallery','list',53,74,'Галерея','Si
 INSERT INTO `z_resources` VALUES (82,'gallery_items','list',81,81,'Элементы (Изображения)','Site_Model_Gallery_Items','band','','id','gallery_id','orderid','',15,1,1,1,1,0,1,'top',0,1);
 INSERT INTO `z_resources` VALUES (83,'video','list',53,76,'Видео','Site_Model_Video','band','','title','','id','',15,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (84,'video_items','list',83,83,'Видео','Site_Model_Video_Items','band','','title','video_id','date desc','',15,1,1,1,1,0,0,'bottom',0,1);
-INSERT INTO `z_resources` VALUES (90,'test','list',53,84,'тест','Site_Model_News','band','','title','','id','',15,1,1,1,1,0,0,'bottom',1,1);
 /*!40000 ALTER TABLE `z_resources` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -883,7 +882,6 @@ INSERT INTO `z_resources_columns` VALUES (55,49,83,'Раздел','10%','title',
 INSERT INTO `z_resources_columns` VALUES (56,50,84,'Название','','title',0,'','','','',1,1,1);
 INSERT INTO `z_resources_columns` VALUES (57,51,84,'Дата','','date',0,'','','','',1,1,1);
 INSERT INTO `z_resources_columns` VALUES (59,52,78,'Дата добавления','','date',0,'','','','',1,1,1);
-INSERT INTO `z_resources_columns` VALUES (61,53,90,'title','','title',0,'','','','',1,1,1);
 /*!40000 ALTER TABLE `z_resources_columns` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1071,8 +1069,6 @@ INSERT INTO `z_resources_forms` VALUES (130,84,123,'Text','title','Назван�
 INSERT INTO `z_resources_forms` VALUES (131,84,124,'Date','date','Дата',1,'','',0,'',1);
 INSERT INTO `z_resources_forms` VALUES (132,84,125,'Mce','description','Описание',0,'','',0,'',1);
 INSERT INTO `z_resources_forms` VALUES (133,84,126,'Textarea','code','Код видеоплеера',1,'','',0,'',1);
-INSERT INTO `z_resources_forms` VALUES (135,90,127,'Text','title','title',1,'','',0,'',1);
-INSERT INTO `z_resources_forms` VALUES (136,90,128,'Mce','text','text',1,'','',0,'',1);
 /*!40000 ALTER TABLE `z_resources_forms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1449,4 +1445,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-04-06 14:55:06
+-- Dump completed on 2011-04-06 15:23:41
