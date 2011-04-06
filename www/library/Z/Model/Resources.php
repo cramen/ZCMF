@@ -6,6 +6,27 @@ class Z_Model_Resources extends Z_Db_Table
 {
     protected $_name = 'z_resources';
     protected static $_resources = NULL;
+    protected $_dependentTables = array(
+        'Z_Model_Resourcebuttons',
+        'Z_Model_Resourcecolumns',
+        'Z_Model_Resourceconditions',
+        'Z_Model_Resourceforms',
+        'Z_Model_Resourcejoins',
+        'Z_Model_Resourcerefers',
+        'Z_Model_Rules',
+        'Z_Model_Resources',
+    );
+
+    protected $_referenceMap = array(
+        'Resource'  =>  array(
+            'columns'           => 'parentid',
+            'refTableClass'     => 'Z_Model_Resources',
+            'refColumns'        => 'id',
+            'onDelete'          =>  self::CASCADE,
+            'onUpdate'          =>  self::CASCADE,
+        ),
+    );
+
 
     /**
      * @return string

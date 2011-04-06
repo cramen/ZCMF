@@ -383,7 +383,7 @@ class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controller_Action
 
 				//проверка на наличие дочерних элементов
 				$haveChild = false;
-				if ($this->z_child_resources)
+				if ($this->z_child_resources && !$this->z_delete_on_have_child)
 				{
 					foreach ($this->z_child_resources as $resource)
 					{

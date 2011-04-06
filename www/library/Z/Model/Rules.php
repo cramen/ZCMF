@@ -5,6 +5,20 @@ require_once 'Z/Db/Table.php';
 class Z_Model_Rules extends Z_Db_Table
 {
     protected $_name = 'z_rules';
+    protected $_dependentTables = array(
+        'Z_Model_Privileges_Connect',
+    );
+
+    protected $_referenceMap = array(
+        'Resource'  =>  array(
+            'columns'           => 'resource_id',
+            'refTableClass'     => 'Z_Model_Resources',
+            'refColumns'        => 'id',
+            'onDelete'          =>  self::CASCADE,
+            'onUpdate'          =>  self::CASCADE,
+        ),
+    );
+
 
     /**
      * @return array

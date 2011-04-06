@@ -61,7 +61,7 @@ CREATE TABLE `gallery_items` (
   PRIMARY KEY (`id`),
   KEY `orderid` (`orderid`),
   KEY `gallery_id` (`gallery_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -660,7 +660,7 @@ CREATE TABLE `z_privileges_connect` (
   PRIMARY KEY (`id`),
   KEY `fk_privilege_id` (`privilege_id`),
   KEY `fk_rule_id` (`rule_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=160 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=169 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -720,7 +720,7 @@ CREATE TABLE `z_resources` (
   UNIQUE KEY `resourceId` (`resourceId`),
   KEY `parentid` (`parentid`),
   KEY `orderid` (`orderid`)
-) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -731,7 +731,7 @@ LOCK TABLES `z_resources` WRITE;
 /*!40000 ALTER TABLE `z_resources` DISABLE KEYS */;
 INSERT INTO `z_resources` VALUES (8,'z_users','list',24,8,'Пользователи','Z_Model_Users','band','','login','','login asc','',15,1,1,1,1,0,0,'',1,1);
 INSERT INTO `z_resources` VALUES (11,'acl_roles','list',24,11,'Роли','Z_Model_Roles','band','','title','','title asc','',15,1,1,1,1,0,0,'',1,1);
-INSERT INTO `z_resources` VALUES (12,'acl_resources','list',23,34,'Ресурсы','Z_Model_Resources','catalog','','title','','orderid','',15,1,1,1,1,0,1,'bottom',1,1);
+INSERT INTO `z_resources` VALUES (12,'acl_resources','list',23,34,'Ресурсы','Z_Model_Resources','catalog','','title','','orderid','',15,1,1,1,1,1,1,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (13,'acl_privileges','list',24,13,'Привилегии','Z_Model_Privileges','band','','title','','title asc','',15,1,1,1,1,0,0,'',1,1);
 INSERT INTO `z_resources` VALUES (18,'acl_parentroles','',11,18,'Родительские роли','Z_Model_Roles_Connect','band','','child_role_id','child_role_id','','',15,1,1,1,1,0,1,'bottom',0,1);
 INSERT INTO `z_resources` VALUES (19,'acl_rules','',11,19,'Правила','Z_Model_Rules','band','','id','role_id','title asc','',15,1,1,1,1,0,0,'',0,1);
@@ -758,7 +758,7 @@ INSERT INTO `z_resources` VALUES (71,'system','',0,68,'Система','','band'
 INSERT INTO `z_resources` VALUES (72,'z_phpinfo','index',71,71,'PHPinfo','','band','','title','','id','',15,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (74,'z_adminpanel','list',0,80,'Панель администрирования сайта','','band','','title','','id','',15,1,1,1,1,0,0,'bottom',0,1);
 INSERT INTO `z_resources` VALUES (75,'menu','list',53,21,'Меню','Site_Model_Menu','band','','title','','orderid','',20,1,1,1,1,0,1,'bottom',1,1);
-INSERT INTO `z_resources` VALUES (76,'filesystem','index',23,75,'Файловый менеджер','','band','','title','','id','',15,1,1,1,1,0,0,'bottom',1,1);
+INSERT INTO `z_resources` VALUES (76,'filesystem','index',23,75,'Файловый навигатор','','band','','title','','id','',15,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (77,'newsgroups','list',53,57,'Группы новостей','Site_Model_News_Groups','band','','title','','id','',15,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (78,'news','list',77,77,'Новости','Site_Model_News','band','','title','group_id','date desc','',15,1,1,1,1,0,0,'bottom',0,1);
 INSERT INTO `z_resources` VALUES (79,'lists','list',53,72,'Списки','Site_Model_Lists','band','','title','','id','',15,1,1,1,1,0,0,'bottom',1,1);
@@ -767,6 +767,7 @@ INSERT INTO `z_resources` VALUES (81,'gallery','list',53,74,'Галерея','Si
 INSERT INTO `z_resources` VALUES (82,'gallery_items','list',81,81,'Элементы (Изображения)','Site_Model_Gallery_Items','band','','id','gallery_id','orderid','',15,1,1,1,1,0,1,'top',0,1);
 INSERT INTO `z_resources` VALUES (83,'video','list',53,76,'Видео','Site_Model_Video','band','','title','','id','',15,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (84,'video_items','list',83,83,'Видео','Site_Model_Video_Items','band','','title','video_id','date desc','',15,1,1,1,1,0,0,'bottom',0,1);
+INSERT INTO `z_resources` VALUES (90,'test','list',53,84,'тест','Site_Model_News','band','','title','','id','',15,1,1,1,1,0,0,'bottom',1,1);
 /*!40000 ALTER TABLE `z_resources` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -787,7 +788,7 @@ CREATE TABLE `z_resources_buttons` (
   PRIMARY KEY (`id`),
   KEY `orderid` (`orderid`),
   KEY `resourceid` (`resourceid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -823,7 +824,7 @@ CREATE TABLE `z_resources_columns` (
   `on_have_subcat` int(1) NOT NULL DEFAULT '1',
   `visible` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -882,6 +883,7 @@ INSERT INTO `z_resources_columns` VALUES (55,49,83,'Раздел','10%','title',
 INSERT INTO `z_resources_columns` VALUES (56,50,84,'Название','','title',0,'','','','',1,1,1);
 INSERT INTO `z_resources_columns` VALUES (57,51,84,'Дата','','date',0,'','','','',1,1,1);
 INSERT INTO `z_resources_columns` VALUES (59,52,78,'Дата добавления','','date',0,'','','','',1,1,1);
+INSERT INTO `z_resources_columns` VALUES (61,53,90,'title','','title',0,'','','','',1,1,1);
 /*!40000 ALTER TABLE `z_resources_columns` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -899,7 +901,7 @@ CREATE TABLE `z_resources_conditions` (
   `value` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `recourceid` (`resourceid`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -935,7 +937,7 @@ CREATE TABLE `z_resources_forms` (
   PRIMARY KEY (`id`),
   KEY `resourceid` (`resourceid`),
   KEY `orderid` (`orderid`)
-) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1069,6 +1071,8 @@ INSERT INTO `z_resources_forms` VALUES (130,84,123,'Text','title','Назван�
 INSERT INTO `z_resources_forms` VALUES (131,84,124,'Date','date','Дата',1,'','',0,'',1);
 INSERT INTO `z_resources_forms` VALUES (132,84,125,'Mce','description','Описание',0,'','',0,'',1);
 INSERT INTO `z_resources_forms` VALUES (133,84,126,'Textarea','code','Код видеоплеера',1,'','',0,'',1);
+INSERT INTO `z_resources_forms` VALUES (135,90,127,'Text','title','title',1,'','',0,'',1);
+INSERT INTO `z_resources_forms` VALUES (136,90,128,'Mce','text','text',1,'','',0,'',1);
 /*!40000 ALTER TABLE `z_resources_forms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1141,7 +1145,7 @@ CREATE TABLE `z_resources_joins` (
   PRIMARY KEY (`id`),
   KEY `orderid` (`orderid`),
   KEY `resourceid` (`resourceid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1172,7 +1176,7 @@ CREATE TABLE `z_resources_refers` (
   `field2` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `resourceid` (`resourceid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1257,7 +1261,7 @@ CREATE TABLE `z_rules` (
   PRIMARY KEY (`id`),
   KEY `fk_roleId` (`role_id`),
   KEY `fk_resourceId` (`resource_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1445,4 +1449,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-04-01  1:01:02
+-- Dump completed on 2011-04-06 14:55:06

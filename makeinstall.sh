@@ -7,4 +7,4 @@ rm www/application/data/session/* -rf
 #mysqldump -uroot -proot --compress=true --compact=true --skip-comments --extended-insert=false zcmf > www/application/data/install/dump.sql
 mysqldump -uroot -proot --extended-insert=false zcmf > www/application/data/install/dump.sql
 cd www
-tar -czf ../../zcmf.tar.gz ./
+tar -czf ../../zcmf_`date +%Y_%m_%d`_.tar.gz ./
