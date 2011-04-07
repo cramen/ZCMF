@@ -28,7 +28,8 @@ class Zend_View_Helper_Menu
         $activeItem = $model->fetchRow(array('"'.addcslashes($this->view->url(),"'").'" LIKE CONCAT(url,"%")'),'LENGTH(url) desc');
 
         $this->view->items = $items;
-        $this->view->activeId = $activeItem->id;
+        if ($activeItem)
+            $this->view->activeId = $activeItem->id;
 
         return $this->view->render('menu.phtml');
     }
