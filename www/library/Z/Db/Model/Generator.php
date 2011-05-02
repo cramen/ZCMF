@@ -58,17 +58,17 @@ class Z_Db_Model_Generator {
 	public static function getAllModels()
 	{
 		$ret = array();
-		$path1 = APPLICATION_PATH.DIRECTORY_SEPARATOR.'models';
+		$path1 = APPLICATION_PATH.'/models';
 		$ret = self::getFileListRecursive($path1);
 		foreach ($ret as $key=>$el)
 		{
-			$ret[$key] = 'Site_Model_'.str_replace(array($path1.DIRECTORY_SEPARATOR,'.php','/'),array('','','_'),$el);
+			$ret[$key] = 'Site_Model_'.str_replace(array($path1.'/','.php','/'),array('','','_'),$el);
 		}
-		$path2 = APPLICATION_PATH.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'library'.DIRECTORY_SEPARATOR.'Z'.DIRECTORY_SEPARATOR.'Model';
+		$path2 = APPLICATION_PATH.'/../library/Z/Model';
 		$ret2 = self::getFileListRecursive($path2);
 		foreach ($ret2 as $key=>$el)
 		{
-			$ret2[$key] = 'Z_Model_'.str_replace(array($path2.DIRECTORY_SEPARATOR,'.php','/'),array('','','_'),$el);
+			$ret2[$key] = 'Z_Model_'.str_replace(array($path2.'/','.php','/'),array('','','_'),$el);
 		}
 		$ret = array_merge($ret,$ret2);
 		sort($ret);
@@ -84,13 +84,13 @@ class Z_Db_Model_Generator {
 			{
 				if ($file!='.' && $file!='..')
 				{
-					if (is_file($path.DIRECTORY_SEPARATOR.$file))
+					if (is_file($path.'/'.$file))
 					{
-						$ret[] = $path.DIRECTORY_SEPARATOR.$file;
+						$ret[] = $path.'/'.$file;
 					}
-					elseif (is_dir($path.DIRECTORY_SEPARATOR.$file))
+					elseif (is_dir($path.'/'.$file))
 					{
-						$ret = array_merge($ret,self::getFileListRecursive($path.DIRECTORY_SEPARATOR.$file));
+						$ret = array_merge($ret,self::getFileListRecursive($path.'/'.$file));
 					}
 				}
 	    	}			

@@ -116,6 +116,10 @@ file_browser_callback: function(field_name, url, type, win) {
 		jQuery::evalScript($script);
 		unset($attribs['toolbar']);
 
+		$entity_from=array('&amp;', '&lt;', '&gt;', '&nbsp;', '&quot;');
+		$entity_to= array('&amp;amp;', '&amp;lt;', '&amp;gt;', '&amp;nbsp;', '&amp;quot;');
+		$value = str_replace($entity_from, $entity_to, $value);
+
 		// build the element
 		$xhtml = '<textarea name="' . $this->view->escape($name) . '"'
 		. ' id="' . $this->view->escape($id) . '"'
