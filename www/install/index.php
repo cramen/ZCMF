@@ -16,7 +16,7 @@ $view->addScriptPath('./view/');
 
 $step = isset($_GET['step'])?(string)$_GET['step']:'0';
 $steps = array(
-    'db','config','ok'
+    'check','db','config','ok'
 );
 
 $file = 'inc/'.$steps[$step].'.php';

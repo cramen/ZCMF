@@ -1,0 +1,8 @@
+<?php if (count($this->files)): ?>
+    <h3>Следующие файлы и каталоги(и их подкаталоги и файлы) должны быть доступны для записи:</h3>
+    <ul style="color: red;">
+        <?php foreach ($this->files as $file): ?>
+        <li><?php echo $file?></li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
