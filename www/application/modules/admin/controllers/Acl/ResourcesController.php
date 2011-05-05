@@ -22,4 +22,36 @@ class Admin_Acl_ResourcesController extends Z_Admin_Controller_Datacontrol_Abstr
 			Z_Fs::create_file($path.$ds.$fileName,"<?\n".$class_file->generate());
 		}
 	}
+
+    public function getmodelfieldsAction()
+    {
+        $this->disableRenderAll();
+        $model = $this->getRequest()->getParam('model');
+
+        $res = array();
+        if (!$model)
+        {
+
+        }
+        elseif (class_exists($model))
+        {
+            $modelObject = new $model();
+            if (method_exists($modelObject,'info'))
+            {
+                $cols = $modelObject->info('cols');
+                foreach($cols as $col)
+                {
+                    $res[] = array(
+                        'id'    =>  $col,
+                        'label'    =>  $col,
+                        'value'    =>  $col,
+                    );
+                }
+            }
+        }
+
+        echo Zend_Json::encode($res);
+    }
+
+
 }

@@ -982,9 +982,9 @@ INSERT INTO `z_resources_forms` VALUES (37,12,36,'text','resourceId','Идент
 INSERT INTO `z_resources_forms` VALUES (38,12,37,'text','actionId','Действие',0,'list','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (39,12,38,'select','parentid','Родитель',1,'','',0,'return $this->_getParam(\'action\')==\'edit\';',0);
 INSERT INTO `z_resources_forms` VALUES (40,12,39,'Checkbox','visible','Видимый в меню?',0,'1','',0,'',0);
-INSERT INTO `z_resources_forms` VALUES (41,12,41,'select','model','Модель',0,'','',0,'',0);
+INSERT INTO `z_resources_forms` VALUES (41,12,41,'Select','model','Модель',0,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (42,12,42,'Select','datatype','Тип',1,'','',0,'',0);
-INSERT INTO `z_resources_forms` VALUES (43,12,43,'text','default_field','Поле по умолчанию',0,'title','',0,'',0);
+INSERT INTO `z_resources_forms` VALUES (43,12,43,'Text','default_field','Поле по умолчанию',0,'title','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (44,12,46,'text','order','Сортировка',0,'id','<p>Список полей для сортировки, разделяемый символом \";\"</p>',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (45,12,47,'text','group','Группировка',0,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (46,12,48,'text','paginate','Постраничность',1,'15','',0,'',0);
@@ -995,9 +995,9 @@ INSERT INTO `z_resources_forms` VALUES (50,12,52,'Checkbox','delete_confirm','П
 INSERT INTO `z_resources_forms` VALUES (51,12,53,'Checkbox','delete_on_have_child','Удалять при наличии детей?',0,'0','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (52,12,54,'Checkbox','sortable','Сортируемый?',0,'0','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (53,12,96,'Select','sortable_position','Позиция при добавлении',0,'','Работает только в сортируемых каталогах и списках',0,'',0);
-INSERT INTO `z_resources_forms` VALUES (54,12,44,'text','parent_field','Родительское поле',0,'','Используется, если вы хотите установить связь с родительской таблицей. В этом случае родительской таблицей является таблица модели родительского ресурса.',0,'',0);
+INSERT INTO `z_resources_forms` VALUES (54,12,44,'Text','parent_field','Родительское поле',0,'','<p>Используется, если вы хотите установить связь с родительской таблицей. В этом случае родительской таблицей является таблица модели родительского ресурса.</p>',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (55,62,57,'Select','type','Тип',1,'text','',0,'',0);
-INSERT INTO `z_resources_forms` VALUES (56,62,56,'text','field','Поле',1,'','',0,'',0);
+INSERT INTO `z_resources_forms` VALUES (56,62,56,'Autocomplete','field','Поле',1,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (57,62,55,'text','label','Название (label)',1,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (58,62,58,'Checkbox','required','Обязательное',0,'1','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (59,62,59,'text','value','Значение по умолчанию',0,'','',0,'',0);
@@ -1005,7 +1005,7 @@ INSERT INTO `z_resources_forms` VALUES (60,62,60,'mce','description','Описа
 INSERT INTO `z_resources_forms` VALUES (61,62,62,'Checkbox','only_for_root','Видно только для суперпользователя',0,'0','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (62,62,94,'EditArea','show_check','Функция проверки доступности',0,'','<p>PHP функция. Если возвращает false, то поле будет недоступно.</p>',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (63,59,63,'text','title','Название',1,'','',0,'',0);
-INSERT INTO `z_resources_forms` VALUES (64,59,64,'text','field','Поле в БД',1,'','',0,'',0);
+INSERT INTO `z_resources_forms` VALUES (64,59,64,'Autocomplete','field','Поле в БД',1,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (65,59,65,'text','width','Ширина',0,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (66,59,68,'checkbox','orderlink','Использовать для сортировки',1,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (67,59,69,'text','template','Шаблон',0,'','',0,'',0);
@@ -1087,7 +1087,7 @@ CREATE TABLE `z_resources_forms_params` (
   `is_eval` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `formid` (`formid`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1121,6 +1121,8 @@ INSERT INTO `z_resources_forms_params` VALUES (26,91,'MultiOptions','return arra
 INSERT INTO `z_resources_forms_params` VALUES (27,3,'filemanager','1',0);
 INSERT INTO `z_resources_forms_params` VALUES (28,107,'multiOptions','return Z_Resource_Aggregator::getInstance()->getList();',1);
 INSERT INTO `z_resources_forms_params` VALUES (29,107,'size','15',0);
+INSERT INTO `z_resources_forms_params` VALUES (32,64,'source','$id = $this->_getParam(\'acl_resourcecolumns_parentid\');\r\n$modelName = \'\';\r\n$model = new Z_Model_Resources();\r\nif ($id) $modelName = $model->find($id)->current()->model;\r\nreturn $this->view->url(array(\'controller\'=>\'acl_resources\',\'action\'=>\'getmodelfields\',\'model\'=>$modelName));',1);
+INSERT INTO `z_resources_forms_params` VALUES (33,56,'source','$id = $this->_getParam(\'acl_resourceforms_parentid\');\r\n$modelName = \'\';\r\n$model = new Z_Model_Resources();\r\nif ($id) $modelName = $model->find($id)->current()->model;\r\nreturn $this->view->url(array(\'controller\'=>\'acl_resources\',\'action\'=>\'getmodelfields\',\'model\'=>$modelName));',1);
 /*!40000 ALTER TABLE `z_resources_forms_params` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1445,4 +1447,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-05-03 15:06:19
+-- Dump completed on 2011-05-05 12:36:09
