@@ -120,16 +120,6 @@ z_jqphp_init = function()
 	        printStr += "<textarea class='ui-state-error ui-corner-all' style='width:100%;height:150px;'>"+ xmlEr.responseText+"</textarea>";
         }
 
-        try
-        {
-//            $("z-content").html(xmlEr.responseText);
-//            php.success(xmlEr.responseText);
-        }
-        catch(e)
-        {
-            
-        }
-
         z_flash_show_message(printStr,'60s');
        	
 	};	

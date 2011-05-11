@@ -612,10 +612,13 @@ class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controller_Action
         {
             $data = $this->z_model->fetchAll();
         }
+        $i=0;
         foreach ($data as $el)
         {
+            $i++;
             $this->addToIndex($el->toArray());
         }
+        Z_FlashMessenger::addMessage('Переиндексировано документов: '.$i);
         $this->ajaxGo($this->view->url(array('action'=>$this->z_defaultAction)));
         $this->disableRenderView();
     }
