@@ -62,16 +62,33 @@ class Z_Db_Model_Generator {
 		$ret = self::getFileListRecursive($path1);
 		foreach ($ret as $key=>$el)
 		{
-			$ret[$key] = 'Site_Model_'.str_replace(array($path1.'/','.php','/'),array('','','_'),$el);
+            $modelName = 'Site_Model_'.str_replace(array($path1.'/','.php','/','\\'),array('','','_','_'),$el);
+            if (class_exists($modelName))
+            {
+                $ret[$key] = $modelName;
+            }
+            else
+            {
+                unset($ret[$key]);
+            }
 		}
 		$path2 = APPLICATION_PATH.'/../library/Z/Model';
 		$ret2 = self::getFileListRecursive($path2);
 		foreach ($ret2 as $key=>$el)
 		{
-			$ret2[$key] = 'Z_Model_'.str_replace(array($path2.'/','.php','/'),array('','','_'),$el);
+            $modelName = 'Z_Model_'.str_replace(array($path2.'/','.php','/'),array('','','_'),$el);
+            if (class_exists($modelName))
+            {
+                $ret2[$key] = $modelName;
+            }
+            else
+            {
+                unset($ret2[$key]);
+            }
 		}
 		$ret = array_merge($ret,$ret2);
 		sort($ret);
+        
 		return $ret;
 	}
 	
