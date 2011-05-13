@@ -6,36 +6,36 @@ class Z_View_Helper_FormMce extends Zend_View_Helper_FormTextarea
 	protected $_mce_default_toolbar = 'default';
 	protected $_mce_toolbar = array(
 	'full'		=>	'
-			plugins : "safari,pagebreak,style,layer,table,advhr,advimage,advlink,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras",
+			plugins : "safari,pagebreak,style,layer,table,advhr,advimage,advlink,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,spellchecker",
 			theme_advanced_buttons1 : "newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
-			theme_advanced_buttons2 : "cut,copy,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+			theme_advanced_buttons2 : "cut,copy,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,code,|,insertdate,inserttime,preview,|,forecolor,backcolor,spellchecker",
 			theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,iespell,media,advhr,|,ltr,rtl,|,fullscreen",
 			theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking",
 		',
 	'default'	=>	'
-			plugins : "safari,pagebreak,style,layer,table,advhr,advimage,advlink,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras",
+			plugins : "safari,pagebreak,style,layer,table,advhr,advimage,advlink,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,spellchecker",
 			theme_advanced_buttons1 : "newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,formatselect,fontselect,fontsizeselect",
-			theme_advanced_buttons2 : "cut,copy,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,|,undo,redo,|,link,unlink,anchor,image,cleanup,code",
+			theme_advanced_buttons2 : "cut,copy,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,|,undo,redo,|,link,unlink,anchor,image,cleanup,code,spellchecker",
 			theme_advanced_buttons3 : "tablecontrols,|,removeformat,|,sub,sup,|,fullscreen",
 			theme_advanced_buttons4 : "",
 		',
 	'advanced'	=>	'
-			plugins : "safari,pagebreak,style,layer,table,advhr,advimage,advlink,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras",
+			plugins : "safari,pagebreak,style,layer,table,advhr,advimage,advlink,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,spellchecker",
 			theme_advanced_buttons1 : "newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,formatselect",
-			theme_advanced_buttons2 : "cut,copy,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,|,undo,redo,|,link,unlink,anchor,cleanup",
+			theme_advanced_buttons2 : "cut,copy,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,|,undo,redo,|,link,unlink,anchor,cleanup,spellchecker",
 			theme_advanced_buttons3 : "tablecontrols,|,removeformat,|,sub,sup,|,fullscreen",
 			theme_advanced_buttons4 : "",
 		',
 	'simple'	=>	'
-			plugins : "safari,pagebreak,style,layer,table,advhr,advimage,advlink,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras",
+			plugins : "safari,pagebreak,style,layer,table,advhr,advimage,advlink,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,spellchecker",
 			theme_advanced_buttons1 : "newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,formatselect,fontsizeselect",
-			theme_advanced_buttons2 : "cut,copy,pasteword,|,search,replace,|,undo,redo,|,sub,sup,|,fullscreen",
+			theme_advanced_buttons2 : "cut,copy,pasteword,|,search,replace,|,undo,redo,|,sub,sup,|,fullscreen,spellchecker",
 			theme_advanced_buttons3 : "",
 			theme_advanced_buttons4 : "",
 		',
 	'minimal'	=>	'
-			plugins : "safari,pagebreak,style,layer,table,advhr,advimage,advlink,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras",
-			theme_advanced_buttons1 : "bold,italic,underline,|,justifyleft,justifycenter,justifyright,justifyfull,undo,redo,|,sub,sup,|,fullscreen",
+			plugins : "safari,pagebreak,style,layer,table,advhr,advimage,advlink,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,spellchecker",
+			theme_advanced_buttons1 : "bold,italic,underline,|,justifyleft,justifycenter,justifyright,justifyfull,undo,redo,|,sub,sup,|,fullscreen,spellchecker",
 			theme_advanced_buttons2 : "",
 			theme_advanced_buttons3 : "",
 			theme_advanced_buttons4 : "",
@@ -110,7 +110,10 @@ file_browser_callback: function(field_name, url, type, win) {
 			onchange_callback: "z_mce_save",
 			execcommand_callback: "z_mce_save_event",
 			remove_script_host: true,
-			relative_urls: false
+			relative_urls: false,
+			spellchecker_languages : "+Russian=ru,Ukrainian=uk,English=en",
+			spellchecker_rpc_url : "/sys/tinyspell.php",
+			spellchecker_word_separator_chars : \'\\s!"#$%&()*+,./:;<=>?@[\]^_{|}\xa7 \xa9\xab\xae\xb1\xb6\xb7\xb8\xbb\xbc\xbd\xbe\u00bf\xd7\xf7\xa4\u201d\u201c\'
     	});';
 
 		jQuery::evalScript($script);
