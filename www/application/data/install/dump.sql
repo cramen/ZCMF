@@ -304,7 +304,7 @@ CREATE TABLE `z_config` (
 LOCK TABLES `z_config` WRITE;
 /*!40000 ALTER TABLE `z_config` DISABLE KEYS */;
 INSERT INTO `z_config` VALUES (6,'2010-04-20 09:16:04','Копирайты','copy','text','<a href=\"http://jane-safo.ru\">Дизайн</a>  Евгения Сафонова<br />\r\n<a href=\"http://cramen.ru\">Верстка и программирование</a> Антон Еськин<br />\r\n<strong>©ramen 2009-2011 ZCMF</strong>');
-INSERT INTO `z_config` VALUES (13,'2010-05-15 07:13:48','Текст страницы ошибки','error_text','html','<p>Здравствуйте!</p>\r\n<p>К сожалению запрашиваемая Вами страница не существует на нашем сайте.</p>\r\n<p><span>Это могло произойти по одной из причин:</span></p>\r\n<ul>\r\n<li>Вы ошиблись при наборе адреса страницы</li>\r\n<li>Перешли по неработающей(битой) ссылке</li>\r\n<li>Запрашиваемая страница была удалена</li>\r\n</ul>\r\n<p>Мы просим прощения за предоставленные неудобства и предлагаем следующие варианты:</p>\r\n<ul>\r\n<li>вернуться назад при помощи кнопки браузера back</li>\r\n<li>проверить правильность написания адреса страницы(URL) в адресной строке браузера</li>\r\n<li>перейти на <a href=\"/\">главную страницу</a> сайта</li>\r\n<li>посетить основные разделы сайта используя главное меню сайта</li>\r\n</ul>\r\n<p>Если Вы уверены в правильности набранного адреса страницы и считаете, что эта ошибка произошла по нашей вине, пожалуйста, сообщите об этом нам при помощи <a href=\"/feedback\">формы обратной связи</a>.</p>');
+INSERT INTO `z_config` VALUES (13,'2010-05-15 07:13:48','Текст страницы ошибки','error_text','html','<p>Здравствуйте!</p>\r\n<p>К сожалению запрашиваемая Вами страница не существует на нашем сайте.</p>\r\n<p>Это могло произойти по одной из причин:</p>\r\n<ul>\r\n<li>Вы ошиблись при наборе адреса страницы</li>\r\n<li>Перешли по неработающей(битой) ссылке</li>\r\n<li>Запрашиваемая страница была удалена</li>\r\n</ul>\r\n<p>Мы просим прощения за предоставленные неудобства и предлагаем следующие варианты:</p>\r\n<ul>\r\n<li>вернуться назад при помощи кнопки браузера back</li>\r\n<li>проверить правильность написания адреса страницы(URL) в адресной строке браузера</li>\r\n<li>перейти на <a href=\"/\">главную страницу</a> сайта</li>\r\n<li>посетить основные разделы сайта используя главное меню сайта</li>\r\n</ul>\r\n<p>Если Вы уверены в правильности набранного адреса страницы и считаете, что эта ошибка произошла по нашей вине, пожалуйста, сообщите об этом нам при помощи <a href=\"/feedback\">формы обратной связи</a>.</p>');
 INSERT INTO `z_config` VALUES (16,'2010-05-31 07:09:16','Счетчик','counter','text','<a href=\"http://validator.w3.org/check?uri=referer\"><img src=\"http://www.w3.org/Icons/valid-xhtml10\" alt=\"Valid XHTML 1.0 Strict\" height=\"31\" width=\"88\" /></a>');
 INSERT INTO `z_config` VALUES (18,'2010-06-01 09:26:25','E-Mail администратора','email','string','');
 INSERT INTO `z_config` VALUES (19,'2011-03-03 06:47:56','robots.txt','robots.txt','text','User-agent:*\r\nDisallow: /redirect*\r\nDisallow: /captcha*\r\n\r\nUser-agent: Yandex\r\nDisallow: /redirect*\r\nDisallow: /captcha*\r\n');
@@ -323,7 +323,7 @@ CREATE TABLE `z_dbtables` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -365,7 +365,7 @@ CREATE TABLE `z_dbtables_fields` (
   PRIMARY KEY (`id`),
   KEY `dbtable_id` (`dbtable_id`),
   KEY `orderid` (`orderid`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -822,6 +822,7 @@ CREATE TABLE `z_resources_columns` (
   `escape` int(11) NOT NULL,
   `on_have_subcat` int(1) NOT NULL DEFAULT '1',
   `visible` int(1) NOT NULL DEFAULT '1',
+  `parentid` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -832,56 +833,56 @@ CREATE TABLE `z_resources_columns` (
 
 LOCK TABLES `z_resources_columns` WRITE;
 /*!40000 ALTER TABLE `z_resources_columns` DISABLE KEYS */;
-INSERT INTO `z_resources_columns` VALUES (6,6,21,'Название','','title',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (7,7,21,'Идентификатор','','sid',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (8,8,21,'Адрес','','url',0,'/page/{{sid}}','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (9,9,22,'Название','','title',1,'','title LIKE ?','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (10,10,22,'Идентификатор','','sid',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (11,11,57,'Название','','title',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (12,12,57,'Идентификатор','','sid',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (13,13,8,'Логин','50%','login',1,'','login LIKE ?','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (14,14,8,'Роль','','rolename',1,'','z_roles.id LIKE ?','$rolesModel = new Z_Model_Roles();\r\n\r\nreturn $rolesModel->fetchPairs();','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (15,15,11,'Роль','','title',1,'{{title}} ({{roleId}})','title LIKE ?','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (16,16,19,'Ресурс','50%','title',1,'','title LIKE ?','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (17,17,19,'Правило','','rule',0,'','rule = ?','return array(\'allow\'=>\'Разрешено\',\'deny\'=>\'Запрещено\');','return \"{{rule}}\"==\"allow\"?\"Разрешено\":\"Запрещено\";',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (18,18,18,'Роль','','title',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (19,19,13,'Привилегия','','title',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (20,20,32,'Адрес','','uri',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (21,21,32,'Заголовок','','title',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (23,22,62,'Название','','label',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (24,24,59,'Название','30%','title',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (25,32,59,'Поле','20%','field',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (26,33,59,'Ширина','','width',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (27,27,62,'Тип','','type',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (28,23,62,'Поле','','field',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (29,23,63,'Имя параметра','30%','title',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (30,24,63,'Значение','','value',0,'<pre>{{value}}</pre>','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (31,25,60,'Условие','50%','condition',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (32,26,60,'Значение','','value',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (33,27,61,'Модель','30%','model',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (34,28,61,'Условие','30%','condition',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (35,29,61,'Поля','','fields',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (36,30,64,'Поле','','field',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (37,31,64,'Модель','','model',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (38,34,65,'Название','','title',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (39,35,66,'Название таблицы','50%','title',0,'','title LIKE ?','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (40,36,67,'Поле','','title',0,'','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (41,37,67,'Тип','','type1',0,'{{type}} ({{len}})','','','',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (43,38,66,'Запустить конструктор','20%','run',0,'','','','if (in_array(\'{{title}}\',Z_Db_Table::getDefaultAdapter()->listTables()))\n	return \'<a href=\"\'.$this->url(array(\'action\'=>\'rebuild\',\'id\'=>{{id}})).\'\" class=\"z-ajax\">Модифицировать<a>\';\nelse\n	return \'<a href=\"\'.$this->url(array(\'action\'=>\'build\',\'id\'=>{{id}})).\'\" class=\"z-ajax\">Запустить конструктор<a>\';',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (45,39,67,'Индекс','','is_index1',0,'','','','return \'{{is_index}}\'?\'Да\':\'\';',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (46,40,75,'Заголовок','','title',0,'','','','',1,1,1);
-INSERT INTO `z_resources_columns` VALUES (47,41,75,'Ссылка','','url',0,'','','','',1,1,1);
-INSERT INTO `z_resources_columns` VALUES (48,42,77,'Название группы','20%','title',0,'','','','',1,1,1);
-INSERT INTO `z_resources_columns` VALUES (49,43,78,'Название','','title',0,'','','','',1,1,1);
-INSERT INTO `z_resources_columns` VALUES (50,44,79,'Название списка','20%','title',0,'','','','',1,1,1);
-INSERT INTO `z_resources_columns` VALUES (51,45,80,'Название','','title',0,'','','','',1,1,1);
-INSERT INTO `z_resources_columns` VALUES (52,46,81,'Название','20%','title',0,'','','','',1,1,1);
-INSERT INTO `z_resources_columns` VALUES (53,47,82,'Картинка','10%','pic_pv',0,'','','','return \'<img src=\"\'.$this->z_Preview({{pic}},array(\'h\'=>75)).\'\">\';',0,1,1);
-INSERT INTO `z_resources_columns` VALUES (54,48,82,'Ссылка','','url',0,'','','','',1,1,1);
-INSERT INTO `z_resources_columns` VALUES (55,49,83,'Раздел','10%','title',0,'','','','',1,1,1);
-INSERT INTO `z_resources_columns` VALUES (56,50,84,'Название','','title',0,'','','','',1,1,1);
-INSERT INTO `z_resources_columns` VALUES (57,51,84,'Дата','','date',0,'','','','',1,1,1);
-INSERT INTO `z_resources_columns` VALUES (59,52,78,'Дата добавления','','date',0,'','','','',1,1,1);
+INSERT INTO `z_resources_columns` VALUES (6,6,21,'Название','','title',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (7,7,21,'Идентификатор','','sid',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (8,8,21,'Адрес','','url',0,'/page/{{sid}}','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (9,9,22,'Название','','title',1,'','title LIKE ?','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (10,10,22,'Идентификатор','','sid',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (11,11,57,'Название','','title',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (12,12,57,'Идентификатор','','sid',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (13,13,8,'Логин','50%','login',1,'','login LIKE ?','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (14,14,8,'Роль','','rolename',1,'','z_roles.id LIKE ?','$rolesModel = new Z_Model_Roles();\r\n\r\nreturn $rolesModel->fetchPairs();','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (15,15,11,'Роль','','title',1,'{{title}} ({{roleId}})','title LIKE ?','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (16,16,19,'Ресурс','50%','title',1,'','title LIKE ?','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (17,17,19,'Правило','','rule',0,'','rule = ?','return array(\'allow\'=>\'Разрешено\',\'deny\'=>\'Запрещено\');','return \"{{rule}}\"==\"allow\"?\"Разрешено\":\"Запрещено\";',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (18,18,18,'Роль','','title',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (19,19,13,'Привилегия','','title',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (20,20,32,'Адрес','','uri',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (21,21,32,'Заголовок','','title',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (23,22,62,'Название','','label',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (24,24,59,'Название','30%','title',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (25,32,59,'Поле','20%','field',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (26,33,59,'Ширина','','width',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (27,27,62,'Тип','','type',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (28,23,62,'Поле','','field',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (29,23,63,'Имя параметра','30%','title',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (30,24,63,'Значение','','value',0,'<pre>{{value}}</pre>','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (31,25,60,'Условие','50%','condition',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (32,26,60,'Значение','','value',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (33,27,61,'Модель','30%','model',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (34,28,61,'Условие','30%','condition',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (35,29,61,'Поля','','fields',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (36,30,64,'Поле','','field',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (37,31,64,'Модель','','model',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (38,34,65,'Название','','title',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (39,35,66,'Название таблицы','50%','title',0,'','title LIKE ?','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (40,36,67,'Поле','','title',0,'','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (41,37,67,'Тип','','type1',0,'{{type}} ({{len}})','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (43,38,66,'Запустить конструктор','20%','run',0,'','','','if (in_array(\'{{title}}\',Z_Db_Table::getDefaultAdapter()->listTables()))\n	return \'<a href=\"\'.$this->url(array(\'action\'=>\'rebuild\',\'id\'=>{{id}})).\'\" class=\"z-ajax\">Модифицировать<a>\';\nelse\n	return \'<a href=\"\'.$this->url(array(\'action\'=>\'build\',\'id\'=>{{id}})).\'\" class=\"z-ajax\">Запустить конструктор<a>\';',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (45,39,67,'Индекс','','is_index1',0,'','','','return \'{{is_index}}\'?\'Да\':\'\';',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (46,40,75,'Заголовок','','title',0,'','','','',1,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (47,41,75,'Ссылка','','url',0,'','','','',1,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (48,42,77,'Название группы','20%','title',0,'','','','',1,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (49,43,78,'Название','','title',0,'','','','',1,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (50,44,79,'Название списка','20%','title',0,'','','','',1,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (51,45,80,'Название','','title',0,'','','','',1,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (52,46,81,'Название','20%','title',0,'','','','',1,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (53,47,82,'Картинка','10%','pic_pv',0,'','','','return \'<img src=\"\'.$this->z_Preview({{pic}},array(\'h\'=>75)).\'\">\';',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (54,48,82,'Ссылка','','url',0,'','','','',1,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (55,49,83,'Раздел','10%','title',0,'','','','',1,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (56,50,84,'Название','','title',0,'','','','',1,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (57,51,84,'Дата','','date',0,'','','','',1,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (59,52,78,'Дата добавления','','date',0,'','','','',1,1,1,0);
 /*!40000 ALTER TABLE `z_resources_columns` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1447,4 +1448,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-05-13 23:26:44
+-- Dump completed on 2011-06-20 16:13:31

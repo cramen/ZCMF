@@ -31,6 +31,8 @@ $fileName = $geoPath.DIRECTORY_SEPARATOR.'cidr_ru_block.txt';
 //$extractor = new Z_Archive_Extractor();
 //$extractor->extractArchive($downloadFileName,$geoPath);
 
+//exit;
+
 
 define('IP_BLOCK_START',0);
 define('IP_BLOCK_STOP',1);
