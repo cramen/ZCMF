@@ -660,7 +660,7 @@ CREATE TABLE `z_privileges_connect` (
   PRIMARY KEY (`id`),
   KEY `fk_privilege_id` (`privilege_id`),
   KEY `fk_rule_id` (`rule_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=160 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=162 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -682,6 +682,8 @@ INSERT INTO `z_privileges_connect` VALUES (145,7,46);
 INSERT INTO `z_privileges_connect` VALUES (157,7,42);
 INSERT INTO `z_privileges_connect` VALUES (158,7,47);
 INSERT INTO `z_privileges_connect` VALUES (159,7,48);
+INSERT INTO `z_privileges_connect` VALUES (160,1,49);
+INSERT INTO `z_privileges_connect` VALUES (161,3,49);
 /*!40000 ALTER TABLE `z_privileges_connect` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1260,7 +1262,7 @@ CREATE TABLE `z_rules` (
   PRIMARY KEY (`id`),
   KEY `fk_roleId` (`role_id`),
   KEY `fk_resourceId` (`resource_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1280,6 +1282,7 @@ INSERT INTO `z_rules` VALUES (45,3,57,'deny');
 INSERT INTO `z_rules` VALUES (46,3,74,'allow');
 INSERT INTO `z_rules` VALUES (47,3,32,'allow');
 INSERT INTO `z_rules` VALUES (48,4,32,'allow');
+INSERT INTO `z_rules` VALUES (49,3,8,'deny');
 /*!40000 ALTER TABLE `z_rules` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1448,4 +1451,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-06-20 16:13:31
+-- Dump completed on 2011-07-07 14:43:18
