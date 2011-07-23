@@ -21,10 +21,11 @@ class Z_Statpage
   {
     self::$_model = new Z_Model_Statpage();
     $cache = Z_Cache::getInstance();
-    if (!$this->_row = $cache->load('z_spatpage_'.$sid))
+    $cache_id = 'z_spatpage_'.str_replace(array(DIRECTORY_SEPARATOR,'.','-',':','/','\\'),'_',$sid);
+    if (!$this->_row = $cache->load($cache_id))
     {
       $this->_row = $this->_getRow($sid);
-      $cache->save($this->_row,'z_spatpage_'.$sid);
+      $cache->save($this->_row,$cache_id);
     }
   }
 

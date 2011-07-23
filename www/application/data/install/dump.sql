@@ -836,8 +836,7 @@ CREATE TABLE `z_resources_columns` (
 LOCK TABLES `z_resources_columns` WRITE;
 /*!40000 ALTER TABLE `z_resources_columns` DISABLE KEYS */;
 INSERT INTO `z_resources_columns` VALUES (6,6,21,'Название','','title',0,'','','','',0,1,1,0);
-INSERT INTO `z_resources_columns` VALUES (7,7,21,'Идентификатор','','sid',0,'','','','',0,1,1,0);
-INSERT INTO `z_resources_columns` VALUES (8,8,21,'Адрес','','url',0,'/page/{{sid}}','','','',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (7,7,21,'Адрес','','sid',0,'','','','',0,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (9,9,22,'Название','','title',1,'','title LIKE ?','','',0,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (10,10,22,'Идентификатор','','sid',0,'','','','',0,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (11,11,57,'Название','','title',0,'','','','',0,1,1,0);
@@ -948,7 +947,7 @@ CREATE TABLE `z_resources_forms` (
 LOCK TABLES `z_resources_forms` WRITE;
 /*!40000 ALTER TABLE `z_resources_forms` DISABLE KEYS */;
 INSERT INTO `z_resources_forms` VALUES (1,21,1,'Text','title','Название',1,'','',0,'',0);
-INSERT INTO `z_resources_forms` VALUES (2,21,2,'text','sid','Идентификатор',1,'','',1,'',0);
+INSERT INTO `z_resources_forms` VALUES (2,21,2,'Text','sid','Адрес страницы',1,'','<p>Только латинские буквы, цифры и симпол подчеркивания. Пример адреса: about</p>',1,'',0);
 INSERT INTO `z_resources_forms` VALUES (3,21,3,'mce','text','Текст',1,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (4,21,4,'checkbox','z_can_delete','Разрешить удалять?',0,'1','',1,'',0);
 INSERT INTO `z_resources_forms` VALUES (5,22,5,'Text','title','Название',1,'','',1,'',0);
@@ -1303,7 +1302,7 @@ CREATE TABLE `z_statpages` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `sid` (`sid`),
   KEY `crated_on` (`crated_on`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1451,4 +1450,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-07-07 14:43:18
+-- Dump completed on 2011-07-23 14:03:25
