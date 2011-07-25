@@ -36,5 +36,16 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	{
 		setlocale(LC_ALL, "ru_RU.UTF-8");
 	}
+
+    protected function _initMeta()
+    {
+        $this->bootstrap('view');
+
+        /**
+         * @var Zend_View
+         */
+        $view = $this->getResource('view');
+        $view->headMeta()->appendName(base64_decode('Z2VuZXJhdG9y'),base64_decode('WkNNRiB2ZXJzaW9uIA==').eval(base64_decode('cmV0dXJuIFpfVmVyc2lvbjo6JHZhbHVlOw==')));
+    }
 	
 }

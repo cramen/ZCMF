@@ -1,4 +1,31 @@
 <?php
+/**
+ * ZCMF
+ * Copyright (c) 2010 ZCMF. <cramen@cramen.ru>, http://zcmf.ru
+ *
+ * Лицензия
+ *
+ * Следующие ниже условия не относятся к сторонним библиотекам, используемым в ZCMF.
+ * Все сторонние библиотеки распространяются согласно их лицензии.
+ *
+ * Данная лицензия разрешает лицам, получившим копию данного программного обеспечения и сопутствующей документации
+ * (в дальнейшем именуемыми "Программное Обеспечение"),безвозмездно использовать Программное Обеспечение без ограничений,
+ * включая неограниченное право на использование, копирование, изменение, добавление, публикацию, распространение,
+ * сублицензирование и/или продажу копий Программного Обеспечения, также как и лицам,
+ * которым предоставляется данное Программное Обеспечение, соблюдении следующих условий:
+ *
+ * Вышеупомянутый копирайт и данные условия должны быть включены во все копии или значимые части данного Программного Обеспечения.
+ *
+ * При копировании, добавлении, изменении, распространении, продаже, публикации и сублицензировании программного обеспечения,
+ * авторство может быть только дополнено, но не удалено или изменено на другое.
+ *
+ * ДАННОЕ ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ ПРЕДОСТАВЛЯЕТСЯ «КАК ЕСТЬ», БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ, ЯВНО ВЫРАЖЕННЫХ ИЛИ ПОДРАЗУМЕВАЕМЫХ,
+ * ВКЛЮЧАЯ, НО НЕ ОГРАНИЧИВАЯСЬ ГАРАНТИЯМИ ТОВАРНОЙ ПРИГОДНОСТИ, СООТВЕТСТВИЯ ПО ЕГО КОНКРЕТНОМУ НАЗНАЧЕНИЮ И
+ * ОТСУТСТВИЯ НАРУШЕНИЙ ПРАВ. НИ В КАКОМ СЛУЧАЕ АВТОРЫ ИЛИ ПРАВООБЛАДАТЕЛИ НЕ НЕСУТ ОТВЕТСТВЕННОСТИ ПО ИСКАМ О ВОЗМЕЩЕНИИ УЩЕРБА,
+ * УБЫТКОВ ИЛИ ДРУГИХ ТРЕБОВАНИЙ ПО ДЕЙСТВУЮЩИМ КОНТРАКТАМ, ДЕЛИКТАМ ИЛИ ИНОМУ, ВОЗНИКШИМ ИЗ, ИМЕЮЩИМ ПРИЧИНОЙ
+ * ИЛИ СВЯЗАННЫМ С ПРОГРАММНЫМ ОБЕСПЕЧЕНИЕМ ИЛИ ИСПОЛЬЗОВАНИЕМ ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ ИЛИ ИНЫМИ ДЕЙСТВИЯМИ С ПРОГРАММНЫМ ОБЕСПЕЧЕНИЕМ.
+ *
+ */
 
 /**
  * Класс для работы с базой географической привязки блоков ip адресов
@@ -136,149 +163,149 @@ class Z_Geo_Ip {
 		$ns->cityId = NULL;
 	}
 
-	public static function import()
-	{
-	  set_time_limit(0);
-	  //-------------------Парсинг файла с блоками адресов и заполнение БД-------------------//
-
-	  $geoPath = APPLICATION_PATH.DIRECTORY_SEPARATOR.'data'.DIRECTORY_SEPARATOR.'geoip';
-	  $downloadFileName = $geoPath.DIRECTORY_SEPARATOR.'base.tar.gz';
-	  $fileName = $geoPath.DIRECTORY_SEPARATOR.'cidr_ru_block.txt';
-	  $infoFileName = $geoPath.DIRECTORY_SEPARATOR.'info.txt';
-	  if (file_exists($infoFileName)) return;
-
-	  file_put_contents($infoFileName, 'delete');
-	  //удаление старых файлов
-//	  if (file_exists($downloadFileName))
-//	    unlink($downloadFileName);
-//	  if (file_exists($fileName))
-//	    unlink($fileName);
-
-	  file_put_contents($infoFileName, 'download');
-	  //скачиваем новую базу
-//	  $downloadFileContent = file_get_contents('http://ipgeobase.ru/files/db/Main/db_files.tar.gz');
-//	  file_put_contents($downloadFileName, $downloadFileContent);
-
-	  //распаковка файлов
-	  $extractor = new Z_Archive_Extractor();
-	  $extractor->extractArchive($downloadFileName,$geoPath);
-
-	  define('IP_BLOCK_START',0);
-	  define('IP_BLOCK_STOP',1);
-	  define('IP_BLOCK_CITY',4);
-	  define('IP_BLOCK_AREA',5);
-	  define('IP_BLOCK_DISTRICT',6);
-
-	  $blocksModel	=	new Z_Model_Geo_Blocks();
-	  $cityesModel	=	new Z_Model_Geo_Cityes();
-	  $areasModel		=	new Z_Model_Geo_Areas();
-	  $districtsModel	=	new Z_Model_Geo_Districts();
-
-	  $districts = $districtsModel->getAdapter()->fetchPairs($districtsModel->select(true)
-		  ->reset(Zend_Db_Select::COLUMNS)
-		  ->columns(array('district','id')));
-
-	  $areas = $areasModel->getAdapter()->fetchPairs($areasModel->select(true)
-		  ->reset(Zend_Db_Select::COLUMNS)
-		  ->columns(array('area','id')));
-
-	  $cityes = $cityesModel->getAdapter()->fetchPairs($cityesModel->select(true)
-		  ->reset(Zend_Db_Select::COLUMNS)
-		  ->columns(array('city','id')));
-
-	  $blocksModel->getAdapter()->query('TRUNCATE TABLE  `'.$blocksModel->info('name').'`');
-
-
-	  if (($handle = fopen($fileName,'r')) !== false)
-	  {
-	    $lastBlockStart	= 0;
-	    $lastBlockStop	= 0;
-	    $lastBlockCity	= '';
-
-	    $i=0;
-	    while (($data = Z_Csv::fgetcsv($handle, 1000, "\t")) !== FALSE)
-	    {
-	      $data[IP_BLOCK_AREA]      = iconv('WINDOWS-1251','UTF-8',$data[IP_BLOCK_AREA]);
-	      $data[IP_BLOCK_CITY]      = iconv('WINDOWS-1251','UTF-8',$data[IP_BLOCK_CITY]);
-	      $data[IP_BLOCK_DISTRICT]  = iconv('WINDOWS-1251','UTF-8',$data[IP_BLOCK_DISTRICT]);
-	      $data[IP_BLOCK_START]     =	(int)$data[IP_BLOCK_START];
-	      $data[IP_BLOCK_STOP]     =	(int)$data[IP_BLOCK_STOP];
-
-	      //добавление округа
-	      if (!array_key_exists($data[IP_BLOCK_DISTRICT],$districts))
-	      {
-		$districtRow = $districtsModel->createRow(array(
-			'district'	=>	$data[IP_BLOCK_DISTRICT]
-		));
-		$districtRow->save();
-		$districts[$districtRow->district] = $districtRow->id;
-	      }
-	      //добавление области
-	      if (!array_key_exists($data[IP_BLOCK_AREA],$areas))
-	      {
-		$areaRow = $areasModel->createRow(array(
-			'z_geo_districts_id'	=>	$districts[$data[IP_BLOCK_DISTRICT]],
-			'area'					=>	$data[IP_BLOCK_AREA]
-		));
-		$areaRow->save();
-		$areas[$areaRow->area] = $areaRow->id;
-	      }
-	      //добавление города
-	      if (!array_key_exists($data[IP_BLOCK_CITY],$cityes))
-	      {
-		$cityRow = $cityesModel->createRow(array(
-			'z_geo_areas_id'	=>	$areas[$data[IP_BLOCK_AREA]],
-			'city'					=>	$data[IP_BLOCK_CITY]
-		));
-		$cityRow->save();
-		$cityes[$cityRow->city] = $cityRow->id;
-	      }
-	      //добавление блока
-	      if ($lastBlockStart <= $data[IP_BLOCK_START] && $lastBlockStop >= $data[IP_BLOCK_STOP])
-	      {
-		//если блок внутри существующего, но с другим городом, то добавляем, иначе ничего не делаем
-		if ($lastBlockCity != $data[IP_BLOCK_CITY])
-		{
-		  $blocksModel->insert(array(
-			  'z_geo_cityes_id'	=>	$cityes[$data[IP_BLOCK_CITY]],
-			  'start'					=>	$data[IP_BLOCK_START],
-			  'stop'					=>	$data[IP_BLOCK_STOP]
-		  ));
-		  $i++;
-		  if ($i%1000 == 0)
-		  {
-		    file_put_contents($infoFileName, $i);
-		    sleep(2);
-		  }
-		}
-	      }
-	      else
-	      {
-		//если этот блок не является подблоком, то добавляем
-		$blocksModel->insert(array(
-			'z_geo_cityes_id'	=>	$cityes[$data[IP_BLOCK_CITY]],
-			'start'					=>	$data[IP_BLOCK_START],
-			'stop'					=>	$data[IP_BLOCK_STOP]
-		));
-		$i++;
-		if ($i%1000 == 0)
-		{
-		  file_put_contents($infoFileName, $i);
-		  sleep(2);
-		}
-
-		$lastBlockStart = $data[IP_BLOCK_START];
-		$lastBlockStop  = $data[IP_BLOCK_STOP];
-		$lastBlockCity  = $data[IP_BLOCK_CITY];
-	      }
-
-
-	    }
-	  }
-
-	  unlink($infoFileName);
-
-	}
+//	public static function import()
+//	{
+//	  set_time_limit(0);
+//	  //-------------------Парсинг файла с блоками адресов и заполнение БД-------------------//
+//
+//	  $geoPath = APPLICATION_PATH.DIRECTORY_SEPARATOR.'data'.DIRECTORY_SEPARATOR.'geoip';
+//	  $downloadFileName = $geoPath.DIRECTORY_SEPARATOR.'base.tar.gz';
+//	  $fileName = $geoPath.DIRECTORY_SEPARATOR.'cidr_ru_block.txt';
+//	  $infoFileName = $geoPath.DIRECTORY_SEPARATOR.'info.txt';
+//	  if (file_exists($infoFileName)) return;
+//
+//	  file_put_contents($infoFileName, 'delete');
+//	  //удаление старых файлов
+////	  if (file_exists($downloadFileName))
+////	    unlink($downloadFileName);
+////	  if (file_exists($fileName))
+////	    unlink($fileName);
+//
+//	  file_put_contents($infoFileName, 'download');
+//	  //скачиваем новую базу
+////	  $downloadFileContent = file_get_contents('http://ipgeobase.ru/files/db/Main/db_files.tar.gz');
+////	  file_put_contents($downloadFileName, $downloadFileContent);
+//
+//	  //распаковка файлов
+//	  $extractor = new Z_Archive_Extractor();
+//	  $extractor->extractArchive($downloadFileName,$geoPath);
+//
+//	  define('IP_BLOCK_START',0);
+//	  define('IP_BLOCK_STOP',1);
+//	  define('IP_BLOCK_CITY',4);
+//	  define('IP_BLOCK_AREA',5);
+//	  define('IP_BLOCK_DISTRICT',6);
+//
+//	  $blocksModel	=	new Z_Model_Geo_Blocks();
+//	  $cityesModel	=	new Z_Model_Geo_Cityes();
+//	  $areasModel		=	new Z_Model_Geo_Areas();
+//	  $districtsModel	=	new Z_Model_Geo_Districts();
+//
+//	  $districts = $districtsModel->getAdapter()->fetchPairs($districtsModel->select(true)
+//		  ->reset(Zend_Db_Select::COLUMNS)
+//		  ->columns(array('district','id')));
+//
+//	  $areas = $areasModel->getAdapter()->fetchPairs($areasModel->select(true)
+//		  ->reset(Zend_Db_Select::COLUMNS)
+//		  ->columns(array('area','id')));
+//
+//	  $cityes = $cityesModel->getAdapter()->fetchPairs($cityesModel->select(true)
+//		  ->reset(Zend_Db_Select::COLUMNS)
+//		  ->columns(array('city','id')));
+//
+//	  $blocksModel->getAdapter()->query('TRUNCATE TABLE  `'.$blocksModel->info('name').'`');
+//
+//
+//	  if (($handle = fopen($fileName,'r')) !== false)
+//	  {
+//	    $lastBlockStart	= 0;
+//	    $lastBlockStop	= 0;
+//	    $lastBlockCity	= '';
+//
+//	    $i=0;
+//	    while (($data = Z_Csv::fgetcsv($handle, 1000, "\t")) !== FALSE)
+//	    {
+//	      $data[IP_BLOCK_AREA]      = iconv('WINDOWS-1251','UTF-8',$data[IP_BLOCK_AREA]);
+//	      $data[IP_BLOCK_CITY]      = iconv('WINDOWS-1251','UTF-8',$data[IP_BLOCK_CITY]);
+//	      $data[IP_BLOCK_DISTRICT]  = iconv('WINDOWS-1251','UTF-8',$data[IP_BLOCK_DISTRICT]);
+//	      $data[IP_BLOCK_START]     =	(int)$data[IP_BLOCK_START];
+//	      $data[IP_BLOCK_STOP]     =	(int)$data[IP_BLOCK_STOP];
+//
+//	      //добавление округа
+//	      if (!array_key_exists($data[IP_BLOCK_DISTRICT],$districts))
+//	      {
+//		$districtRow = $districtsModel->createRow(array(
+//			'district'	=>	$data[IP_BLOCK_DISTRICT]
+//		));
+//		$districtRow->save();
+//		$districts[$districtRow->district] = $districtRow->id;
+//	      }
+//	      //добавление области
+//	      if (!array_key_exists($data[IP_BLOCK_AREA],$areas))
+//	      {
+//		$areaRow = $areasModel->createRow(array(
+//			'z_geo_districts_id'	=>	$districts[$data[IP_BLOCK_DISTRICT]],
+//			'area'					=>	$data[IP_BLOCK_AREA]
+//		));
+//		$areaRow->save();
+//		$areas[$areaRow->area] = $areaRow->id;
+//	      }
+//	      //добавление города
+//	      if (!array_key_exists($data[IP_BLOCK_CITY],$cityes))
+//	      {
+//		$cityRow = $cityesModel->createRow(array(
+//			'z_geo_areas_id'	=>	$areas[$data[IP_BLOCK_AREA]],
+//			'city'					=>	$data[IP_BLOCK_CITY]
+//		));
+//		$cityRow->save();
+//		$cityes[$cityRow->city] = $cityRow->id;
+//	      }
+//	      //добавление блока
+//	      if ($lastBlockStart <= $data[IP_BLOCK_START] && $lastBlockStop >= $data[IP_BLOCK_STOP])
+//	      {
+//		//если блок внутри существующего, но с другим городом, то добавляем, иначе ничего не делаем
+//		if ($lastBlockCity != $data[IP_BLOCK_CITY])
+//		{
+//		  $blocksModel->insert(array(
+//			  'z_geo_cityes_id'	=>	$cityes[$data[IP_BLOCK_CITY]],
+//			  'start'					=>	$data[IP_BLOCK_START],
+//			  'stop'					=>	$data[IP_BLOCK_STOP]
+//		  ));
+//		  $i++;
+//		  if ($i%1000 == 0)
+//		  {
+//		    file_put_contents($infoFileName, $i);
+//		    sleep(2);
+//		  }
+//		}
+//	      }
+//	      else
+//	      {
+//		//если этот блок не является подблоком, то добавляем
+//		$blocksModel->insert(array(
+//			'z_geo_cityes_id'	=>	$cityes[$data[IP_BLOCK_CITY]],
+//			'start'					=>	$data[IP_BLOCK_START],
+//			'stop'					=>	$data[IP_BLOCK_STOP]
+//		));
+//		$i++;
+//		if ($i%1000 == 0)
+//		{
+//		  file_put_contents($infoFileName, $i);
+//		  sleep(2);
+//		}
+//
+//		$lastBlockStart = $data[IP_BLOCK_START];
+//		$lastBlockStop  = $data[IP_BLOCK_STOP];
+//		$lastBlockCity  = $data[IP_BLOCK_CITY];
+//	      }
+//
+//
+//	    }
+//	  }
+//
+//	  unlink($infoFileName);
+//
+//	}
 
 	public static function status()
 	{
