@@ -33,12 +33,11 @@ class install_license
                 try
                 {
                     set_time_limit(0);
-                    $client = new Zend_Http_Client('http://zcmf.ru/collect/'.Z_Version::$value,array(
+                    $client = new Zend_Http_Client('http://zcmf.ru/calculate/'.Z_Version::$value,array(
                                                                                               'maxredirects' => 0,
                                                                                               'timeout'      => 5));
                     $client->setHeaders('ua','ZCMF_UA');
                     $req = $client->request('GET');
-                    $this->view->license = $req->getBody();
                 }
                 catch (Exception $e)
                 {
@@ -82,8 +81,8 @@ class install_license
 
         $translator = new Zend_Translate_Adapter_Array(Z_Admin_Form::$_translate_array,'ru_RU');
         $translator->addTranslation(array(
-                                         Zend_Validate_Between::NOT_BETWEEN => 'Подтвердите согласие с условиями лицензионного соглашения.',
-                                         Zend_Validate_Between::NOT_BETWEEN_STRICT => 'Подтвердите согласие с условиями лицензионного соглашения.',
+                                         Zend_Validate_Between::NOT_BETWEEN => 'Подтвердите Ваше согласие с условиями лицензионного соглашения.',
+                                         Zend_Validate_Between::NOT_BETWEEN_STRICT => 'Подтвердите Ваше согласие с условиями лицензионного соглашения.',
                                     ),'ru_RU');
         $form->setTranslator($translator);
 
