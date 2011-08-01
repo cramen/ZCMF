@@ -62,7 +62,7 @@ BODY {font-family: 'arial', 'tahoma', sans-serif; font-size: 9pt; min-width: 100
 
 
 /*Контент*/
-#z-content {font-size: 1.1em;}
+#z-content {font-size: 1.1em}
 #content-header {padding: .2em .8em; border-bottom: none; border-right: none;}
 #content-body {padding: .2em 0 .2em 0; border-top: none; border-right: none;}
 #z-content .z-button {font-size: .8em;}
@@ -101,7 +101,7 @@ BODY {font-family: 'arial', 'tahoma', sans-serif; font-size: 9pt; min-width: 100
 /*Формы*/
 #z-content .z-form {margin: 1em .5em;}
 #z-content .z-form .z-form-inputItem {margin: .3em 0 1.2em 0;}
-#z-content .z-form .z-form-inputItem input {width: 100%; padding: .1em .2em;}
+#z-content .z-form .z-form-inputItem input {width: 100%; max-width: 300px; padding: .1em .2em;}
 #z-content .z-form .z-form-inputItem textarea {width: 100%; height: 200px;}
 #z-content .z-form .z-form-inputItem input.z-form-checkbox {width: auto;}
 #z-content .z-form .z-form-inputItem p {font-size: .8em; font-style: italic;}

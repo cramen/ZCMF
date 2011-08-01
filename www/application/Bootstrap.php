@@ -45,6 +45,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
          * @var Zend_View
          */
         $view = $this->getResource('view');
+        /**
+         * Этот код добавляет мета тег о генераторе сайта.
+         */
         $view->headMeta()->appendName(base64_decode('Z2VuZXJhdG9y'),base64_decode('WkNNRiB2ZXJzaW9uIA==').eval(base64_decode('cmV0dXJuIFpfVmVyc2lvbjo6JHZhbHVlOw==')));
     }
 	

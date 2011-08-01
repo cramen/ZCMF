@@ -1,19 +1,2 @@
 <?php $page = $this->z_Statpage('index')?>
-
-<h1><?=$page->getTitle()?></h1>
-<?=$page->getText()?>
-
-
-<?php $this->placeholder('top')->captureStart()?>
-        <div class="left">
-            <h3>Что такое ZCMF?</h3>
-            <hr />
-            
-			<p>ZCMF - это открытый профессиональный фреймворк для быстрой разработки сайтов.</p>
-			<p>ZCMF позволяет в минимально короткие сроки разработать сайт любой сложности и систему управления для него. В основе ZCMF лежит Zend Framework, поэтому без труда любой специалист по ZF сможет создать сайт на ZCMF с нуля или доработать уже существующий.</p>            
-        </div>
-        <div class="right">
-            <div class="clear"></div>
-            <a href="http://zcmf.ru/download" class="big_button">Скачать</a>
-        </div>
-<?php $this->placeholder('top')->captureEnd()?>
+<?php echo $this->action('show','page',null,array('page'=>$page))?>

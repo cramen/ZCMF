@@ -438,6 +438,7 @@ class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controller_Action
 						}
 					$delData = $item->toArray();
 					$item->delete();
+
 					foreach ($formFileitems as $formFileitem)
 					{
 						$storage->removeFileDir($delData[$formFileitem->field]);
@@ -839,6 +840,17 @@ class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controller_Action
 
 			$this->z_form->getElement('submit')->removeDecorator('Label');
 			if (!$this->z_form->getAction()) $this->z_form->setAction($this->view->url(array('id'=>$this->_getParam('id'))));
+
+            $elements = $this->z_form->getElements();
+            if (count($elements))
+            {
+                $keys = array_keys($elements);
+                $key = $keys[0];
+                $element = $elements[$key];
+                $elementId = $element->getId();
+                jQuery::evalScript('$("#'.$elementId.'").focus();');
+            }
+
 		}
 		return $this->z_form;
 	}

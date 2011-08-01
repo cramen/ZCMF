@@ -1,0 +1,27 @@
+<?php
+	$this->placeholder('top')->set('<h1>'.$this->band->title.'</h1>'.$this->band->description);
+	Z_Seo::addTitle($this->band->title);
+?>
+
+            <div class="partners">
+            
+<?php foreach ($this->items as $item):?>
+
+                <div class="partner">
+                   	<?php if ($item->file):?>
+                    	<div class="logo"><img src="<?php echo $this->z_Preview($item->file,array('w'=>200))?>" alt="" /></div>
+                   	<?php endif;?>
+                
+                    <div class="info">
+                        <h3><?php echo $item->title?></h3>
+                        <?php if($item->url):?>
+                        	<a href="<?php echo $item->url?>"><?php echo $item->url?></a><br />
+                        <?php endif;?>
+                        <?php echo $item->description?>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+<?php endforeach;?>
+
+            </div>
