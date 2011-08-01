@@ -7,7 +7,7 @@ class FeedbackController extends Zend_Controller_Action
 	{
 		$form = new Site_Form_Feedback();
 		$form->setAction($this->view->url());
-		
+
 		if ($this->getRequest()->isPost())
 		{
 			$data = $this->getRequest()->getPost();
