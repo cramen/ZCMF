@@ -77,7 +77,7 @@ class BandsController extends Zend_Controller_Action
         $id = $this->_getParam('id');
 
         $row = $this->modelBandsItems->find($id)->current();
-        if (!$row)
+        if (!$row || $row->parentid != $this->bandRow->id)
         {
             $this->_forward('error','error');
             return;
