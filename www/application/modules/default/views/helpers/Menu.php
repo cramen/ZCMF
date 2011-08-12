@@ -25,7 +25,8 @@ class Zend_View_Helper_Menu
     {
         $model = new Site_Model_Menu();
         $items = $model->fetchAll(null,'orderid');
-        $activeItem = $model->fetchRow(array('"'.addcslashes($this->view->url(),"'").'" LIKE CONCAT(url,"%")'),'LENGTH(url) desc');
+        echo addcslashes(trim($_SERVER['REQUEST_URI'],"/"),"'");
+        $activeItem = $model->fetchRow(array('"/'.addcslashes(trim($_SERVER['REQUEST_URI'],"/"),"'").'" LIKE CONCAT(url,"%")'),'LENGTH(url) desc');
 
         $this->view->items = $items;
         if ($activeItem)
