@@ -128,7 +128,7 @@ CREATE TABLE `menu` (
   `url` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `orderid` (`orderid`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137,11 +137,12 @@ CREATE TABLE `menu` (
 
 LOCK TABLES `menu` WRITE;
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
-INSERT INTO `menu` VALUES (3,3,'Новости','/list/news');
-INSERT INTO `menu` VALUES (4,4,'Партнеры','/list/partners');
-INSERT INTO `menu` VALUES (5,7,'Фотогалерея','/list/photo');
-INSERT INTO `menu` VALUES (8,8,'Обратная связь','/feedback');
+INSERT INTO `menu` VALUES (3,4,'Новости','/list/news');
+INSERT INTO `menu` VALUES (4,7,'Партнеры','/list/partners');
+INSERT INTO `menu` VALUES (5,8,'Фотогалерея','/list/photo');
+INSERT INTO `menu` VALUES (8,9,'Обратная связь','/feedback');
 INSERT INTO `menu` VALUES (9,2,'Главная','/');
+INSERT INTO `menu` VALUES (10,3,'О компании','/about');
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -909,7 +910,7 @@ INSERT INTO `z_resources_forms` VALUES (140,85,134,'Text','band_description','К
 INSERT INTO `z_resources_forms` VALUES (141,85,135,'Text','band_text','Полное описание',0,'Текст новости','',1,'',1);
 INSERT INTO `z_resources_forms` VALUES (142,85,142,'Text','band_perpage','Постраничность',1,'0','<p>Если указан 0, то без постраничности</p>',1,'',1);
 INSERT INTO `z_resources_forms` VALUES (143,85,143,'Select','band_order','Сортировка по полю',1,'id','',1,'',1);
-INSERT INTO `z_resources_forms` VALUES (144,85,144,'Select','band_orderdir','Направление сотрировки',1,'ASC','',1,'',1);
+INSERT INTO `z_resources_forms` VALUES (144,85,144,'Select','band_orderdir','Направление сортировки',1,'ASC','',1,'',1);
 INSERT INTO `z_resources_forms` VALUES (145,85,136,'Text','band_param1','param1',0,'','',1,'',1);
 INSERT INTO `z_resources_forms` VALUES (146,85,137,'Text','band_param2','param2',0,'','',1,'',1);
 INSERT INTO `z_resources_forms` VALUES (147,85,138,'Text','band_param3','param3',0,'','',1,'',1);
@@ -1157,7 +1158,7 @@ CREATE TABLE `z_statpages` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `sid` (`sid`),
   KEY `crated_on` (`crated_on`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1166,7 +1167,8 @@ CREATE TABLE `z_statpages` (
 
 LOCK TABLES `z_statpages` WRITE;
 /*!40000 ALTER TABLE `z_statpages` DISABLE KEYS */;
-INSERT INTO `z_statpages` VALUES (6,'index','2010-05-31 05:40:46','Главная страница','<p>На этой странице Вы сможете разместить информацию о своей компании.</p>',1);
+INSERT INTO `z_statpages` VALUES (6,'index','2010-05-31 05:40:46','Главная страница','<p>На этой странице Вы сможете разместить информацию о своей компании.</p>',0);
+INSERT INTO `z_statpages` VALUES (7,'about','2011-08-15 13:15:36','О компании','<p>Текст страницы о компании</p>',0);
 /*!40000 ALTER TABLE `z_statpages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1306,4 +1308,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-08-12 13:56:36
+-- Dump completed on 2011-08-15 17:18:52

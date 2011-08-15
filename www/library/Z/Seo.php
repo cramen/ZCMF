@@ -42,7 +42,7 @@ class Z_Seo
 	
 	public static function setTitle($title)
 	{
-		if (!is_string($title) && !$title) return ;
+		if (!is_string($title) || !$title) return ;
 		self::$title = array($title);
 	}
 
