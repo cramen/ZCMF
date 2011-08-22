@@ -22,7 +22,6 @@ catch (Exception $e)
 
 if (!$allow) die('Доступ запрещен');
 
-
 function listPages($list)
 {
 	if (!is_array($list)) return;
