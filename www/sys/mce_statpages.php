@@ -58,8 +58,10 @@ a:hover{text-decoration:underline;}
 		</style> 
 		<script type="text/javascript"> 
             function m_set_url(url) {
+
                 window.parent.document.getElementById('href').value = url;
                 return false;
+
             }
         </script>
 	</head> 
