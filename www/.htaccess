@@ -4,6 +4,7 @@ php_value display_errors 1
 php_value error_reporting 2047
 php_value output_buffering 4096
 php_value memory_limit 64M
+php_value date.timezone "Europe/Moscow"
 #php_value open_basedir none
 
 #SetEnv APPLICATION_ENV production
