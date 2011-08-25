@@ -44,6 +44,11 @@ class BandsController extends Zend_Controller_Action
 
 	public function indexAction()
 	{
+        if (!trim($this->bandRow->band_template))
+        {
+            $this->_forward('error','error');
+            return;
+        }
         $this->_helper->viewRenderer->setRender($this->bandRow->band_template);
         
         $page = $this->_getParam('page',1);
@@ -72,6 +77,11 @@ class BandsController extends Zend_Controller_Action
 	
 	public function cardAction()
 	{
+        if (!trim($this->bandRow->band_template_card))
+        {
+            $this->_forward('error','error');
+            return;
+        }
         $this->_helper->viewRenderer->setRender($this->bandRow->band_template_card);
 
         $id = $this->_getParam('id');
