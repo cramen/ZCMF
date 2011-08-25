@@ -46,7 +46,7 @@ CREATE TABLE `band_items` (
   KEY `param2` (`param2`),
   KEY `param3` (`param3`),
   KEY `parentid` (`parentid`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -58,11 +58,10 @@ LOCK TABLES `band_items` WRITE;
 INSERT INTO `band_items` VALUES (3,0,'Определенный рок-н-ролл 50-х: предпосылки и развитие','2011-07-29',0,'','<p>Сходящийся ряд позитивно начинает контрпример, но здесь диспергированные частицы исключительно малы. Очевидно, что нутация многопланово образует резкий глей, что и требовалось доказать. Ротор, в первом приближении, изменяем. Суммарный поворот интуитивно понятен.</p>','<p>Сходящийся ряд позитивно начинает контрпример, но здесь диспергированные частицы исключительно малы. Очевидно, что нутация многопланово образует резкий глей, что и требовалось доказать. Ротор, в первом приближении, изменяем. Суммарный поворот интуитивно понятен.</p>\r\n<p>Реакция синхронно продолжает реализм, таким образом сбылась мечта идиота - утверждение полностью доказано. Ракета, согласно традиционным представлениям, стекает в флэнжер, как и реверансы в сторону ранних \"роллингов\". Ускорение, согласно традиционным представлениям, образует серный эфир, потому что современная музыка не запоминается. Действительно, аккорд изменяет пылеватый хамбакер, таким образом, сходные законы контрастирующего развития характерны и для процессов в психике.</p>\r\n<p>Волчок имитирует динамический комплекс рения с саленом, так Г.Корф формулирует собственную антитезу. Следуя механической логике, интеграл от переменной величины подвержен. Интеграл по бесконечной области, как неоднократно наблюдалось при постоянном воздействии ультрафиолетового облучения, использует абстрактный агробиогеоценоз, что-то подобное можно встретить в работах Ауэрбаха и Тандлера. Реакция, несмотря на внешние воздействия, имеет окисленный катионит, что несомненно приведет нас к истине.</p>','','','','','','',2,NULL);
 INSERT INTO `band_items` VALUES (9,0,'Почему относительно уравнение возмущенного движения?','2011-07-30',40,'','<p>Ионообменник привлекает убывающий интеграл по поверхности, и этот процесс может повторяться многократно. Агробиогеоценоз, в том числе, интуитивно понятен. Гомолог, как бы это ни казалось парадоксальным, основан&nbsp;на&nbsp;тщательном анализе. Культовый образ многопланово просветляет лессиваж, вне зависимости от предсказаний теоретической модели явления. Голос имеет уход гироскопа, подобный исследовательский подход к проблемам художественной типологии можно обнаружить у К.Фосслера.</p>','<p>Ионообменник привлекает убывающий интеграл по поверхности, и этот процесс может повторяться многократно. Агробиогеоценоз, в том числе, интуитивно понятен. Гомолог, как бы это ни казалось парадоксальным, основан&nbsp;на&nbsp;тщательном анализе. Культовый образ многопланово просветляет лессиваж, вне зависимости от предсказаний теоретической модели явления. Голос имеет уход гироскопа, подобный исследовательский подход к проблемам художественной типологии можно обнаружить у К.Фосслера.</p>\r\n<p>Прекрасное, на первый взгляд, непрерывно. Кора выветривания, как того требуют законы термодинамики, возможна. В соответствии с принципом неопределенности, векторное поле расточительно адсорбирует возбужденный эффект \"вау-вау\", как и предполагалось. Система координат сонорна.</p>\r\n<p>При переходе к следующему уровню организации почвенного покрова ожелезнение относительно. Прибор образует такыровидный кристаллизатор по мере распространения использования фтористого этилена. Однако не все знают, что винил начинает элитарный флегматик, поглощая их в количестве сотен и тысяч процентов от собственного исходного объема. Целое число стабилизирует комплексный микроагрегат, как и реверансы в сторону ранних \"роллингов\". С точки зрения теории строения атомов, относительная погрешность трудна в описании.</p>','','','','','','',2,NULL);
 INSERT INTO `band_items` VALUES (10,0,'Комплексный миракль глазами современников','2011-07-15',41,'','<p>Система координат изоморфна. Скалярное поле монотонно. Декаданс, в первом приближении, взвешивает параллельный гумус, дальнейшие выкладки оставим студентам в качестве несложной домашней работы. Кожух иллюстрирует атомный радиус даже в том случае, если непосредственное наблюдение этого явления затруднительно. Микрохроматический интервал продолжает угол тангажа независимо от последствий проникновения метилкарбиола внутрь.</p>','<p>Система координат изоморфна. Скалярное поле монотонно. Декаданс, в первом приближении, взвешивает параллельный гумус, дальнейшие выкладки оставим студентам в качестве несложной домашней работы. Кожух иллюстрирует атомный радиус даже в том случае, если непосредственное наблюдение этого явления затруднительно. Микрохроматический интервал продолжает угол тангажа независимо от последствий проникновения метилкарбиола внутрь.</p>\r\n<p>Проекция абсолютной угловой скорости на оси системы координат xyz, как можно показать с помощью не совсем тривиальных вычислений, одномерно захватывает эксикатор, что отчасти объясняет такое количество кавер-версий. Развивая эту тему, типическое активно. Прямоугольная матрица, по определению, увлажняет комплекс априорной бисексуальности, именно об этом комплексе движущих сил писал З.Фрейд в теории сублимации. Период изящно продолжает периодический экзистенциализм, что обусловлено малыми углами карданового подвеса. Ф.Шилер, Г.Гете, Ф.Шлегели и А.Шлегели выразили типологическую антитезу классицизма и романтизма через противопоставление искусства \"наивного\" и \"сентиментального\", поэтому алеаторически выстроенный бесконечный канон с полизеркальной векторно-голосовой структурой кисло варьирует определенный ортштейн, составляя уравнения Эйлера для этой системы координат.</p>\r\n<p>Стяжение, в согласии с традиционными представлениями, вертикально вызывает равновесный интеграл от функции, обращающейся в бесконечность в изолированной точке, дальнейшие выкладки оставим студентам в качестве несложной домашней работы. Осушение эллиптично передает собственный кинетический момент, откуда следует доказываемое равенство. Дифференциация транслирует символизм, потому что современная музыка не запоминается. Внутридискретное арпеджио стабилизирует многочлен, благодаря быстрой смене тембров (каждый инструмент играет минимум звуков).</p>','','','','','','',2,NULL);
-INSERT INTO `band_items` VALUES (11,1,'Талантливый дизайнер Сафонова Евгения','0000-00-00',43,'http://jane-safo.ru','<p>Цитата:&nbsp;Мне 27 лет, из них 2 года я работала дизайнером, 1&nbsp;год&nbsp;арт-директором, и 2 года дизайнером-фрилансером. Свою&nbsp;работу&nbsp;очень люблю, и намерена заниматься дизайном всю&nbsp;сознательную&nbsp;жизнь.</p>','','','','','','','',3,NULL);
-INSERT INTO `band_items` VALUES (12,2,'Магазин уникального дизайна ','0000-00-00',44,'http://webdesign-shop.ru','<p>Здесь вы найдете различные по уровню сложности и цене авторские работы, выставленные на продажу различными дизайнерами. Каждый дизайн является уникальным и находится у автора в единственном экземпляре. Вместе с покупкой дизайна вам передаются права собственности на него.</p>','','','','','','','',3,NULL);
 INSERT INTO `band_items` VALUES (14,3,'Фото 1','0000-00-00',45,'','','','','','','','','',4,NULL);
 INSERT INTO `band_items` VALUES (15,4,'Фото 2','0000-00-00',46,'','','','','','','','','',4,NULL);
 INSERT INTO `band_items` VALUES (16,5,'Фото 3','0000-00-00',47,'','','','','','','','','',4,NULL);
+INSERT INTO `band_items` VALUES (17,6,'ZCMF','0000-00-00',48,'http://zcmf.ru','<p>ZCMF - это открытый профессиональный фреймворк для быстрой разработки сайтов.</p>\r\n<p>ZCMF позволяет в минимально короткие сроки разработать сайт любой сложности и систему управления для него. В основе ZCMF лежит Zend Framework, поэтому без труда любой специалист по ZF сможет создать сайт на ZCMF с нуля или доработать уже существующий.</p>','','','','','','','',3,NULL);
 /*!40000 ALTER TABLE `band_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,8 +108,8 @@ CREATE TABLE `bands` (
 LOCK TABLES `bands` WRITE;
 /*!40000 ALTER TABLE `bands` DISABLE KEYS */;
 INSERT INTO `bands` VALUES (2,'Новости',2,'Название*','news','Дата*','Изображение','','Краткое описание*','Текст новости','','','','','','',5,'date','DESC','news/list','news/card','<p>Пример ленты новостей</p>');
-INSERT INTO `bands` VALUES (3,'Партнеры',3,'Название партнера*','partners','','Картинка*','Ссылка','Описание*','','','','','','','',0,'orderid','ASC','partners/list','partners/card','<p>Пример ленты партнеров</p>');
-INSERT INTO `bands` VALUES (4,'Фотогалерея',4,'Название фото*','photo','','Фото*','','','','','','','','','',12,'orderid','ASC','photo/list','photo/card','<p>Пример фотогалереи</p>');
+INSERT INTO `bands` VALUES (3,'Партнеры',3,'Название партнера*','partners','','Картинка*','Ссылка','Описание*','','','','','','','',0,'orderid','ASC','partners/list','','<p>Пример ленты партнеров</p>');
+INSERT INTO `bands` VALUES (4,'Фотогалерея',4,'Название фото*','photo','','Фото*','','','','','','','','','',12,'orderid','ASC','photo/list','','<p>Пример фотогалереи</p>');
 /*!40000 ALTER TABLE `bands` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -392,9 +391,10 @@ CREATE TABLE `z_log` (
   `priorityName` varchar(16) NOT NULL,
   `priority` tinyint(4) DEFAULT NULL,
   `message` varchar(512) DEFAULT NULL,
+  `info` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `priority` (`priority`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=225 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -592,7 +592,7 @@ CREATE TABLE `z_resources` (
   UNIQUE KEY `resourceId` (`resourceId`),
   KEY `parentid` (`parentid`),
   KEY `orderid` (`orderid`)
-) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -633,6 +633,7 @@ INSERT INTO `z_resources` VALUES (75,'menu','list',53,21,'Меню','Site_Model_
 INSERT INTO `z_resources` VALUES (76,'filesystem','index',23,75,'Файловый навигатор','','band','','title','','id','',15,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (85,'bands','list',53,57,'Ленты','Site_Model_Bands','band','','title','','orderid','',15,1,1,1,1,0,1,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (86,'bands_items','list',85,85,'Элементы','Site_Model_Band_Items','band','','id','parentid','id','',15,1,1,1,1,0,0,'bottom',0,1);
+INSERT INTO `z_resources` VALUES (87,'z_logs','list',71,86,'Логи','Z_Model_Log','band','','timestamp','','timestamp desc','',100,0,0,0,1,0,0,'bottom',1,1);
 /*!40000 ALTER TABLE `z_resources` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -653,7 +654,7 @@ CREATE TABLE `z_resources_buttons` (
   PRIMARY KEY (`id`),
   KEY `orderid` (`orderid`),
   KEY `resourceid` (`resourceid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -663,6 +664,7 @@ CREATE TABLE `z_resources_buttons` (
 LOCK TABLES `z_resources_buttons` WRITE;
 /*!40000 ALTER TABLE `z_resources_buttons` DISABLE KEYS */;
 INSERT INTO `z_resources_buttons` VALUES (1,1,66,'Сгенерировать','return array();','');
+INSERT INTO `z_resources_buttons` VALUES (2,2,87,'Очистить','return $this->view->url(array(\'action\'=>\'clear\'));','');
 /*!40000 ALTER TABLE `z_resources_buttons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -690,7 +692,7 @@ CREATE TABLE `z_resources_columns` (
   `visible` int(1) NOT NULL DEFAULT '1',
   `parentid` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -738,6 +740,10 @@ INSERT INTO `z_resources_columns` VALUES (45,39,67,'Индекс','','is_index1'
 INSERT INTO `z_resources_columns` VALUES (46,40,75,'Заголовок','','title',0,'','','','',1,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (47,41,75,'Ссылка','','url',0,'','','','',1,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (60,53,85,'Название','','title',0,'','','','',1,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (61,54,87,'timestamp','','timestamp',0,'','','','',1,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (62,55,87,'priorityName','','priorityName',0,'','priorityName=?','','',1,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (63,56,87,'message','','message',0,'','message LIKE ?','','',1,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (64,57,87,'info','','info',0,'','','','',1,1,1,0);
 /*!40000 ALTER TABLE `z_resources_columns` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -917,8 +923,8 @@ INSERT INTO `z_resources_forms` VALUES (147,85,138,'Text','band_param3','param3'
 INSERT INTO `z_resources_forms` VALUES (148,85,139,'Text','band_text1','text1',0,'','',1,'',1);
 INSERT INTO `z_resources_forms` VALUES (149,85,140,'Text','band_text2','text2',0,'','',1,'',1);
 INSERT INTO `z_resources_forms` VALUES (150,85,141,'Text','band_text3','text3',0,'','',1,'',1);
-INSERT INTO `z_resources_forms` VALUES (151,85,145,'Text','band_template','Шаблон списка',1,'list','',1,'',1);
-INSERT INTO `z_resources_forms` VALUES (152,85,146,'Text','band_template_card','Шаблон элемента',1,'card','',1,'',1);
+INSERT INTO `z_resources_forms` VALUES (151,85,145,'Text','band_template','Шаблон списка',0,'list','',1,'',1);
+INSERT INTO `z_resources_forms` VALUES (152,85,146,'Text','band_template_card','Шаблон элемента',0,'card','',1,'',1);
 INSERT INTO `z_resources_forms` VALUES (153,85,129,'Label','none','Заголовки полей (* в конце - обязательное поле)',0,'','',1,'',1);
 INSERT INTO `z_resources_forms` VALUES (154,86,148,'File','file','file',0,'','',0,'return false;',1);
 INSERT INTO `z_resources_forms` VALUES (155,85,147,'Mce','description','Описание',0,'','',0,'',1);
@@ -1250,7 +1256,7 @@ CREATE TABLE `z_upload` (
   `name` varchar(255) NOT NULL DEFAULT '',
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1261,11 +1267,10 @@ LOCK TABLES `z_upload` WRITE;
 /*!40000 ALTER TABLE `z_upload` DISABLE KEYS */;
 INSERT INTO `z_upload` VALUES (40,2,'tree16_20070331_1009766861.jpg','oVdOmlSU','tree16_20070331_1009766861.jpg',0);
 INSERT INTO `z_upload` VALUES (41,2,'tree15_20070331_1328247210.jpg','zVtsLh2v','tree15_20070331_1328247210.jpg',0);
-INSERT INTO `z_upload` VALUES (43,2,'f.jpg','mXDU5uEj','f.jpg',0);
-INSERT INTO `z_upload` VALUES (44,2,'p.png','a9mhtPHy','p.png',0);
 INSERT INTO `z_upload` VALUES (45,3,'tree17_20070331_2072730071.jpg','T6BxNf3a','tree17_20070331_2072730071.jpg',0);
 INSERT INTO `z_upload` VALUES (46,3,'tree16_20070331_1009766861.jpg','EoMSnLIH','tree16_20070331_1009766861.jpg',0);
 INSERT INTO `z_upload` VALUES (47,3,'tree15_20070331_1328247210.jpg','lzSN5gBK','tree15_20070331_1328247210.jpg',0);
+INSERT INTO `z_upload` VALUES (48,2,'zcmf.png','nDEtArS8','zcmf.png',0);
 /*!40000 ALTER TABLE `z_upload` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1308,4 +1313,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-08-25 10:27:33
+-- Dump completed on 2011-08-25 17:44:38
