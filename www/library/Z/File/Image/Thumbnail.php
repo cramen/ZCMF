@@ -111,7 +111,7 @@ class Z_File_Image_Thumbnail
 		$postfix = base64_encode($paramstr);
 //		$postfix = md5($paramstr);
 		
-		return $fileNameWithoutExt.'_'.$postfix.'_preview.'.$fileExt;
+		return $fileNameWithoutExt.'_'.$postfix.'_zcmf_pv.'.$fileExt;
 	}
 	
 	public function isPreviewActual($param)
