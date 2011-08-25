@@ -37,13 +37,12 @@ class Z_Log
 		self::$_instance =  new Zend_Log();
 		if (Z_Db_Table::getDefaultAdapter())
 		{
-//			$logModel = new Z_Model_Log();
-//			$logTable = $logModel->info('name');
-			$writer = new Zend_Log_Writer_Db(Z_Db_Table::getDefaultAdapter(),'z_log');
+			$logModel = new Z_Model_Log();
+			$writer = new Zend_Log_Writer_Db(Z_Db_Table::getDefaultAdapter(),$logModel->info('name'));
 		}
 		else
 		{
-			$writer = new Zend_Log_Writer_Stream(APPLICATION_PATH.DIRECTORY_SEPARATOR.'data/info.log');
+			$writer = new Zend_Log_Writer_Stream(APPLICATION_PATH.'/data/info.log');
 		}
 		self::$_instance->addWriter($writer);
 	}
@@ -59,6 +58,45 @@ class Z_Log
 		}
 		return self::$_instance;
 	}
-}
 
-?>
+    public static function log($message, $priority, $extras = null)
+    {
+        self::getInstance()->log($message, $priority, $extras);
+    }
+
+    public static function alert($message, $extras = null)
+    {
+        self::log($message, Zend_Log::ALERT, $extras);
+    }
+
+    public static function critical($message, $extras = null)
+    {
+        self::log($message, Zend_Log::CRIT, $extras);
+    }
+
+    public static function error($message, $extras = null)
+    {
+        self::log($message, Zend_Log::ERR, $extras);
+    }
+
+    public static function warning($message, $extras = null)
+    {
+        self::log($message, Zend_Log::WARN, $extras);
+    }
+
+    public static function notice($message, $extras = null)
+    {
+        self::log($message, Zend_Log::NOTICE, $extras);
+    }
+
+    public static function info($message, $extras = null)
+    {
+        self::log($message, Zend_Log::INFO, $extras);
+    }
+
+    public static function debug($message, $extras = null)
+    {
+        self::log($message, Zend_Log::DEBUG, $extras);
+    }
+
+}

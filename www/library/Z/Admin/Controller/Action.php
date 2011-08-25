@@ -81,6 +81,14 @@ class Z_Admin_Controller_Action extends Zend_Controller_Action
 			{
 				$this->_forward('deny','error');
 			}
+            else
+            {
+                $site = Zend_Registry::get('config')->get('site');
+                if ( $site && $site->get('adminlog',false) )
+                {
+                    Z_Log::info('AdminPanel: '.Z_Auth::getInstance()->getUser()->getLogin().' access to '.$module.':'.$controller.':'.$action,var_export($this->getRequest()->getParams(),true));
+                }
+            }
 		}
 		
 		//конфиг
