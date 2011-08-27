@@ -33,6 +33,6 @@
  
 class Z_Version {
 
-    public static $value = '20110823';
+    public static $value = '20110827';
 
 }
