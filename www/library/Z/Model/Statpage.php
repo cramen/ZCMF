@@ -51,11 +51,11 @@ class Z_Model_Statpage extends Z_Db_Table {
 		if ($count) $select->limit($count);
 		$result = $this->getAdapter()->fetchPairs($select);
 
-		if (array_key_exists('index',$result))
-		{
+        if (array_key_exists('/index',$result))
+        {
 			$result = array_reverse($result);
-			$result['/'] = $result['index'];
-			unset($result['index']);
+			$result['/'] = $result['/index'];
+			unset($result['/index']);
 			$result = array_reverse($result);
 		}
 						
