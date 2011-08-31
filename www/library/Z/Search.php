@@ -30,6 +30,7 @@
 class Z_Search{
 
 	protected static $_instance = NULL;
+    public static $spaceChars = array('~','!','@','#','$','%','^','&','*','(',')','_','+','-','"','\'','№',';',':','?','*','(',')','\\','|','/','[',']','{','}',',','.','<','>');
 	
 	protected function __construct()
 	{		
@@ -58,5 +59,37 @@ class Z_Search{
 		}
 		return self::$_instance;
 	}
+
+
+
+    public static function buildQueryString($searchString)
+    {
+        $searchString = trim($searchString,implode('',self::$spaceChars));
+        $searchString = str_replace(self::$spaceChars,' ',$searchString);
+        $searchString = preg_replace('~\s[^\s]{1,3}\s~iu',' ',$searchString);
+        $searchString = preg_replace('~\s+~iu','~ ',$searchString);
+        $searchString .= '~';
+        return $searchString;
+    }
+
+    /**
+     * @static
+     * @param $searchString
+     * @return Zend_Search_Lucene_Search_Query
+     */
+    public static function buildQuery($searchString)
+    {
+        return $query = Zend_Search_Lucene_Search_QueryParser::parse(self::buildQueryString($searchString));
+    }
+
+    /**
+     * @static
+     * @param $searchString
+     * @return array
+     */
+    public static function find($searchString)
+    {
+        return self::getInstance()->find(self::buildQuery($searchString));
+    }
 	
 }

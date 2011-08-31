@@ -807,7 +807,7 @@ CREATE TABLE `z_resources_forms` (
 LOCK TABLES `z_resources_forms` WRITE;
 /*!40000 ALTER TABLE `z_resources_forms` DISABLE KEYS */;
 INSERT INTO `z_resources_forms` VALUES (1,21,1,'Text','title','Название',1,'','',0,'',0);
-INSERT INTO `z_resources_forms` VALUES (2,21,2,'Text','sid','Адрес страницы',1,'','<p>Только латинские буквы, цифры и симпол подчеркивания. Пример адреса: about</p>',1,'',0);
+INSERT INTO `z_resources_forms` VALUES (2,21,2,'Text','sid','Адрес страницы',1,'','<p>Только латинские буквы, цифры и симпол подчеркивания. Пример адреса: about</p>\r\n<p>для расположения на главной странице необходимо ввести \"index\"</p>',1,'',0);
 INSERT INTO `z_resources_forms` VALUES (3,21,3,'mce','text','Текст',1,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (4,21,4,'checkbox','z_can_delete','Разрешить удалять?',0,'1','',1,'',0);
 INSERT INTO `z_resources_forms` VALUES (5,22,5,'Text','title','Название',1,'','',1,'',0);
@@ -1313,4 +1313,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-08-27 14:32:17
+-- Dump completed on 2011-08-31 12:54:11

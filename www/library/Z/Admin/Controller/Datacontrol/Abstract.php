@@ -452,7 +452,7 @@ class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controller_Action
 				else
 					Z_FlashMessenger::addMessage('Удаление записи "'.$itemArray[$this->z_default_field].'" Запрещено!');
 			}
-			//if ($deletedItemsCount>0) $this->ajaxGo($this->view->url(array('action'=>$this->z_defaultAction,'id'=>NULL,'confirmed'=>NULL)));
+			if ($deletedItemsCount>0) $this->ajaxGo($this->view->url(array('action'=>$this->z_defaultAction,'id'=>NULL,'confirmed'=>NULL)));
 		}
 		elseif ($this->z_delete_confirm)//требуем подтверждения на удаление
 
