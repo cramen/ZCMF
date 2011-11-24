@@ -64,6 +64,7 @@ class Z_Search{
 
     public static function buildQueryString($searchString)
     {
+        $searchString = strip_tags($searchString);
         $searchString = trim($searchString,implode('',self::$spaceChars));
         $searchString = str_replace(self::$spaceChars,' ',$searchString);
         $searchString = preg_replace('~\s[^\s]{1,3}\s~iu',' ',$searchString);

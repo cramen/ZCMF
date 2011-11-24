@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.1.54, for debian-linux-gnu (i686)
+-- MySQL dump 10.13  Distrib 5.1.58, for debian-linux-gnu (i686)
 --
 -- Host: localhost    Database: zcmf
 -- ------------------------------------------------------
--- Server version	5.1.54-1ubuntu4
+-- Server version	5.1.58-1ubuntu1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -98,7 +98,7 @@ CREATE TABLE `bands` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `band_sid` (`band_sid`),
   KEY `orderid` (`orderid`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -608,7 +608,7 @@ INSERT INTO `z_resources` VALUES (13,'acl_privileges','list',24,13,'Привил
 INSERT INTO `z_resources` VALUES (18,'acl_parentroles','',11,18,'Родительские роли','Z_Model_Roles_Connect','band','','child_role_id','child_role_id','','',15,1,1,1,1,0,1,'bottom',0,1);
 INSERT INTO `z_resources` VALUES (19,'acl_rules','',11,19,'Правила','Z_Model_Rules','band','','id','role_id','title asc','',15,1,1,1,1,0,0,'',0,1);
 INSERT INTO `z_resources` VALUES (21,'z_statpage','list',53,32,'Публикации','Z_Model_Statpage','band','','title','','title','',15,1,1,1,1,0,0,'bottom',1,1);
-INSERT INTO `z_resources` VALUES (22,'z_config','list',53,7,'Настройки','Z_Model_Config','band','','title','','title asc','',15,1,1,1,1,0,0,'bottom',1,1);
+INSERT INTO `z_resources` VALUES (22,'z_config','list',53,7,'Настройки','Z_Model_Config','band','','title','','title asc','',30,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (23,'adminstrucsure','',0,53,'Конструктор','','band','','','','','',0,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (24,'partyes','',0,49,'Участники','','band','','','','','',0,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (31,'filemanager','',0,69,'Файловый менеджер','','band','','','','','',0,1,1,1,1,0,0,'bottom',0,1);
@@ -1313,4 +1313,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-08-31 12:54:11
+-- Dump completed on 2011-11-24 15:51:43

@@ -32,7 +32,7 @@ define("GIF", 1);
 define("PNG", 2);
 define("BMP", 3);
 
-define("JPG_QUALITY", 95);
+define("JPG_QUALITY", 80);
 define("PNG_QUALITY", 0);
 
 class Z_File_Image_Resizer
