@@ -180,6 +180,43 @@ INSERT INTO `z_config` VALUES (20,'2011-03-15 13:06:42','Текст, отобр�
 UNLOCK TABLES;
 
 --
+-- Table structure for table `z_config_tree`
+--
+
+DROP TABLE IF EXISTS `z_config_tree`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `z_config_tree` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parentid` int(11) NOT NULL DEFAULT '0',
+  `title` varchar(255) NOT NULL,
+  `sid` varchar(255) NOT NULL,
+  `type` varchar(32) NOT NULL,
+  `value` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `title` (`title`),
+  KEY `sid` (`sid`),
+  KEY `parentid` (`parentid`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `z_config_tree`
+--
+
+LOCK TABLES `z_config_tree` WRITE;
+/*!40000 ALTER TABLE `z_config_tree` DISABLE KEYS */;
+INSERT INTO `z_config_tree` VALUES (1,0,'Общие настройки сайта','site_main_preferences','directory','');
+INSERT INTO `z_config_tree` VALUES (2,1,'E-Mail администратора','email','string','');
+INSERT INTO `z_config_tree` VALUES (3,1,'robots.txt','robots.txt','text','User-agent:*\r\nDisallow: /redirect*\r\nDisallow: /captcha*\r\n\r\nUser-agent: Yandex\r\nDisallow: /redirect*\r\nDisallow: /captcha*\r\n');
+INSERT INTO `z_config_tree` VALUES (4,1,'Копирайты','copy','text','<a href=\"http://jane-safo.ru\">Дизайн</a>  Евгения Сафонова<br />\r\n<a href=\"http://cramen.ru\">Верстка и программирование</a> Антон Еськин<br />\r\n<strong>©ramen 2009-2011 ZCMF</strong>');
+INSERT INTO `z_config_tree` VALUES (6,1,'Счетчик','counter','text','<a href=\"http://validator.w3.org/check?uri=referer\"><img src=\"http://www.w3.org/Icons/valid-xhtml10\" alt=\"Valid XHTML 1.0 Strict\" height=\"31\" width=\"88\" /></a>');
+INSERT INTO `z_config_tree` VALUES (7,1,'Текст страницы ошибки','error_text','html','<p>Здравствуйте!</p>\r\n<p>К сожалению запрашиваемая Вами страница не существует на нашем сайте.</p>\r\n<p>Это могло произойти по одной из причин:</p>\r\n<ul>\r\n<li>Вы ошиблись при наборе адреса страницы</li>\r\n<li>Перешли по неработающей(битой) ссылке</li>\r\n<li>Запрашиваемая страница была удалена</li>\r\n</ul>\r\n<p>Мы просим прощения за предоставленные неудобства и предлагаем следующие варианты:</p>\r\n<ul>\r\n<li>вернуться назад при помощи кнопки браузера back</li>\r\n<li>проверить правильность написания адреса страницы(URL) в адресной строке браузера</li>\r\n<li>перейти на <a href=\"/\">главную страницу</a> сайта</li>\r\n<li>посетить основные разделы сайта используя главное меню сайта</li>\r\n</ul>\r\n<p>Если Вы уверены в правильности набранного адреса страницы и считаете, что эта ошибка произошла по нашей вине, пожалуйста, сообщите об этом нам при помощи <a href=\"/feedback\">формы обратной связи</a>.</p>');
+INSERT INTO `z_config_tree` VALUES (8,1,'Текст, отображаемый после отправки формы обратной связи','feedback_text','html','<div>\r\n<p>Благодарим Вас за письмо. Мы обязательно свяжемся с Вами.</p>\r\n</div>');
+/*!40000 ALTER TABLE `z_config_tree` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `z_dbtables`
 --
 
@@ -190,7 +227,7 @@ CREATE TABLE `z_dbtables` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -226,7 +263,7 @@ CREATE TABLE `z_dbtables_fields` (
   PRIMARY KEY (`id`),
   KEY `dbtable_id` (`dbtable_id`),
   KEY `orderid` (`orderid`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -592,7 +629,7 @@ CREATE TABLE `z_resources` (
   UNIQUE KEY `resourceId` (`resourceId`),
   KEY `parentid` (`parentid`),
   KEY `orderid` (`orderid`)
-) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -607,16 +644,15 @@ INSERT INTO `z_resources` VALUES (12,'acl_resources','list',23,34,'Ресурс�
 INSERT INTO `z_resources` VALUES (13,'acl_privileges','list',24,13,'Привилегии','Z_Model_Privileges','band','','title','','title asc','',15,1,1,1,1,0,0,'',1,1);
 INSERT INTO `z_resources` VALUES (18,'acl_parentroles','',11,18,'Родительские роли','Z_Model_Roles_Connect','band','','child_role_id','child_role_id','','',15,1,1,1,1,0,1,'bottom',0,1);
 INSERT INTO `z_resources` VALUES (19,'acl_rules','',11,19,'Правила','Z_Model_Rules','band','','id','role_id','title asc','',15,1,1,1,1,0,0,'',0,1);
-INSERT INTO `z_resources` VALUES (21,'z_statpage','list',53,32,'Публикации','Z_Model_Statpage','band','','title','','title','',15,1,1,1,1,0,0,'bottom',1,1);
-INSERT INTO `z_resources` VALUES (22,'z_config','list',53,7,'Настройки','Z_Model_Config','band','','title','','title asc','',30,1,1,1,1,0,0,'bottom',1,1);
+INSERT INTO `z_resources` VALUES (21,'z_statpage','list',53,57,'Публикации','Z_Model_Statpage','band','','title','','title','',15,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (23,'adminstrucsure','',0,53,'Конструктор','','band','','','','','',0,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (24,'partyes','',0,49,'Участники','','band','','','','','',0,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (31,'filemanager','',0,69,'Файловый менеджер','','band','','','','','',0,1,1,1,1,0,0,'bottom',0,1);
 INSERT INTO `z_resources` VALUES (32,'z_seo','list',0,31,'SEO','Z_Model_Titles','band','','title','','','',15,1,1,1,1,0,1,'bottom',1,1);
-INSERT INTO `z_resources` VALUES (49,'z_cleancache','',53,84,'Очистить кэш','','','','','','','',0,1,1,1,1,0,0,'',1,1);
+INSERT INTO `z_resources` VALUES (49,'z_cleancache','',53,88,'Очистить кэш','','','','','','','',0,1,1,1,1,0,0,'',1,1);
 INSERT INTO `z_resources` VALUES (50,'','',0,73,'Все','','','','','','','',0,1,1,1,1,0,0,'',0,1);
 INSERT INTO `z_resources` VALUES (53,'site','',0,26,'Сайт','','band','','','','','',0,1,1,1,1,0,0,'bottom',1,1);
-INSERT INTO `z_resources` VALUES (57,'z_mails','list',53,82,'Шаблоны писем','Z_Model_Mails','band','','title','','title asc','',15,1,1,1,1,0,0,'',1,1);
+INSERT INTO `z_resources` VALUES (57,'z_mails','list',53,84,'Шаблоны писем','Z_Model_Mails','band','','title','','title asc','',15,1,1,1,1,0,0,'',1,1);
 INSERT INTO `z_resources` VALUES (59,'acl_resourcecolumns','list',12,59,'Колонки','Z_Model_Resourcecolumns','band','','title','resourceid','orderid','',15,1,1,1,1,0,1,'bottom',0,1);
 INSERT INTO `z_resources` VALUES (60,'acl_resourceconditions','list',12,61,'Условия','Z_Model_Resourceconditions','band','','condition','resourceid','id','',15,1,1,1,1,0,0,'bottom',0,1);
 INSERT INTO `z_resources` VALUES (61,'acl_resourcejoins','list',12,64,'Джойны','Z_Model_Resourcejoins','band','','model','resourceid','orderid','',15,1,1,1,1,0,1,'bottom',0,1);
@@ -624,16 +660,18 @@ INSERT INTO `z_resources` VALUES (62,'acl_resourceforms','list',12,60,'Форм�
 INSERT INTO `z_resources` VALUES (63,'acl_resourceformsparams','list',62,63,'Параметры','Z_Model_Resourceformsparams','band','','title','formid','title','',15,1,1,1,1,0,0,'bottom',0,1);
 INSERT INTO `z_resources` VALUES (64,'acl_resourcerefers','list',12,62,'Связи','Z_Model_Resourcerefers','band','','field','resourceid','field','',15,1,1,1,1,0,0,'bottom',0,1);
 INSERT INTO `z_resources` VALUES (65,'acl_resourcebuttons','list',12,65,'Кнопки','Z_Model_Resourcebuttons','band','','title','resourceid','orderid','',15,1,1,1,1,0,1,'bottom',0,1);
-INSERT INTO `z_resources` VALUES (66,'z_dbtables','list',23,66,'Конструктор БД','Z_Model_Dbtables','band','','title','','title asc','',15,1,1,1,1,1,0,'bottom',1,1);
+INSERT INTO `z_resources` VALUES (66,'z_dbtables','list',23,75,'Конструктор БД','Z_Model_Dbtables','band','','title','','title asc','',15,1,1,1,1,1,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (67,'z_dbtablesfields','list',66,67,'Поля','Z_Model_Dbtablesfields','band','','title','dbtable_id','orderid','',30,1,1,1,1,0,1,'bottom',0,1);
 INSERT INTO `z_resources` VALUES (71,'system','',0,68,'Система','','band','','title','','id','',15,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (72,'z_phpinfo','index',71,71,'PHPinfo','','band','','title','','id','',15,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (74,'z_adminpanel','list',0,80,'Панель администрирования сайта','','band','','title','','id','',15,1,1,1,1,0,0,'bottom',0,1);
-INSERT INTO `z_resources` VALUES (75,'menu','list',53,21,'Меню','Site_Model_Menu','band','','title','','orderid','',20,1,1,1,1,0,1,'bottom',1,1);
-INSERT INTO `z_resources` VALUES (76,'filesystem','index',23,75,'Файловый навигатор','','band','','title','','id','',15,1,1,1,1,0,0,'bottom',1,1);
-INSERT INTO `z_resources` VALUES (85,'bands','list',53,57,'Ленты','Site_Model_Bands','band','','title','','orderid','',15,1,1,1,1,0,1,'bottom',1,1);
+INSERT INTO `z_resources` VALUES (75,'menu','list',53,32,'Меню','Site_Model_Menu','band','','title','','orderid','',20,1,1,1,1,0,1,'bottom',1,1);
+INSERT INTO `z_resources` VALUES (76,'filesystem','index',23,87,'Файловый навигатор','','band','','title','','id','',15,1,1,1,1,0,0,'bottom',1,1);
+INSERT INTO `z_resources` VALUES (85,'bands','list',53,82,'Ленты','Site_Model_Bands','band','','title','','orderid','',15,1,1,1,1,0,1,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (86,'bands_items','list',85,85,'Элементы','Site_Model_Band_Items','band','','id','parentid','id','',15,1,1,1,1,0,0,'bottom',0,1);
 INSERT INTO `z_resources` VALUES (87,'z_logs','list',71,86,'Логи','Z_Model_Log','band','','timestamp','','timestamp desc','',100,0,0,0,1,0,0,'bottom',1,1);
+INSERT INTO `z_resources` VALUES (88,'config_tree','list',23,66,'Дерево настроек','Z_Model_Config_Tree','catalog','','title','','title asc','',15,1,1,1,1,0,0,'bottom',1,1);
+INSERT INTO `z_resources` VALUES (89,'z_config_tree','list',53,21,'Настройки','Z_Model_Config_Tree','catalog','','title','','title','',15,0,1,0,0,0,0,'bottom',1,1);
 /*!40000 ALTER TABLE `z_resources` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -663,7 +701,6 @@ CREATE TABLE `z_resources_buttons` (
 
 LOCK TABLES `z_resources_buttons` WRITE;
 /*!40000 ALTER TABLE `z_resources_buttons` DISABLE KEYS */;
-INSERT INTO `z_resources_buttons` VALUES (1,1,66,'Сгенерировать','return array();','');
 INSERT INTO `z_resources_buttons` VALUES (2,2,87,'Очистить','return $this->view->url(array(\'action\'=>\'clear\'));','');
 /*!40000 ALTER TABLE `z_resources_buttons` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -692,7 +729,7 @@ CREATE TABLE `z_resources_columns` (
   `visible` int(1) NOT NULL DEFAULT '1',
   `parentid` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -703,8 +740,6 @@ LOCK TABLES `z_resources_columns` WRITE;
 /*!40000 ALTER TABLE `z_resources_columns` DISABLE KEYS */;
 INSERT INTO `z_resources_columns` VALUES (6,6,21,'Название','','title',0,'','','','',0,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (7,7,21,'Адрес','','sid',0,'','','','',0,1,1,0);
-INSERT INTO `z_resources_columns` VALUES (9,9,22,'Название','','title',1,'','title LIKE ?','','',0,1,1,0);
-INSERT INTO `z_resources_columns` VALUES (10,10,22,'Идентификатор','','sid',0,'','','','',0,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (11,11,57,'Название','','title',0,'','','','',0,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (12,12,57,'Идентификатор','','sid',0,'','','','',0,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (13,13,8,'Логин','50%','login',1,'','login LIKE ?','','',0,1,1,0);
@@ -744,6 +779,8 @@ INSERT INTO `z_resources_columns` VALUES (61,54,87,'timestamp','','timestamp',0,
 INSERT INTO `z_resources_columns` VALUES (62,55,87,'priorityName','','priorityName',0,'','priorityName=?','','',1,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (63,56,87,'message','','message',0,'','message LIKE ?','','',1,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (64,57,87,'info','','info',0,'','','','',1,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (65,58,88,'Идентификатор','','sid',0,'','','','',1,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (66,59,88,'Тип','','type',0,'','','','',1,1,1,0);
 /*!40000 ALTER TABLE `z_resources_columns` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -797,7 +834,7 @@ CREATE TABLE `z_resources_forms` (
   PRIMARY KEY (`id`),
   KEY `resourceid` (`resourceid`),
   KEY `orderid` (`orderid`)
-) ENGINE=InnoDB AUTO_INCREMENT=156 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=159 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -810,9 +847,6 @@ INSERT INTO `z_resources_forms` VALUES (1,21,1,'Text','title','Название'
 INSERT INTO `z_resources_forms` VALUES (2,21,2,'Text','sid','Адрес страницы',1,'','<p>Только латинские буквы, цифры и симпол подчеркивания. Пример адреса: about</p>\r\n<p>для расположения на главной странице необходимо ввести \"index\"</p>',1,'',0);
 INSERT INTO `z_resources_forms` VALUES (3,21,3,'mce','text','Текст',1,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (4,21,4,'checkbox','z_can_delete','Разрешить удалять?',0,'1','',1,'',0);
-INSERT INTO `z_resources_forms` VALUES (5,22,5,'Text','title','Название',1,'','',1,'',0);
-INSERT INTO `z_resources_forms` VALUES (6,22,6,'text','sid','Идентификатор',1,'','',1,'',0);
-INSERT INTO `z_resources_forms` VALUES (7,22,7,'select','type','Тип',1,'','',1,'',0);
 INSERT INTO `z_resources_forms` VALUES (8,57,8,'text','title','Название',1,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (9,57,9,'text','sid','Идентификатор',1,'','',1,'',0);
 INSERT INTO `z_resources_forms` VALUES (10,57,10,'mce','description','Описание',1,'','',1,'',0);
@@ -928,6 +962,9 @@ INSERT INTO `z_resources_forms` VALUES (152,85,146,'Text','band_template_card','
 INSERT INTO `z_resources_forms` VALUES (153,85,129,'Label','none','Заголовки полей (* в конце - обязательное поле)',0,'','',1,'',1);
 INSERT INTO `z_resources_forms` VALUES (154,86,148,'File','file','file',0,'','',0,'return false;',1);
 INSERT INTO `z_resources_forms` VALUES (155,85,147,'Mce','description','Описание',0,'','',0,'',1);
+INSERT INTO `z_resources_forms` VALUES (156,88,149,'Text','title','Название',1,'','',0,'',1);
+INSERT INTO `z_resources_forms` VALUES (157,88,150,'Text','sid','Идентификатор',1,'','',0,'',1);
+INSERT INTO `z_resources_forms` VALUES (158,88,151,'Select','type','Тип',1,'','',0,'',1);
 /*!40000 ALTER TABLE `z_resources_forms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -946,7 +983,7 @@ CREATE TABLE `z_resources_forms_params` (
   `is_eval` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `formid` (`formid`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -955,7 +992,6 @@ CREATE TABLE `z_resources_forms_params` (
 
 LOCK TABLES `z_resources_forms_params` WRITE;
 /*!40000 ALTER TABLE `z_resources_forms_params` DISABLE KEYS */;
-INSERT INTO `z_resources_forms_params` VALUES (1,7,'multiOptions','return array(\r\n\'int\'		=>	\'Число\',\r\n\'bool\'		=>	\'Да/Нет\',\r\n\'string\'	=>	\'Строка\',\r\n\'password\'	=>	\'Пароль\',\r\n\'text\'		=>	\'Текст\',\r\n\'file\'		=>	\'Файл\',\r\n\'image\'		=>	\'Картинка\',\r\n\'html\'		=>	\'HTML текст\');',1);
 INSERT INTO `z_resources_forms_params` VALUES (2,11,'description','$templateDescription = \'\';\r\nif (Z_Auth::getInstance()->getUser()->getRole()!=\'root\' && $this->_getParam(\'id\'))\r\n{\r\n  $templateDescription = $this->z_model->find($this->_getParam(\'id\'))->current()->description;\r\n}\r\nreturn $templateDescription;',1);
 INSERT INTO `z_resources_forms_params` VALUES (3,19,'multiOptions','$rolesModel = new Z_Model_Roles();\r\nreturn $rolesModel->fetchPairs(array(\'id\',\'title\'),array(),\'title\');',1);
 INSERT INTO `z_resources_forms_params` VALUES (4,17,'filters','return array(\'StringTrim\');',1);
@@ -985,6 +1021,7 @@ INSERT INTO `z_resources_forms_params` VALUES (33,56,'source','$id = $this->_get
 INSERT INTO `z_resources_forms_params` VALUES (34,136,'validators','return array(array(\'regex\',true,\'~^[a-zA-Z0-9_-]+$~\'));',1);
 INSERT INTO `z_resources_forms_params` VALUES (35,143,'MultiOptions','return array(\r\n	\'id\'		=>	\'id\',\r\n	\'title\'		=>	\'Заголовок\',\r\n	\'date\'		=>	\'Дата\',\r\n	\'param1\'	=>	\'param1\',\r\n	\'param2\'	=>	\'param2\',\r\n	\'param3\'	=>	\'param3\',\r\n	\'orderid\'	=>	\'Свой порядок сортировки\',\r\n);',1);
 INSERT INTO `z_resources_forms_params` VALUES (36,144,'MultiOptions','return array(\'ASC\'=>\'Прямое\',\'DESC\'=>\'Обратное\');',1);
+INSERT INTO `z_resources_forms_params` VALUES (37,158,'MultiOptions','return array(\r\n\'directory\'	=>	\'Папка\',\r\n\'int\'		=>	\'Число\',\r\n\'bool\'		=>	\'Да/Нет\',\r\n\'string\'	=>	\'Строка\',\r\n\'password\'	=>	\'Пароль\',\r\n\'text\'		=>	\'Текст\',\r\n\'file\'		=>	\'Файл\',\r\n\'image\'		=>	\'Картинка\',\r\n\'html\'		=>	\'HTML текст\');',1);
 /*!40000 ALTER TABLE `z_resources_forms_params` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1135,7 +1172,6 @@ INSERT INTO `z_rules` VALUES (38,3,11,'deny');
 INSERT INTO `z_rules` VALUES (39,3,13,'deny');
 INSERT INTO `z_rules` VALUES (41,3,24,'allow');
 INSERT INTO `z_rules` VALUES (42,3,53,'allow');
-INSERT INTO `z_rules` VALUES (43,3,22,'deny');
 INSERT INTO `z_rules` VALUES (44,3,31,'allow');
 INSERT INTO `z_rules` VALUES (45,3,57,'deny');
 INSERT INTO `z_rules` VALUES (46,3,74,'allow');
@@ -1313,4 +1349,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-11-24 15:51:43
+-- Dump completed on 2011-11-30  0:08:28
