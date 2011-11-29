@@ -63,7 +63,7 @@ class Z_Config {
 	protected function _getRow($sid)
 	{
 		if (NULL === self::$_model)
-			self::$_model = new Z_Model_Config();
+			self::$_model = new Z_Model_Config_Tree();
 		$row = self::$_model->fetchRow(array('sid=?'=>$sid));
 		if (!$row)
 		{

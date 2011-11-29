@@ -32,12 +32,19 @@ $nameSpace = new Zend_Session_Namespace('z_'.$this->resourceId.'_openstate');
 						<?=$this->admin_Actionkey('#','ui-icon-locked',array('title'=>'','onclick'=>'return false;','noajax'=>true))?>
 						<?php endif;?>
 					</td>
+
+                    <?php if ($this->can_edit): ?>
 					<td>
 						<?=$this->admin_Actionkey($this->url(array('action'=>'edit','id'=>$item['id'],'z_catalog_sysparentid'=>NULL)),'ui-icon-pencil',array('title'=>'Редактировать'))?>
 					</td>
-					<td>
-						<?=$this->admin_Actionkey($this->url(array('action'=>'add','parentid'=>$item['id'],'z_catalog_sysparentid'=>NULL)),'ui-icon-plus',array('title'=>'Добавить подкаталог'))?>
-					</td>
+                    <?php endif; ?>
+
+                    <?php if ($this->can_add): ?>
+                    <td>
+               						<?=$this->admin_Actionkey($this->url(array('action'=>'add','parentid'=>$item['id'],'z_catalog_sysparentid'=>NULL)),'ui-icon-plus',array('title'=>'Добавить подкаталог'))?>
+               		</td>
+                    <?php endif; ?>
+
 					<?php if($this->sortable):?>
 						<td>
 							<?=$this->admin_Actionkey('#','ui-icon-arrowthick-2-n-s',array('title'=>'Вверх','class'=>'move move'.$this->catalogParent,'state'=>'ui-state-active','onclick'=>'return false;','noajax'=>true))?>
