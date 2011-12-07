@@ -146,40 +146,6 @@ INSERT INTO `menu` VALUES (10,3,'О компании','/about');
 UNLOCK TABLES;
 
 --
--- Table structure for table `z_config`
---
-
-DROP TABLE IF EXISTS `z_config`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `z_config` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `crated_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `title` varchar(255) NOT NULL,
-  `sid` varchar(255) NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `value` text NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `crated_on` (`crated_on`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `z_config`
---
-
-LOCK TABLES `z_config` WRITE;
-/*!40000 ALTER TABLE `z_config` DISABLE KEYS */;
-INSERT INTO `z_config` VALUES (6,'2010-04-20 09:16:04','Копирайты','copy','text','<a href=\"http://jane-safo.ru\">Дизайн</a>  Евгения Сафонова<br />\r\n<a href=\"http://cramen.ru\">Верстка и программирование</a> Антон Еськин<br />\r\n<strong>©ramen 2009-2011 ZCMF</strong>');
-INSERT INTO `z_config` VALUES (13,'2010-05-15 07:13:48','Текст страницы ошибки','error_text','html','<p>Здравствуйте!</p>\r\n<p>К сожалению запрашиваемая Вами страница не существует на нашем сайте.</p>\r\n<p>Это могло произойти по одной из причин:</p>\r\n<ul>\r\n<li>Вы ошиблись при наборе адреса страницы</li>\r\n<li>Перешли по неработающей(битой) ссылке</li>\r\n<li>Запрашиваемая страница была удалена</li>\r\n</ul>\r\n<p>Мы просим прощения за предоставленные неудобства и предлагаем следующие варианты:</p>\r\n<ul>\r\n<li>вернуться назад при помощи кнопки браузера back</li>\r\n<li>проверить правильность написания адреса страницы(URL) в адресной строке браузера</li>\r\n<li>перейти на <a href=\"/\">главную страницу</a> сайта</li>\r\n<li>посетить основные разделы сайта используя главное меню сайта</li>\r\n</ul>\r\n<p>Если Вы уверены в правильности набранного адреса страницы и считаете, что эта ошибка произошла по нашей вине, пожалуйста, сообщите об этом нам при помощи <a href=\"/feedback\">формы обратной связи</a>.</p>');
-INSERT INTO `z_config` VALUES (16,'2010-05-31 07:09:16','Счетчик','counter','text','<a href=\"http://validator.w3.org/check?uri=referer\"><img src=\"http://www.w3.org/Icons/valid-xhtml10\" alt=\"Valid XHTML 1.0 Strict\" height=\"31\" width=\"88\" /></a>');
-INSERT INTO `z_config` VALUES (18,'2010-06-01 09:26:25','E-Mail администратора','email','string','');
-INSERT INTO `z_config` VALUES (19,'2011-03-03 06:47:56','robots.txt','robots.txt','text','User-agent:*\r\nDisallow: /redirect*\r\nDisallow: /captcha*\r\n\r\nUser-agent: Yandex\r\nDisallow: /redirect*\r\nDisallow: /captcha*\r\n');
-INSERT INTO `z_config` VALUES (20,'2011-03-15 13:06:42','Текст, отображаемый после отправки формы обратной связи','feedback_text','html','<p>Благодарим Вас за письмо. Мы обязательно свяжемся с Вами.</p>');
-/*!40000 ALTER TABLE `z_config` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `z_config_tree`
 --
 
@@ -189,6 +155,8 @@ DROP TABLE IF EXISTS `z_config_tree`;
 CREATE TABLE `z_config_tree` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parentid` int(11) NOT NULL DEFAULT '0',
+  `orderid` int(11) NOT NULL,
+  `required` int(1) NOT NULL DEFAULT '0',
   `title` varchar(255) NOT NULL,
   `sid` varchar(255) NOT NULL,
   `type` varchar(32) NOT NULL,
@@ -196,8 +164,9 @@ CREATE TABLE `z_config_tree` (
   PRIMARY KEY (`id`),
   KEY `title` (`title`),
   KEY `sid` (`sid`),
-  KEY `parentid` (`parentid`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+  KEY `parentid` (`parentid`),
+  KEY `orderid` (`orderid`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,13 +175,15 @@ CREATE TABLE `z_config_tree` (
 
 LOCK TABLES `z_config_tree` WRITE;
 /*!40000 ALTER TABLE `z_config_tree` DISABLE KEYS */;
-INSERT INTO `z_config_tree` VALUES (1,0,'Общие настройки сайта','site_main_preferences','directory','');
-INSERT INTO `z_config_tree` VALUES (2,1,'E-Mail администратора','email','string','');
-INSERT INTO `z_config_tree` VALUES (3,1,'robots.txt','robots.txt','text','User-agent:*\r\nDisallow: /redirect*\r\nDisallow: /captcha*\r\n\r\nUser-agent: Yandex\r\nDisallow: /redirect*\r\nDisallow: /captcha*\r\n');
-INSERT INTO `z_config_tree` VALUES (4,1,'Копирайты','copy','text','<a href=\"http://jane-safo.ru\">Дизайн</a>  Евгения Сафонова<br />\r\n<a href=\"http://cramen.ru\">Верстка и программирование</a> Антон Еськин<br />\r\n<strong>©ramen 2009-2011 ZCMF</strong>');
-INSERT INTO `z_config_tree` VALUES (6,1,'Счетчик','counter','text','<a href=\"http://validator.w3.org/check?uri=referer\"><img src=\"http://www.w3.org/Icons/valid-xhtml10\" alt=\"Valid XHTML 1.0 Strict\" height=\"31\" width=\"88\" /></a>');
-INSERT INTO `z_config_tree` VALUES (7,1,'Текст страницы ошибки','error_text','html','<p>Здравствуйте!</p>\r\n<p>К сожалению запрашиваемая Вами страница не существует на нашем сайте.</p>\r\n<p>Это могло произойти по одной из причин:</p>\r\n<ul>\r\n<li>Вы ошиблись при наборе адреса страницы</li>\r\n<li>Перешли по неработающей(битой) ссылке</li>\r\n<li>Запрашиваемая страница была удалена</li>\r\n</ul>\r\n<p>Мы просим прощения за предоставленные неудобства и предлагаем следующие варианты:</p>\r\n<ul>\r\n<li>вернуться назад при помощи кнопки браузера back</li>\r\n<li>проверить правильность написания адреса страницы(URL) в адресной строке браузера</li>\r\n<li>перейти на <a href=\"/\">главную страницу</a> сайта</li>\r\n<li>посетить основные разделы сайта используя главное меню сайта</li>\r\n</ul>\r\n<p>Если Вы уверены в правильности набранного адреса страницы и считаете, что эта ошибка произошла по нашей вине, пожалуйста, сообщите об этом нам при помощи <a href=\"/feedback\">формы обратной связи</a>.</p>');
-INSERT INTO `z_config_tree` VALUES (8,1,'Текст, отображаемый после отправки формы обратной связи','feedback_text','html','<div>\r\n<p>Благодарим Вас за письмо. Мы обязательно свяжемся с Вами.</p>\r\n</div>');
+INSERT INTO `z_config_tree` VALUES (1,0,1,0,'Общие настройки сайта','site_main_preferences','directory','');
+INSERT INTO `z_config_tree` VALUES (2,1,2,0,'E-Mail администратора','email','string','');
+INSERT INTO `z_config_tree` VALUES (3,12,3,0,'robots.txt','robots.txt','text','User-agent:*\r\nDisallow: /redirect*\r\nDisallow: /captcha*\r\n\r\nUser-agent: Yandex\r\nDisallow: /redirect*\r\nDisallow: /captcha*\r\n');
+INSERT INTO `z_config_tree` VALUES (4,1,4,0,'Копирайты','copy','text','<a href=\"http://jane-safo.ru\">Дизайн</a>  Евгения Сафонова<br />\r\n<a href=\"http://cramen.ru\">Верстка и программирование</a> Антон Еськин<br />\r\n<strong>©ramen 2009-2011 ZCMF</strong>');
+INSERT INTO `z_config_tree` VALUES (6,12,6,0,'Счетчик','counter','text','<a href=\"http://validator.w3.org/check?uri=referer\"><img src=\"http://www.w3.org/Icons/valid-xhtml10\" alt=\"Valid XHTML 1.0 Strict\" height=\"31\" width=\"88\" /></a>');
+INSERT INTO `z_config_tree` VALUES (7,1,7,1,'Текст страницы ошибки','error_text','html','<p>Здравствуйте!</p>\r\n<p>К сожалению запрашиваемая Вами страница не существует на нашем сайте.</p>\r\n<p>Это могло произойти по одной из причин:</p>\r\n<ul>\r\n<li>Вы ошиблись при наборе адреса страницы</li>\r\n<li>Перешли по неработающей(битой) ссылке</li>\r\n<li>Запрашиваемая страница была удалена</li>\r\n</ul>\r\n<p>Мы просим прощения за предоставленные неудобства и предлагаем следующие варианты:</p>\r\n<ul>\r\n<li>вернуться назад при помощи кнопки браузера back</li>\r\n<li>проверить правильность написания адреса страницы(URL) в адресной строке браузера</li>\r\n<li>перейти на <a href=\"/\">главную страницу</a> сайта</li>\r\n<li>посетить основные разделы сайта используя главное меню сайта</li>\r\n</ul>\r\n<p>Если Вы уверены в правильности набранного адреса страницы и считаете, что эта ошибка произошла по нашей вине, пожалуйста, сообщите об этом нам при помощи <a href=\"/feedback\">формы обратной связи</a>.</p>');
+INSERT INTO `z_config_tree` VALUES (8,11,8,0,'Текст, отображаемый после отправки формы обратной связи','feedback_text','html','<div>\r\n<p>Благодарим Вас за письмо. Мы обязательно свяжемся с Вами.</p>\r\n</div>');
+INSERT INTO `z_config_tree` VALUES (11,0,9,0,'Тексты, отображаемые после отправки форм','mails','directory','');
+INSERT INTO `z_config_tree` VALUES (12,0,10,0,'robots.txt, счетчики и т.п.','seo_path','directory','');
 /*!40000 ALTER TABLE `z_config_tree` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -227,7 +198,7 @@ CREATE TABLE `z_dbtables` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -263,7 +234,7 @@ CREATE TABLE `z_dbtables_fields` (
   PRIMARY KEY (`id`),
   KEY `dbtable_id` (`dbtable_id`),
   KEY `orderid` (`orderid`)
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -670,8 +641,8 @@ INSERT INTO `z_resources` VALUES (76,'filesystem','index',23,87,'Файловы�
 INSERT INTO `z_resources` VALUES (85,'bands','list',53,82,'Ленты','Site_Model_Bands','band','','title','','orderid','',15,1,1,1,1,0,1,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (86,'bands_items','list',85,85,'Элементы','Site_Model_Band_Items','band','','id','parentid','id','',15,1,1,1,1,0,0,'bottom',0,1);
 INSERT INTO `z_resources` VALUES (87,'z_logs','list',71,86,'Логи','Z_Model_Log','band','','timestamp','','timestamp desc','',100,0,0,0,1,0,0,'bottom',1,1);
-INSERT INTO `z_resources` VALUES (88,'config_tree','list',23,66,'Дерево настроек','Z_Model_Config_Tree','catalog','','title','','title asc','',15,1,1,1,1,0,0,'bottom',1,1);
-INSERT INTO `z_resources` VALUES (89,'z_config_tree','list',53,21,'Настройки','Z_Model_Config_Tree','catalog','','title','','title','',15,0,1,0,0,0,0,'bottom',1,1);
+INSERT INTO `z_resources` VALUES (88,'config_tree','list',23,66,'Дерево настроек','Z_Model_Config_Tree','catalog','','title','','title asc','',15,1,1,1,1,0,1,'bottom',1,1);
+INSERT INTO `z_resources` VALUES (89,'z_config_tree','list',53,21,'Настройки','Z_Model_Config_Tree','band','','title','','orderid','',15,0,1,0,0,0,0,'bottom',1,1);
 /*!40000 ALTER TABLE `z_resources` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -729,7 +700,7 @@ CREATE TABLE `z_resources_columns` (
   `visible` int(1) NOT NULL DEFAULT '1',
   `parentid` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -781,6 +752,7 @@ INSERT INTO `z_resources_columns` VALUES (63,56,87,'message','','message',0,'','
 INSERT INTO `z_resources_columns` VALUES (64,57,87,'info','','info',0,'','','','',1,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (65,58,88,'Идентификатор','','sid',0,'','','','',1,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (66,59,88,'Тип','','type',0,'','','','',1,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (67,60,89,'Параметр','','title',0,'','','','',1,1,1,0);
 /*!40000 ALTER TABLE `z_resources_columns` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -798,7 +770,7 @@ CREATE TABLE `z_resources_conditions` (
   `value` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `recourceid` (`resourceid`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -808,6 +780,7 @@ CREATE TABLE `z_resources_conditions` (
 LOCK TABLES `z_resources_conditions` WRITE;
 /*!40000 ALTER TABLE `z_resources_conditions` DISABLE KEYS */;
 INSERT INTO `z_resources_conditions` VALUES (5,8,'login!=?','guest');
+INSERT INTO `z_resources_conditions` VALUES (6,89,'parentid=?','0');
 /*!40000 ALTER TABLE `z_resources_conditions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -834,7 +807,7 @@ CREATE TABLE `z_resources_forms` (
   PRIMARY KEY (`id`),
   KEY `resourceid` (`resourceid`),
   KEY `orderid` (`orderid`)
-) ENGINE=InnoDB AUTO_INCREMENT=159 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=161 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -965,6 +938,8 @@ INSERT INTO `z_resources_forms` VALUES (155,85,147,'Mce','description','Опис
 INSERT INTO `z_resources_forms` VALUES (156,88,149,'Text','title','Название',1,'','',0,'',1);
 INSERT INTO `z_resources_forms` VALUES (157,88,150,'Text','sid','Идентификатор',1,'','',0,'',1);
 INSERT INTO `z_resources_forms` VALUES (158,88,151,'Select','type','Тип',1,'','',0,'',1);
+INSERT INTO `z_resources_forms` VALUES (159,88,153,'Select','parentid','Родитель',1,'0','',0,'',1);
+INSERT INTO `z_resources_forms` VALUES (160,88,152,'Checkbox','required','Обязательный?',0,'','',0,'',1);
 /*!40000 ALTER TABLE `z_resources_forms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -983,7 +958,7 @@ CREATE TABLE `z_resources_forms_params` (
   `is_eval` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `formid` (`formid`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1022,6 +997,7 @@ INSERT INTO `z_resources_forms_params` VALUES (34,136,'validators','return array
 INSERT INTO `z_resources_forms_params` VALUES (35,143,'MultiOptions','return array(\r\n	\'id\'		=>	\'id\',\r\n	\'title\'		=>	\'Заголовок\',\r\n	\'date\'		=>	\'Дата\',\r\n	\'param1\'	=>	\'param1\',\r\n	\'param2\'	=>	\'param2\',\r\n	\'param3\'	=>	\'param3\',\r\n	\'orderid\'	=>	\'Свой порядок сортировки\',\r\n);',1);
 INSERT INTO `z_resources_forms_params` VALUES (36,144,'MultiOptions','return array(\'ASC\'=>\'Прямое\',\'DESC\'=>\'Обратное\');',1);
 INSERT INTO `z_resources_forms_params` VALUES (37,158,'MultiOptions','return array(\r\n\'directory\'	=>	\'Папка\',\r\n\'int\'		=>	\'Число\',\r\n\'bool\'		=>	\'Да/Нет\',\r\n\'string\'	=>	\'Строка\',\r\n\'password\'	=>	\'Пароль\',\r\n\'text\'		=>	\'Текст\',\r\n\'file\'		=>	\'Файл\',\r\n\'image\'		=>	\'Картинка\',\r\n\'html\'		=>	\'HTML текст\');',1);
+INSERT INTO `z_resources_forms_params` VALUES (38,159,'MultiOptions','return $this->getTree();',1);
 /*!40000 ALTER TABLE `z_resources_forms_params` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1349,4 +1325,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-11-30  0:08:28
+-- Dump completed on 2011-12-08  0:36:11
