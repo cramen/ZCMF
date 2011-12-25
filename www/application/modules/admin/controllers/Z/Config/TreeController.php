@@ -15,7 +15,6 @@ class Admin_Z_Config_TreeController extends Z_Admin_Controller_Datacontrol_Abstr
         }
     }
 
-
     protected function getForm(Z_Admin_Form $form)
     {
         if ($this->_getParam('action')=='edit')

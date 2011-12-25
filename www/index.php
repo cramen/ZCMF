@@ -1,6 +1,9 @@
 <?php
 include 'defines.php';
 
+
+$microtime = microtime(true);
+
 // Create application, bootstrap, and run
 
 $application = new Zend_Application(
@@ -12,7 +15,7 @@ include_once 'jQuery.php';
 
 $application->bootstrap();
 $application->run();
-  
+
 //$pf = $application->getBootstrap()->getResource('db')->getProfiler();
 //$pfs = $pf->getQueryProfiles();
 //if ($pfs)
