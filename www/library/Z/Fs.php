@@ -37,8 +37,7 @@ class Z_Fs
 
   public static function create_file($filename,$content="",$rewrite=false,$rights=0777)
   {
-    global $m;
-	
+
     $fileparts = explode(DIRECTORY_SEPARATOR,rtrim($filename,DIRECTORY_SEPARATOR));
 	$pathparts = $fileparts;
 	unset($pathparts[count($pathparts)-1]);
@@ -103,7 +102,6 @@ class Z_Fs
 
   public static function create_folder($filename,$rights=0777)
   {
-    global $m;
 
     $fileparts = explode(DIRECTORY_SEPARATOR,rtrim($filename,DIRECTORY_SEPARATOR));
     $curdir = $fileparts[0].DIRECTORY_SEPARATOR;

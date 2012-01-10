@@ -4,7 +4,7 @@ include '../../../../defines.php';
 
 // Create application, bootstrap, and run
 $application = new Zend_Application(
-    APPLICATION_ENV, 
+    APPLICATION_ENV,
     APPLICATION_PATH . '/configs/application.ini'
 );
 $application->bootstrap();
@@ -50,22 +50,22 @@ class elFinderLogger implements elFinderILogger {
 }
 
 $opts = array(
-	'root'            => '../../../../upload/',                       // path to root directory
-	'URL'             => '/upload/', // root directory URL
-	'rootAlias'       => 'Начало',       // display this instead of root directory name
-	//'uploadAllow'   => array('images/*'),
-	'uploadDeny'    => array("php"),
+    'root'            => '../../../../upload/',                       // path to root directory
+   	'URL'             => '/upload/', // root directory URL
+   	'rootAlias'       => 'Корень',       // display this instead of root directory name
+   	//'uploadAllow'   => array('images/*'),
+   	'uploadDeny'    => array("php"),
 	//'uploadOrder'   => 'deny,allow'
 	// 'disabled'     => array(),      // list of not allowed commands
 	// 'dotFiles'     => false,        // display dot files
 	// 'dirSize'      => true,         // count total directories sizes
 	// 'fileMode'     => 0666,         // new files mode
 	// 'dirMode'      => 0777,         // new folders mode
-	// 'mimeDetect'   => 'auto',       // files mimetypes detection method (finfo, mime_content_type, linux (file -ib), bsd (file -Ib), internal (by extensions))
+	// 'mimeDetect'   => 'internal',       // files mimetypes detection method (finfo, mime_content_type, linux (file -ib), bsd (file -Ib), internal (by extensions))
 	// 'uploadAllow'  => array(),      // mimetypes which allowed to upload
 	// 'uploadDeny'   => array(),      // mimetypes which not allowed to upload
 	// 'uploadOrder'  => 'deny,allow', // order to proccess uploadAllow and uploadAllow options
-	// 'imgLib'       => 'auto',       // image manipulation library (imagick, mogrify, gd)
+	// 'imgLib'       => 'mogrify',       // image manipulation library (imagick, mogrify, gd)
 	// 'tmbDir'       => '.tmb',       // directory name for image thumbnails. Set to "" to avoid thumbnails generation
 	// 'tmbCleanProb' => 1,            // how frequiently clean thumbnails dir (0 - never, 100 - every init request)
 	// 'tmbAtOnce'    => 5,            // number of thumbnails to generate per request

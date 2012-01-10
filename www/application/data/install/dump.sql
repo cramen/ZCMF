@@ -46,7 +46,7 @@ CREATE TABLE `band_items` (
   KEY `param2` (`param2`),
   KEY `param3` (`param3`),
   KEY `parentid` (`parentid`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1176,7 +1176,7 @@ CREATE TABLE `z_statpages` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `sid` (`sid`),
   KEY `crated_on` (`crated_on`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1268,7 +1268,7 @@ CREATE TABLE `z_upload` (
   `name` varchar(255) NOT NULL DEFAULT '',
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1325,4 +1325,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-01-03  0:39:47
+-- Dump completed on 2012-01-10 15:12:48
