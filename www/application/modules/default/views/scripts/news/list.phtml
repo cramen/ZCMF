@@ -1,0 +1,65 @@
+<?php
+    if ($this->theme) Z_Seo::addTitle($this->themes[$this->theme]);
+?>
+
+
+<?php $this->placeholder('top')->captureStart() ?>
+    <h1>Новости<?php echo $this->theme?' ('.$this->themes[$this->theme].')':'' ?></h1>
+<?php $this->placeholder('top')->captureEnd() ?>
+
+
+<?php $this->placeholder('right')->captureStart() ?>
+<h3>Темы новостей</h3>
+<ul>
+
+    <li <?php echo $this->theme ? '' : 'class="active"' ?>>
+        <a href="<?php echo $this->url(array(), 'news', true) ?>">Все</a>
+    </li>
+
+    <?php foreach ($this->themes as $key => $theme): ?>
+
+    <li <?php echo $this->theme == $key ? 'class="active"' : '' ?>>
+        <a href="<?php echo $this->url(array('theme' => $key), 'news', true) ?>"><?php echo $theme ?></a>
+    </li>
+
+    <?php endforeach; ?>
+
+</ul>
+<?php $this->placeholder('right')->captureEnd() ?>
+
+
+            <div class="news">
+
+                <?php foreach ($this->items as $item): ?>
+
+                <div class="item">
+
+                    <?php if ($item->text): ?>
+                    <h3>
+                        <a href="<?php echo $this->url(array('id' => $item->id), 'newscard')?>"><?php echo $item->title?></a>
+                    </h3>
+                    <?php else: ?>
+                    <h3><?php echo $item->title?></h3>
+                    <?php endif;?>
+
+                    <span class="date"><?php echo date('d-m-Y', strtotime($item->date))?></span>
+                    <hr/>
+                    <div class="info">
+                        <?php if ($item->pic): ?>
+                        <img src="<?php echo $this->z_Preview($item->pic, array('w' => 120))?>" alt="" class="logo"/>
+                        <?php endif;?>
+                        <?php echo $item->description?>
+
+                        <?php if ($item->text): ?>
+                        <a href="<?php echo $this->url(array('id' => $item->id), 'newscard')?>">Читать далее...</a>
+                        <?php endif;?>
+
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <?php endforeach;?>
+
+            </div>
+
+<?php echo $this->paginationControl($this->items,'Sliding','paginator.phtml')?>

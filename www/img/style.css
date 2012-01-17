@@ -235,6 +235,9 @@ input {
     overflow: hidden;
 }
 
+#blueline a {
+    color: #d7e6f0;
+}
 
 /* Content
 -----------------------------------------------------------------------------*/
@@ -294,6 +297,9 @@ input {
 #content ol {list-style-type: decimal; list-style-position: inside;}
 
 
+#content .wrapper div.right li.active {
+    font-weight: bold;
+}
 
 
 

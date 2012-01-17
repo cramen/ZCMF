@@ -1,0 +1,26 @@
+<?php
+    Z_Seo::addTitle($this->item->title);
+?>
+
+<?php $this->placeholder('top')->captureStart() ?>
+    <h2>Новости</h2>
+    <a href="<?php echo $this->url(array(),'news') ?>">К списку новостей</a>
+<?php $this->placeholder('top')->captureEnd() ?>
+
+            <div class="news">
+
+                <div class="item">
+                    <h1><?php echo $this->item->title?></h1>
+                    <span class="date"><?php echo date('d-m-Y',strtotime($this->item->date))?></span>
+                    <hr />
+                    <div class="info">
+                    	<?php if ($this->item->pic):?>
+                    	<img src="<?php echo $this->z_Preview($this->item->pic,array('w'=>200))?>" alt="" class="logo" />
+                    	<?php endif;?>
+                        <?php echo $this->item->text?>
+                        <a href="<?php echo Zend_Registry::get('config')->lastUri?>">Вернуться назад.</a>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+            </div>
