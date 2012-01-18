@@ -959,17 +959,17 @@ INSERT INTO `z_resources_forms` VALUES (58,62,58,'Checkbox','required','Обяз
 INSERT INTO `z_resources_forms` VALUES (59,62,59,'text','value','Значение по умолчанию',0,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (60,62,60,'mce','description','Описание',0,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (61,62,62,'Checkbox','only_for_root','Видно только для суперпользователя',0,'0','',0,'',0);
-INSERT INTO `z_resources_forms` VALUES (62,62,94,'EditArea','show_check','Функция проверки доступности',0,'','<p>PHP функция. Если возвращает false, то поле будет недоступно.</p>',0,'',0);
+INSERT INTO `z_resources_forms` VALUES (62,62,94,'CodeMirror','show_check','Функция проверки доступности',0,'','<p>PHP функция. Если возвращает false, то поле будет недоступно.</p>',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (63,59,63,'text','title','Название',1,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (64,59,64,'Autocomplete','field','Поле в БД',1,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (65,59,65,'text','width','Ширина',0,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (66,59,68,'checkbox','orderlink','Использовать для сортировки',1,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (67,59,69,'text','template','Шаблон',0,'','',0,'',0);
-INSERT INTO `z_resources_forms` VALUES (68,59,70,'EditArea','eval','eval',0,'','',0,'',0);
+INSERT INTO `z_resources_forms` VALUES (68,59,70,'CodeMirror','eval','eval',0,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (69,59,95,'Text','filter_query','Фильтр',0,'','<p>Условие для SQL.</p>\n<p>Пример: \"id=?\" или \"title LIKE ?\"</p>',0,'',0);
-INSERT INTO `z_resources_forms` VALUES (70,59,97,'EditArea','filter_items','Элементы для фильтра с выбором',0,'','<p>Этот PHP код должен вернуть ассоцитиативный массив.</p>',0,'',0);
+INSERT INTO `z_resources_forms` VALUES (70,59,97,'CodeMirror','filter_items','Элементы для фильтра с выбором',0,'','<p>Этот PHP код должен вернуть ассоцитиативный массив.</p>',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (71,63,71,'text','title','Имя параметра',1,'','',0,'',0);
-INSERT INTO `z_resources_forms` VALUES (72,63,72,'EditArea','value','Значение',1,'','',0,'',0);
+INSERT INTO `z_resources_forms` VALUES (72,63,72,'CodeMirror','value','Значение',1,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (73,63,73,'checkbox','is_eval','PHP код',0,'1','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (74,60,74,'text','condition','Условие',1,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (75,60,75,'text','value','Значение',1,'','',0,'',0);
@@ -981,7 +981,7 @@ INSERT INTO `z_resources_forms` VALUES (80,64,80,'text','field','Поле',1,'',
 INSERT INTO `z_resources_forms` VALUES (81,64,81,'text','field1','Поле для связи на текущую таблицу',1,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (82,64,82,'text','field2','Поле для связи на таблицу указанной модели',1,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (83,65,83,'Text','title','Название',1,'','',0,'',0);
-INSERT INTO `z_resources_forms` VALUES (84,65,84,'EditArea','url','Ссылка',1,'','<p>php код, адрес ссылки</p>',0,'',0);
+INSERT INTO `z_resources_forms` VALUES (84,65,84,'CodeMirror','url','Ссылка',1,'','<p>php код, адрес ссылки</p>',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (85,65,85,'Text','class','Класс',0,'','<p>класс тега в html коде</p>',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (86,66,86,'Text','title','Название',1,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (87,67,87,'Text','title','Название',1,'','',0,'',0);
@@ -1079,7 +1079,7 @@ INSERT INTO `z_resources_forms_params` VALUES (15,42,'MultiOptions','return arra
 INSERT INTO `z_resources_forms_params` VALUES (16,53,'MultiOptions','return array(\'bottom\'=>\'В конец\',\'top\'=>\'В начало\');',1);
 INSERT INTO `z_resources_forms_params` VALUES (17,76,'MultiOptions','$models = Z_Db_Model_Generator::getAllModels();\nreturn array_combine($models,$models);\n',1);
 INSERT INTO `z_resources_forms_params` VALUES (18,79,'MultiOptions','$models = Z_Db_Model_Generator::getAllModels();\nreturn array_combine($models,$models);',1);
-INSERT INTO `z_resources_forms_params` VALUES (23,55,'MultiOptions','return array(\r\n	\'Text\'		=>	\'Строка\',\r\n	\'Autocomplete\'	=>	\'Автодополнение\',\r\n	\'AutocompleteId\'=>	\'Автодополнение с выбором идентификатора\',\r\n	\'Date\'		=>	\'Дата\',\r\n	\'Textarea\'	=>	\'Текст\',\r\n	\'mce\'		=>	\'Mce HTML редактор\',\r\n	\'File\'		=>	\'Файл\',\r\n	\'Select\'	=>	\'Выпадающий список\',\r\n	\'Radio\'		=>	\'Радио-кнопка\',\r\n	\'Checkbox\'	=>	\'Флажок\',\r\n	\'MultiCheckbox\'	=>	\'Мультифлажок\',\r\n	\'EditArea\'	=>	\'Редактор кода\',\r\n	\'Hidden\'	=>	\'Скрытое поле\',\r\n	\'Password\'	=>	\'Пароль\',\r\n	\'PointPicker\'	=>	\'Выбор точки на картинке\',\r\n	\'Label\'		=>	\'Текстовая метка\'\r\n);',1);
+INSERT INTO `z_resources_forms_params` VALUES (23,55,'MultiOptions','return array(\r\n	\'Text\'		=>	\'Строка\',\r\n	\'Autocomplete\'	=>	\'Автодополнение\',\r\n	\'AutocompleteId\'=>	\'Автодополнение с выбором идентификатора\',\r\n	\'Date\'		=>	\'Дата\',\r\n	\'Textarea\'	=>	\'Текст\',\r\n	\'mce\'		=>	\'Mce HTML редактор\',\r\n	\'File\'		=>	\'Файл\',\r\n	\'Select\'	=>	\'Выпадающий список\',\r\n	\'Radio\'		=>	\'Радио-кнопка\',\r\n	\'Checkbox\'	=>	\'Флажок\',\r\n	\'MultiCheckbox\'	=>	\'Мультифлажок\',\r\n	\'EditArea\'	=>	\'Редактор кода (EditArea)\',\r\n	\'CodeMirror\'	=>	\'Редактор кода (CoreMirror)\',\r\n	\'Hidden\'	=>	\'Скрытое поле\',\r\n	\'Password\'	=>	\'Пароль\',\r\n	\'PointPicker\'	=>	\'Выбор точки на картинке\',\r\n	\'Label\'		=>	\'Текстовая метка\'\r\n);',1);
 INSERT INTO `z_resources_forms_params` VALUES (24,88,'MultiOptions','return array(\n	\'int\'		=>	\'int\',\n	\'varchar\'	=>	\'varchar\',\n	\'text\'		=>	\'text\',\n	\'date\'		=>	\'date\',\n	\'timestamp\'	=>	\'timestamp\'\n);',1);
 INSERT INTO `z_resources_forms_params` VALUES (25,89,'validators','return array(\n	array(\'Digits\')\n);',1);
 INSERT INTO `z_resources_forms_params` VALUES (26,91,'MultiOptions','return array(\n	\'no\'			=>	\'Нет\',\n	\'asdefine\'		=>	\'Как определено\',\n	\'CURRENT_TIMESTAMP\'	=>	\'CURRENT_TIMESTAMP\'\n);',1);
@@ -1426,4 +1426,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-01-17 17:13:06
+-- Dump completed on 2012-01-19  1:00:15

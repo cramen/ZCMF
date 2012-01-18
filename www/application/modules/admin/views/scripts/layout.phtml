@@ -8,7 +8,8 @@
         ->headLink(array('rel' => 'shortcut icon', 'href' => '/favicon.ico'))
         ->appendStylesheet('/sys/img/style.css')
         ->appendStylesheet('/sys/elfinder/css/elfinder.css')
-        ->appendStylesheet('/sys/img/ui/' . $this->config->zadmin->theme . '/theme.css')?>
+        ->appendStylesheet('/sys/img/ui/' . $this->config->zadmin->theme . '/theme.css')
+        ->appendStylesheet('/sys/CodeMirror-2.2/lib/codemirror.css')?>
 
 
     <?=$this->headScript()
@@ -26,10 +27,16 @@
         ->appendFile('/sys/js/tiny_mce/jquery.tinymce.js')
         ->appendFile('/sys/elfinder/js/elfinder.min.js')
         ->appendFile('/sys/elfinder/js/i18n/elfinder.ru.js')
-        ->appendFile('/sys/edit_area/edit_area_full.js');
+        ->appendFile('/sys/edit_area/edit_area_full.js')
+
+        ->appendFile('/sys/CodeMirror-2.2/lib/codemirror.js')
+        ->appendFile('/sys/CodeMirror-2.2/mode/clike/clike.js')
+        ->appendFile('/sys/CodeMirror-2.2/mode/php/php.js');
 
     $module = Zend_Controller_Front::getInstance()->getRequest()->getModuleName();
     ?>
+
+
 </head>
 <body>
 <div class="ui-widget">
