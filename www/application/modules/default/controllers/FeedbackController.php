@@ -5,7 +5,7 @@ class FeedbackController extends Zend_Controller_Action
 	
 	public function indexAction()
 	{
-		$form = new Site_Form_Feedback();
+        $form = new Site_Form_DbForm('feedback');
 		$form->setAction($this->view->url());
 
 		if ($this->getRequest()->isPost())

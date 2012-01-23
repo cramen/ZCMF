@@ -18,7 +18,7 @@
 
 }
 
-.CodeMirror-activeline {background: #cfe0eb !important;}
+.CodeMirror-activeline {background: #eee !important;}
 
 .CodeMirror-gutter {
   position: absolute; left: 0; top: 0;

@@ -127,8 +127,10 @@ file_browser_callback: function(field_name, url, type, win) {
 			theme_advanced_statusbar_location : "bottom",
 			theme_advanced_resizing : true,
 			theme_advanced_resize_horizontal : false,
+			theme_advanced_font_sizes: "10px,12px,13px,14px,16px,18px,20px,22px,24px,26px,28px,30px",
 			extended_valid_elements : "iframe[name|src|framespacing|border|frameborder|scrolling|title|height|width|style],object[declare|classid|codebase|data|type|codetype|archive|standby|height|width|usemap|name|tabindex|align|border|hspace|vspace],div[id|style|class]",
 			media_strict: false,
+			'.(isset($attribs['body_class'])?'body_class : "'.$attribs['body_class'].'",':'').'
 //			force_br_newlines : true,
 //			force_p_newlines : false,
 //        	forced_root_block : "",			
