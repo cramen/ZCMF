@@ -371,15 +371,18 @@ class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controller_Action
 			$ids = $this->_getParam('ids');
 		else
 			$ids = array($this->_getParam('id'));
+        $ids = is_array($ids)?$ids:array($ids);
+
 
 		//если есть подтверждение на удаление или оно не требуется, то удаляем
-		if (($this->z_delete_confirm && $this->_getParam('confirmed')) || !$this->z_delete_confirm)
+		if (($this->z_delete_confirm && $this->ajaxConfirm('Удалить?','confirmed',array('ids:['.implode(',',$ids).']'))) || !$this->z_delete_confirm)
 		{
 			//получение списка полей, с файлами на удаление
 			$modelForm = new Z_Model_Resourceforms();
 			$formFileitems = $modelForm->fetchAll(array('resourceid=?'=>$this->getResourceInfo()->id,'is_file=?'=>1));
 			$storage = new Z_File_Storage();
 
+            print_r($ids);
 
 			$deletedItemsCount = 0;
 			foreach ($ids as $id)
@@ -454,16 +457,15 @@ class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controller_Action
 			}
 			if ($deletedItemsCount>0) $this->ajaxGo($this->view->url(array('action'=>$this->z_defaultAction,'id'=>NULL,'confirmed'=>NULL)));
 		}
-		elseif ($this->z_delete_confirm)//требуем подтверждения на удаление
-
-		{
-			jQuery::evalScript('
-	    		if (confirm("Удалить?"))
-	    		{
-	    			z_ajax_go("'.$this->view->url().'",{confirmed:1,ids:['.implode(',',$ids).']});
-	    		}
-	    	');
-		}
+//		elseif ($this->z_delete_confirm)//требуем подтверждения на удаление
+//		{
+//			jQuery::evalScript('
+//	    		if (confirm("Удалить?"))
+//	    		{
+//	    			z_ajax_go("'.$this->view->url().'",{confirmed:1,ids:['.implode(',',$ids).']});
+//	    		}
+//	    	');
+//		}
 	}
 
 	public function reorderAction()
