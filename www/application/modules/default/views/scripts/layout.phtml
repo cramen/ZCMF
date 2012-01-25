@@ -28,12 +28,12 @@
 	<div id="header">
 	    <div class="wrapper">
 	        <a href="/" id="logo"></a>
-<!--	        <form id="searchform" action="/search" method="post">-->
-<!--	            <fieldset>-->
-<!--	                <input type="text" name="search" value="поиск" />-->
-<!--	                <input class="hidden" type="submit" />-->
-<!--	            </fieldset>-->
-<!--	        </form>-->
+	        <form id="searchform" action="/search" method="get">
+	            <fieldset>
+	                <input type="text" name="search" value="<?php echo $this->escape($this->searchString) ?>" placeholder="поиск" />
+	                <input class="hidden" type="submit" />
+	            </fieldset>
+	        </form>
 	        
 	<?php $this->placeholder('menu')->set($this->menu())?>
 	<?php echo $this->placeholder('menu')?>

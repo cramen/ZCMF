@@ -457,15 +457,7 @@ class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controller_Action
 			}
 			if ($deletedItemsCount>0) $this->ajaxGo($this->view->url(array('action'=>$this->z_defaultAction,'id'=>NULL,'confirmed'=>NULL)));
 		}
-//		elseif ($this->z_delete_confirm)//требуем подтверждения на удаление
-//		{
-//			jQuery::evalScript('
-//	    		if (confirm("Удалить?"))
-//	    		{
-//	    			z_ajax_go("'.$this->view->url().'",{confirmed:1,ids:['.implode(',',$ids).']});
-//	    		}
-//	    	');
-//		}
+
 	}
 
 	public function reorderAction()

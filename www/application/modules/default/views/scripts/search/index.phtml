@@ -1,0 +1,33 @@
+<?php $this->placeholder('top')->captureStart() ?>
+    <h1>Поиск</h1>
+        Вы искали: "<?php echo $this->escape($this->searchString) ?>"
+<?php $this->placeholder('top')->captureEnd() ?>
+
+
+<?php if ($this->result): ?>
+
+<ul>
+    <?php foreach ($this->result as $item): ?>
+
+    <li>
+        <?php
+        switch ($item->_type) {
+            case "z_statpages":
+                echo $this->partial('search/items/statpage.phtml',array('item'=>$item));
+                break;
+            case "news":
+                echo $this->partial('search/items/news.phtml',array('item'=>$item));
+                break;
+            default:
+        }
+        ?>
+    </li>
+
+    <?php endforeach; ?>
+</ul>
+
+<?php else: ?>
+
+<p>По Вашему запросу ничего не найдено. Попробуйте изменить запрос.</p>
+
+<?php endif; ?>

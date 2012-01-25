@@ -188,7 +188,7 @@ CREATE TABLE `menu` (
   `url` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `orderid` (`orderid`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -300,7 +300,7 @@ CREATE TABLE `z_config_tree` (
   KEY `sid` (`sid`),
   KEY `parentid` (`parentid`),
   KEY `orderid` (`orderid`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -773,7 +773,7 @@ INSERT INTO `z_resources` VALUES (12,'acl_resources','list',23,34,'Ресурс�
 INSERT INTO `z_resources` VALUES (13,'acl_privileges','list',24,13,'Привилегии','Z_Model_Privileges','band','','title','','title asc','',15,1,1,1,1,0,0,'',1,1);
 INSERT INTO `z_resources` VALUES (18,'acl_parentroles','',11,18,'Родительские роли','Z_Model_Roles_Connect','band','','child_role_id','child_role_id','','',15,1,1,1,1,0,1,'bottom',0,1);
 INSERT INTO `z_resources` VALUES (19,'acl_rules','',11,19,'Правила','Z_Model_Rules','band','','id','role_id','title asc','',15,1,1,1,1,0,0,'',0,1);
-INSERT INTO `z_resources` VALUES (21,'z_statpage','list',53,57,'Публикации','Z_Model_Statpage','band','title;text','title','','title','',15,1,1,1,1,0,0,'bottom',1,1);
+INSERT INTO `z_resources` VALUES (21,'z_statpage','list',53,57,'Публикации','Z_Model_Statpage','band','sid;title;text','title','','title','',15,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (23,'adminstrucsure','',0,53,'Конструктор','','band','','','','','',0,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (24,'partyes','',0,49,'Участники','','band','','','','','',0,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (31,'filemanager','',0,69,'Файловый менеджер','','band','','','','','',0,1,1,1,1,0,0,'bottom',0,1);
@@ -803,7 +803,7 @@ INSERT INTO `z_resources` VALUES (88,'config_tree','list',23,66,'Дерево н
 INSERT INTO `z_resources` VALUES (89,'z_config_tree','list',53,21,'Настройки','Z_Model_Config_Tree','band','','title','','orderid','',15,0,1,0,0,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (90,'news_part','list',53,82,'Новостные ленты','','band','','title','','id','',15,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (91,'news_themes','list',90,90,'Тематики','Site_Model_News_Themes','band','','title','','id','',15,1,1,1,1,0,1,'bottom',1,1);
-INSERT INTO `z_resources` VALUES (92,'news','list',90,91,'Новости','Site_Model_News','band','title;description;text','title','','date desc; id desc','',15,1,1,1,1,0,0,'bottom',1,1);
+INSERT INTO `z_resources` VALUES (92,'news','list',90,91,'Новости','Site_Model_News','band','id;title;description;text','title','','date desc; id desc','',15,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (93,'client_forms','list',23,75,'Клиентские формы','Site_Model_Client_Forms','band','','title','','id','',15,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (94,'client_forms_elements','list',93,93,'Элементы формы','Site_Model_Client_Forms_Elements','band','','name','form_id','id','',15,1,1,1,1,1,1,'bottom',0,1);
 INSERT INTO `z_resources` VALUES (95,'client_forms_elements_params','list',94,94,'Параметры элемента','Site_Model_Client_Forms_Elements','band','','title','id','id','',15,1,1,1,1,0,0,'bottom',0,1);
@@ -1525,4 +1525,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-01-24  4:17:25
+-- Dump completed on 2012-01-26  2:59:50

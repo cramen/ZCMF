@@ -31,6 +31,7 @@ class Z_Search{
 
 	protected static $_instance = NULL;
     public static $spaceChars = array('~','!','@','#','$','%','^','&','*','(',')','_','+','-','"','\'','№',';',':','?','*','(',')','\\','|','/','[',']','{','}',',','.','<','>');
+    protected static $stopWords = array('and', 'or');
 	
 	protected function __construct()
 	{		
@@ -45,7 +46,10 @@ class Z_Search{
 		if (self::$_instance === NULL)
 		{
 			$indexDir = APPLICATION_PATH.DIRECTORY_SEPARATOR.'data'.DIRECTORY_SEPARATOR.'lucene';
-			Zend_Search_Lucene_Analysis_Analyzer::setDefault(new Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8_CaseInsensitive());
+//            $stopWordsFilter = new Zend_Search_Lucene_Analysis_TokenFilter_StopWords(self::$stopWords);
+            $analyzer = new Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8_CaseInsensitive();
+//            $analyzer->addFilter($stopWordsFilter);
+			Zend_Search_Lucene_Analysis_Analyzer::setDefault($analyzer);
 			Zend_Search_Lucene_Search_QueryParser::setDefaultEncoding('utf-8');
 			try
 			{
@@ -67,7 +71,10 @@ class Z_Search{
         $searchString = strip_tags($searchString);
         $searchString = trim($searchString,implode('',self::$spaceChars));
         $searchString = str_replace(self::$spaceChars,' ',$searchString);
-        $searchString = preg_replace('~\s[^\s]{1,3}\s~iu',' ',$searchString);
+        $searchString = str_ireplace(self::$stopWords,'',$searchString);
+        $searchString = preg_replace('~(\s|^)[^\s]{1,3}\s~iu',' ',$searchString);
+        $searchString = preg_replace('~(\s|^)[^\s]{1,3}$~iu',' ',$searchString);
+        $searchString = trim($searchString);
         $searchString = preg_replace('~\s+~iu','~ ',$searchString);
         $searchString .= '~';
         return $searchString;
