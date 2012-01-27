@@ -26,4 +26,15 @@ class Site_Model_Bands extends Z_Db_Table
         return $res;
     }
 
+    public function ZSitemapXml()
+    {
+        $res = array();
+        foreach($this->fetchAll() as $el)
+        {
+            $res[] = new Z_Sitemap_Xml_Url(array('bandsid'=>$el->band_sid), 'band');
+        }
+        return $res;
+    }
+
+
 }

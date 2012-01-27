@@ -27,50 +27,58 @@
  *
  */
 
-/**
- * News
- *  
- * @author cramen
- * @version 
- */
 
-require_once 'Z/Db/Table.php';
+class Z_Sitemap_Xml
+{
+    protected $urls = array();
+    protected $domain;
 
-class Z_Model_Statpage extends Z_Db_Table {
-	/**
-	 * The default table name 
-	 */
-	protected $_name = 'z_statpages';
-
-	
-	public function ZGetLinks($count=0)
-	{
-		$select = $this->select()
-			->from($this,array('CONCAT("/",sid)','title'))
-			->order('title');
-		if ($count) $select->limit($count);
-		$result = $this->getAdapter()->fetchPairs($select);
-
-        if (array_key_exists('/index',$result))
-        {
-			$result = array_reverse($result);
-			$result['/'] = $result['/index'];
-			unset($result['/index']);
-			$result = array_reverse($result);
-		}
-						
-		return $result;
-	}
-
-    public function ZSitemapXml()
+    public function __construct($domain = null)
     {
-        $res = array();
-        foreach($this->fetchAll() as $el)
-        {
-            $res[] = new Z_Sitemap_Xml_Url(array('controller'=>$el->sid),'default',time());
-        }
-        return $res;
+        $this->domain = $domain ? $domain : $_SERVER['HTTP_HOST'];
     }
 
-}
+    public function addUrl(Z_Sitemap_Xml_Url $url)
+    {
+        $this->urls[] = $url;
+    }
 
+    public function addUrls($urls)
+    {
+        $this->urls = array_merge($this->urls,$urls);
+    }
+
+
+    public function getMap()
+    {
+        $router = Zend_Controller_Front::getInstance()->getRouter();
+
+        $urlsString = '';
+        foreach ($this->urls as $url)
+        {
+            $link = 'http://' . $this->domain . $router->assemble($url->getUrlArray(), $url->getRouteName(), true);
+            $date = $url->getLastmod();
+            $changrfreq = $url->getChangefreq();
+            $priority = $url->getPriority();
+
+            $urlString = '   <url>
+      <loc>'.htmlspecialchars($link).'</loc>
+      <lastmod>'.htmlspecialchars($date).'</lastmod>
+      <changefreq>'.htmlspecialchars($changrfreq).'</changefreq>
+      <priority>'.htmlspecialchars($priority).'</priority>
+   </url>
+';
+            $urlsString .= $urlString;
+        }
+
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+'.$urlsString.'
+</urlset>';
+
+        return $xml;
+
+    }
+
+
+}
