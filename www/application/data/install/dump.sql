@@ -157,7 +157,7 @@ CREATE TABLE `client_forms_elements` (
   KEY `orderid` (`orderid`),
   KEY `form_id` (`form_id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -170,7 +170,7 @@ INSERT INTO `client_forms_elements` VALUES (1,2,1,'fio','Представьте�
 INSERT INTO `client_forms_elements` VALUES (2,4,1,'email','E-Mail','Text',1,'','','{\"validators\":[\"emailAddress\"],\"add_array\":\"\"}');
 INSERT INTO `client_forms_elements` VALUES (3,5,1,'text','Текст сообщения','Textarea',1,'','','{\"add_array\":\"\"}');
 INSERT INTO `client_forms_elements` VALUES (4,6,1,'cap','Код подтверждения','Captcha',0,'','','{\"add_array\":\"return array(\'style\'\\t=>\\t\'width: 120px;\');\"}');
-INSERT INTO `client_forms_elements` VALUES (5,7,1,'submit','Отправить','Submit',0,'','','');
+INSERT INTO `client_forms_elements` VALUES (5,8,1,'submit','Отправить','Submit',0,'','','');
 /*!40000 ALTER TABLE `client_forms_elements` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1128,7 +1128,7 @@ INSERT INTO `z_resources_forms` VALUES (172,94,165,'Text','label','label',0,'','
 INSERT INTO `z_resources_forms` VALUES (173,94,166,'Select','type','type',1,'','',0,'',1);
 INSERT INTO `z_resources_forms` VALUES (174,94,167,'Checkbox','required','required',1,'','',0,'',1);
 INSERT INTO `z_resources_forms` VALUES (175,94,168,'Text','default_value','default_value',0,'','',0,'',1);
-INSERT INTO `z_resources_forms` VALUES (176,94,169,'mce','description','description',0,'','',0,'',1);
+INSERT INTO `z_resources_forms` VALUES (176,94,169,'Textarea','description','description',0,'','',0,'',1);
 INSERT INTO `z_resources_forms` VALUES (177,95,170,'MultiCheckbox','validators','Валидаторы',0,'','',0,'',1);
 INSERT INTO `z_resources_forms` VALUES (178,95,171,'CodeMirror','add_array','Дополнительные параметры',0,'','',0,'',1);
 /*!40000 ALTER TABLE `z_resources_forms` ENABLE KEYS */;
@@ -1525,4 +1525,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-01-27 15:15:26
+-- Dump completed on 2012-01-31 14:56:28
