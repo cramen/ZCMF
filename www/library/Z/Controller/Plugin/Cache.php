@@ -27,42 +27,87 @@
  *
  */
 
-class Z_Controller_Plugin_Statpage extends Zend_Controller_Plugin_Abstract
+class Z_Controller_Plugin_Cache extends Zend_Controller_Plugin_Abstract
 {
-    protected static $is_check = false;
-	
-	public function __construct()
-	{
-	}
-	
-    public function routeShutdown(Zend_Controller_Request_Abstract $request)
+    protected $is_cached = false;
+
+    public function __construct()
     {
 
     }
 
-    public function postDispatch(Zend_Controller_Request_Abstract $request)
+
+    public function preDispatch(Zend_Controller_Request_Abstract $request)
     {
+        if (!$this->canCache()) return;
 
-        if ($this->getResponse()->getHttpResponseCode() == 404 && !self::$is_check)
+        $cache = Z_Cache::getInstance();
+        $url = str_replace('=','_',base64_encode($_SERVER['REQUEST_URI']));
+
+        $this->canCacheThisPage();
+
+        if ($this->canCache() && $this->canCacheThisPage() && $body = $cache->load($url))
         {
-            self::$is_check = true;
-
-            $path = $_SERVER['REQUEST_URI'];
-            $path = explode('?',$path,2);
-            $path = trim(urldecode($path[0]),'/');
-
-            $sp = new Z_Statpage($path);
-
-            if (!$sp->isError())
-            {
-                $request->setControllerName('page');
-                $request->setActionName('show');
-                $request->setParam('page',$sp);
-                $request->setDispatched(false);
-                $this->getResponse()->setBody('');
-                $this->getResponse()->setHttpResponseCode(200);
-            }
-
+            $this->_request->setControllerName('dummy');
+            $this->_request->setActionName('cache');
+            $this->getResponse()->setBody($body);
+            $this->is_cached = true;
         }
+    }
+
+    public function dispatchLoopShutdown()
+    {
+        if (!$this->canCache()) return;
+
+        $response = $this->getResponse();
+
+        if ($this->canCache() && $this->canCacheThisPage() && $response->getHttpResponseCode() == 200 )
+        {
+            $cache = Z_Cache::getInstance();
+            $url = str_replace('=','_',base64_encode($_SERVER['REQUEST_URI']));
+            $data = $response->getBody();
+            $cache->save($data,$url);
+        }
+    }
+
+    protected function canCache()
+    {
+        $request = $this->getRequest();
+        return $request->isGet() && $request->getModuleName()!='admin';
+    }
+
+
+    protected function canCacheThisPage()
+    {
+        $request = $this->getRequest();
+        $cache = Z_Cache::getInstance();
+
+        if (!$cacheArray = $cache->load('nocache_pages_array'))
+        {
+            $model = new Z_Model_Nocachepages();
+            $dbarray = $model->fetchAll()->toArray();
+            $cacheArray = array();
+            foreach ($dbarray as $dbrow)
+            {
+                $newrow = eval($dbrow['code']);
+                $cacheArray[$dbrow['sid']] = $newrow;
+            }
+        }
+
+        $params = $request->getParams();
+        foreach ($cacheArray as $condArray)
+        {
+            $condRelease = true;
+            foreach ($condArray as $key=>$val)
+            {
+                if (!(isset($params[$key]) && $params[$key] == $val))
+                {
+                    $condRelease = false;
+                }
+            }
+            if ($condRelease) return false;
+        }
+
+        return true;
     }
 }

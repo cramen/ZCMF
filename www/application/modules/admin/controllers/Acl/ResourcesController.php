@@ -35,6 +35,7 @@ class Admin_Acl_ResourcesController extends Z_Admin_Controller_Datacontrol_Abstr
         }
         elseif (class_exists($model))
         {
+
             $modelObject = new $model();
             if (method_exists($modelObject,'info'))
             {

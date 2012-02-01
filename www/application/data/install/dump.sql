@@ -157,7 +157,7 @@ CREATE TABLE `client_forms_elements` (
   KEY `orderid` (`orderid`),
   KEY `form_id` (`form_id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -648,6 +648,33 @@ INSERT INTO `z_menu` VALUES (37,37,0,'Очистить кэш','z_cleancache','i
 UNLOCK TABLES;
 
 --
+-- Table structure for table `z_nocache_pages`
+--
+
+DROP TABLE IF EXISTS `z_nocache_pages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `z_nocache_pages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sid` varchar(255) NOT NULL,
+  `code` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `sid` (`sid`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `z_nocache_pages`
+--
+
+LOCK TABLES `z_nocache_pages` WRITE;
+/*!40000 ALTER TABLE `z_nocache_pages` DISABLE KEYS */;
+INSERT INTO `z_nocache_pages` VALUES (1,'feedback','return array(\'controller\'=>\'feedback\');');
+INSERT INTO `z_nocache_pages` VALUES (3,'search','return array(\'controller\'=>\'search\');');
+/*!40000 ALTER TABLE `z_nocache_pages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `z_privileges`
 --
 
@@ -758,7 +785,7 @@ CREATE TABLE `z_resources` (
   UNIQUE KEY `resourceId` (`resourceId`),
   KEY `parentid` (`parentid`),
   KEY `orderid` (`orderid`)
-) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -807,6 +834,7 @@ INSERT INTO `z_resources` VALUES (92,'news','list',90,91,'Новости','Site_
 INSERT INTO `z_resources` VALUES (93,'client_forms','list',23,75,'Клиентские формы','Site_Model_Client_Forms','band','','title','','id','',15,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (94,'client_forms_elements','list',93,93,'Элементы формы','Site_Model_Client_Forms_Elements','band','','name','form_id','id','',15,1,1,1,1,1,1,'bottom',0,1);
 INSERT INTO `z_resources` VALUES (95,'client_forms_elements_params','list',94,94,'Параметры элемента','Site_Model_Client_Forms_Elements','band','','title','id','id','',15,1,1,1,1,0,0,'bottom',0,1);
+INSERT INTO `z_resources` VALUES (96,'z_nocachepages','list',23,95,'Настройки кэширования','Z_Model_Nocachepages','band','','sid','','id','',15,1,1,1,1,0,0,'bottom',1,1);
 /*!40000 ALTER TABLE `z_resources` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -864,7 +892,7 @@ CREATE TABLE `z_resources_columns` (
   `visible` int(1) NOT NULL DEFAULT '1',
   `parentid` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -926,6 +954,7 @@ INSERT INTO `z_resources_columns` VALUES (73,66,93,'Идентификатор',
 INSERT INTO `z_resources_columns` VALUES (74,67,94,'name','','name',0,'','','','return \'{{name}}\'.(\'{{required}}\'?\' *\':\'\');',1,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (75,68,94,'type','','type',0,'','','','',1,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (76,69,94,'label','','label',0,'','','','',1,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (77,70,96,'Не кэшировать','','sid',0,'','','','',1,1,1,0);
 /*!40000 ALTER TABLE `z_resources_columns` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -980,7 +1009,7 @@ CREATE TABLE `z_resources_forms` (
   PRIMARY KEY (`id`),
   KEY `resourceid` (`resourceid`),
   KEY `orderid` (`orderid`)
-) ENGINE=InnoDB AUTO_INCREMENT=179 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=181 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1131,6 +1160,8 @@ INSERT INTO `z_resources_forms` VALUES (175,94,168,'Text','default_value','defau
 INSERT INTO `z_resources_forms` VALUES (176,94,169,'Textarea','description','description',0,'','',0,'',1);
 INSERT INTO `z_resources_forms` VALUES (177,95,170,'MultiCheckbox','validators','Валидаторы',0,'','',0,'',1);
 INSERT INTO `z_resources_forms` VALUES (178,95,171,'CodeMirror','add_array','Дополнительные параметры',0,'','',0,'',1);
+INSERT INTO `z_resources_forms` VALUES (179,96,172,'Text','sid','Идентификатор',1,'','',0,'',1);
+INSERT INTO `z_resources_forms` VALUES (180,96,173,'CodeMirror','code','Код',1,'','<p>массив соответствий между названием параметра и значением</p>',0,'',1);
 /*!40000 ALTER TABLE `z_resources_forms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1525,4 +1556,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-01-31 14:56:28
+-- Dump completed on 2012-02-02  0:50:40

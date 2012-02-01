@@ -21,24 +21,24 @@ class Site_Form_DbForm extends Zend_Form
         $modelForms = new Site_Model_Client_Forms();
         $modelElements = new Site_Model_Client_Forms_Elements();
 
-        $formRecord = $modelForms->fetchRow(array('sid=?'=>$this->_dbsid));
+        $formRecord = $modelForms->fetchRow(array('sid=?' => $this->_dbsid));
         if (null === $formRecord)
         {
-            throw new Zend_Exception(sprintf('Форма с идентификатором "%s" не найдена',$this->_dbsid));
+            throw new Zend_Exception(sprintf('Форма с идентификатором "%s" не найдена', $this->_dbsid));
         }
 
-        $elements = $modelElements->fetchAll(array('form_id=?'=>$formRecord->id),'orderid asc');
+        $elements = $modelElements->fetchAll(array('form_id=?' => $formRecord->id), 'orderid asc');
 
         foreach ($elements as $element)
         {
-            $method = 'add_Db_Element_'.$element->type;
-            if (method_exists($this,$method))
+            $method = 'add_Db_Element_' . $element->type;
+            if (method_exists($this, $method))
             {
                 $this->$method($element);
             }
             else
             {
-                throw new Zend_Exception(sprintf('Метод "%s" в классе "%s" не существует',$method,get_class($this)));
+                throw new Zend_Exception(sprintf('Метод "%s" в классе "%s" не существует', $method, get_class($this)));
             }
         }
 
