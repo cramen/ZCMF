@@ -660,7 +660,7 @@ CREATE TABLE `z_nocache_pages` (
   `code` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sid` (`sid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1556,4 +1556,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-02-02  0:50:40
+-- Dump completed on 2012-02-04 16:16:16
