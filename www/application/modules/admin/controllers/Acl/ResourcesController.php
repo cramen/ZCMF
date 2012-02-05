@@ -175,10 +175,14 @@ class Admin_Acl_ResourcesController extends Z_Admin_Controller_Datacontrol_Abstr
     protected function _importResource($data,$to_id)
     {
         $model = $this->z_model;
+        $newOrderId = $model->select(false)->from($model,array('MAX(orderid)'))->query()->fetchColumn()+1;
+
+
         $modelFormsParams = new Z_Model_Resourceformsparams();
 
         unset($data['id']);
         $data['parentid'] = $to_id;
+        $data['orderid'] = $newOrderId;
         $resourceRow = $model->createRow($data);
         $resourceRowId = $resourceRow->save();
 
