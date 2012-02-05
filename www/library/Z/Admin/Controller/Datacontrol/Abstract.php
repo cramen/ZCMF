@@ -382,8 +382,6 @@ class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controller_Action
 			$formFileitems = $modelForm->fetchAll(array('resourceid=?'=>$this->getResourceInfo()->id,'is_file=?'=>1));
 			$storage = new Z_File_Storage();
 
-            print_r($ids);
-
 			$deletedItemsCount = 0;
 			foreach ($ids as $id)
 			{

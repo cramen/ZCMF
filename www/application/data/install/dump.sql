@@ -332,7 +332,7 @@ CREATE TABLE `z_dbtables` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -372,7 +372,7 @@ CREATE TABLE `z_dbtables_fields` (
   PRIMARY KEY (`id`),
   KEY `dbtable_id` (`dbtable_id`),
   KEY `orderid` (`orderid`)
-) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -855,7 +855,7 @@ CREATE TABLE `z_resources_buttons` (
   PRIMARY KEY (`id`),
   KEY `orderid` (`orderid`),
   KEY `resourceid` (`resourceid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -865,6 +865,8 @@ CREATE TABLE `z_resources_buttons` (
 LOCK TABLES `z_resources_buttons` WRITE;
 /*!40000 ALTER TABLE `z_resources_buttons` DISABLE KEYS */;
 INSERT INTO `z_resources_buttons` VALUES (2,2,87,'Очистить','return $this->view->url(array(\'action\'=>\'clear\'));','');
+INSERT INTO `z_resources_buttons` VALUES (3,3,66,'Импорт','return $this->view->url(array(\'action\'=>\'import\'));','');
+INSERT INTO `z_resources_buttons` VALUES (4,4,12,'Импорт','return $this->view->url(array(\'action\'=>\'import\'));','');
 /*!40000 ALTER TABLE `z_resources_buttons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -892,7 +894,7 @@ CREATE TABLE `z_resources_columns` (
   `visible` int(1) NOT NULL DEFAULT '1',
   `parentid` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -955,6 +957,8 @@ INSERT INTO `z_resources_columns` VALUES (74,67,94,'name','','name',0,'','','','
 INSERT INTO `z_resources_columns` VALUES (75,68,94,'type','','type',0,'','','','',1,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (76,69,94,'label','','label',0,'','','','',1,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (77,70,96,'Не кэшировать','','sid',0,'','','','',1,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (78,71,66,'Экспорт','','export',0,'','','','return \'<a href=\"\'.$this->url(array(\'action\'=>\'export\',\'id\'=>{{id}})).\'\" class=\"z-ajax\" >Экспортировать<a>\';\r\n',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (79,72,12,'Экспорт','','export',0,'','','','return \'<a href=\"\'.$this->url(array(\'action\'=>\'export\',\'id\'=>{{id}},\'z_catalog_sysparentid\'=>null)).\'\" class=\"z-ajax\" >Экспорт<a>\';',0,1,1,0);
 /*!40000 ALTER TABLE `z_resources_columns` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1556,4 +1560,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-02-04 16:16:16
+-- Dump completed on 2012-02-05 16:12:51

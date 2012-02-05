@@ -16,7 +16,7 @@ z_menu_init = function()
 {
 	$("#z-menu .navigation").find("ul").hide();
 	$("#z-menu .navigation .z-admin-menu-path").unbind("click").click(function(){
-		$(this).parent().find(">ul").toggle(0);
+		$(this).parent().find(">ul").toggle(200);
 		return false;
 	})
 }
