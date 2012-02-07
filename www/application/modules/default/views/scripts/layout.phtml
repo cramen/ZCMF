@@ -5,14 +5,14 @@
     
 <?=$this->headTitle(Z_Seo::getTitle())?>
 
-<?=$this->headMeta()->appendHttpEquiv('Content-Type','text/html; charset=UTF-8')
-	->appendName('keywords', Z_Seo::getKeywords())
-	->appendName('description', Z_Seo::getDescription());?>
-
 <?=$this->headLink()
 	->headLink(array('rel' => 'shortcut icon', 'href' => '/favicon.ico'))
 	->appendStylesheet( '/img/style.css' )
 	->appendStylesheet( '/img/ie.css', null, "IE")?>
+
+<?=$this->headMeta()->appendHttpEquiv('Content-Type','text/html; charset=UTF-8')
+	->appendName('keywords', Z_Seo::getKeywords())
+	->appendName('description', Z_Seo::getDescription());?>
 
 <?=$this->headScript()
 	->appendFile('/js/jquery.js')

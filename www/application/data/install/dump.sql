@@ -332,7 +332,7 @@ CREATE TABLE `z_dbtables` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -372,7 +372,7 @@ CREATE TABLE `z_dbtables_fields` (
   PRIMARY KEY (`id`),
   KEY `dbtable_id` (`dbtable_id`),
   KEY `orderid` (`orderid`)
-) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -935,7 +935,7 @@ INSERT INTO `z_resources_columns` VALUES (38,34,65,'Название','','title'
 INSERT INTO `z_resources_columns` VALUES (39,35,66,'Название таблицы','50%','title',0,'','title LIKE ?','','',0,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (40,36,67,'Поле','','title',0,'','','','',0,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (41,37,67,'Тип','','type1',0,'{{type}} ({{len}})','','','',0,1,1,0);
-INSERT INTO `z_resources_columns` VALUES (43,38,66,'Запустить конструктор','20%','run',0,'','','','if (in_array(\'{{title}}\',Z_Db_Table::getDefaultAdapter()->listTables()))\n	return \'<a href=\"\'.$this->url(array(\'action\'=>\'rebuild\',\'id\'=>{{id}})).\'\" class=\"z-ajax\">Модифицировать<a>\';\nelse\n	return \'<a href=\"\'.$this->url(array(\'action\'=>\'build\',\'id\'=>{{id}})).\'\" class=\"z-ajax\">Запустить конструктор<a>\';',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (43,71,66,'Запустить конструктор','20%','run',0,'','','','if (in_array(\'{{title}}\',Z_Db_Table::getDefaultAdapter()->listTables()))\n	return \'<a href=\"\'.$this->url(array(\'action\'=>\'rebuild\',\'id\'=>{{id}})).\'\" class=\"z-ajax\">Модифицировать<a>\';\nelse\n	return \'<a href=\"\'.$this->url(array(\'action\'=>\'build\',\'id\'=>{{id}})).\'\" class=\"z-ajax\">Запустить конструктор<a>\';',0,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (45,39,67,'Индекс','','is_index1',0,'','','','return \'{{is_index}}\'?\'Да\':\'\';',0,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (46,40,75,'Заголовок','','title',0,'','','','',1,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (47,41,75,'Ссылка','','url',0,'','','','',1,1,1,0);
@@ -957,7 +957,7 @@ INSERT INTO `z_resources_columns` VALUES (74,67,94,'name','','name',0,'','','','
 INSERT INTO `z_resources_columns` VALUES (75,68,94,'type','','type',0,'','','','',1,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (76,69,94,'label','','label',0,'','','','',1,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (77,70,96,'Не кэшировать','','sid',0,'','','','',1,1,1,0);
-INSERT INTO `z_resources_columns` VALUES (78,71,66,'Экспорт','','export',0,'','','','return \'<a href=\"\'.$this->url(array(\'action\'=>\'export\',\'id\'=>{{id}})).\'\" class=\"z-ajax\" >Экспортировать<a>\';\r\n',0,1,1,0);
+INSERT INTO `z_resources_columns` VALUES (78,38,66,'Экспорт','','export',0,'','','','return \'<a href=\"\'.$this->url(array(\'action\'=>\'export\',\'id\'=>{{id}})).\'\" class=\"z-ajax\" >Экспорт<a>\';\r\n',0,1,1,0);
 INSERT INTO `z_resources_columns` VALUES (79,72,12,'Экспорт','','export',0,'','','','return \'<a href=\"\'.$this->url(array(\'action\'=>\'export\',\'id\'=>{{id}},\'z_catalog_sysparentid\'=>null)).\'\" class=\"z-ajax\" >Экспорт<a>\';',0,1,1,0);
 /*!40000 ALTER TABLE `z_resources_columns` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1560,4 +1560,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-02-05 16:26:16
+-- Dump completed on 2012-02-08  1:41:28

@@ -126,6 +126,7 @@ class Admin_Acl_ResourcesController extends Z_Admin_Controller_Datacontrol_Abstr
         $parents[0] = 'Корень';
 
         $form = new Z_Admin_Form();
+        $form->setAction($this->view->url());
         $form->addElement(new Z_Admin_Form_Element_Select('to_resoutce',array(
             'label' =>  'Родитель',
             'multiOptions' => $parents
@@ -156,7 +157,6 @@ class Admin_Acl_ResourcesController extends Z_Admin_Controller_Datacontrol_Abstr
             {
                 $this->_importResource($dataArray,$data['to_resoutce']);
                 $model->getAdapter()->commit();
-//                $model->getAdapter()->rollBack();
             }
             catch (Exception $e)
             {

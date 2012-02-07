@@ -145,6 +145,7 @@ class Admin_Z_DbtablesController extends Z_Admin_Controller_Datacontrol_Abstract
         $modelFields = new Z_Model_Dbtablesfields();
 
         $form = new Z_Admin_Form();
+        $form->setAction($this->view->url());
         $form->addElement(new Z_Admin_Form_Element_Textarea('data', array(
             'label' => 'Json code',
             'required' => true

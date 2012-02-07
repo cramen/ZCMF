@@ -12,6 +12,51 @@ SetEnv APPLICATION_ENV development
 
 php_flag magic_quotes_gpc off
 
+<IfModule mod_deflate.c>
+  <FilesMatch "\.(css|js|x?html?|php)$">
+    SetOutputFilter DEFLATE
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/x-icon A604800
+ExpiresByType image/gif A604800
+ExpiresByType image/jpeg A604800
+ExpiresByType image/png A604800
+ExpiresByType text/css A604800
+ExpiresByType text/javascript A604800
+ExpiresByType application/x-javascript A604800
+ExpiresByType application/x-shockwave-flash A604800
+</IfModule>
+
+<ifModule mod_headers.c>
+    <filesMatch ".(ico|pdf|flv|jpg|jpeg|png|gif|swf|bmp)$">
+	Header set Cache-Control "max-age=604800, public"
+    </filesMatch>
+    <filesMatch ".(css|js)$">
+	Header set Cache-Control "max-age=604800, public"
+    </filesMatch>
+    <filesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
+	Header unset ETag
+	FileETag None
+    </filesMatch>
+    Header unset Last-Modified
+</ifModule>
+
+<ifModule mod_gzip.c>
+mod_gzip_on Yes
+mod_gzip_dechunk Yes
+mod_gzip_item_include file .(css|js|x?html?|php|xml)$
+mod_gzip_item_include handler ^cgi-script$
+mod_gzip_item_include mime ^text/.*
+mod_gzip_item_include mime ^application/x-javascript.*
+mod_gzip_item_exclude mime ^image/.*
+mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
+</ifModule>
+
+
+
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} -s [OR]
 RewriteCond %{REQUEST_FILENAME} -l [OR]
