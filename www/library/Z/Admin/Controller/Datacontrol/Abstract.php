@@ -725,7 +725,6 @@ class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controller_Action
 		foreach ($hits as $hit)
 		{
 			$searchIndex->delete($hit->id);
-            echo 1;
 		}
 		
 		//добавляем документ
