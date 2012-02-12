@@ -91,6 +91,12 @@ class Site_Form_DbForm extends Zend_Form
         $this->addElement(new Zend_Form_Element_Select($element->name,$options));
     }
 
+    protected function add_Db_Element_File($element)
+    {
+        $options = $this->getDbElementOptions($element);
+        $this->addElement(new Zend_Form_Element_File($element->name,$options));
+    }
+
     protected function add_Db_Element_Captcha($element)
     {
         $options = $this->getDbElementOptions($element);

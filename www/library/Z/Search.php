@@ -72,10 +72,13 @@ class Z_Search{
         $searchString = trim($searchString,implode('',self::$spaceChars));
         $searchString = str_replace(self::$spaceChars,' ',$searchString);
         $searchString = str_ireplace(self::$stopWords,'',$searchString);
+
+        $searchStringBeforeCutWords = $searchString;
         $searchString = preg_replace('~(\s|^)[^\s]{1,3}\s~iu',' ',$searchString);
         $searchString = preg_replace('~(\s|^)[^\s]{1,3}$~iu',' ',$searchString);
         $searchString = trim($searchString);
         $searchString = preg_replace('~\s+~iu','~ ',$searchString);
+        if (!$searchString) $searchString = trim($searchStringBeforeCutWords);
         $searchString .= '~';
         return $searchString;
     }

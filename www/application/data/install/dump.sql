@@ -1226,7 +1226,7 @@ INSERT INTO `z_resources_forms_params` VALUES (37,158,'MultiOptions','return arr
 INSERT INTO `z_resources_forms_params` VALUES (38,159,'MultiOptions','return $this->getTree();',1);
 INSERT INTO `z_resources_forms_params` VALUES (39,2,'validators','return array(\r\n	array(\'regex\', false, array(\'/^[a-zA-Z0-9]+$/iu\'))\r\n);',1);
 INSERT INTO `z_resources_forms_params` VALUES (40,168,'MultiOptions','return Site_Model_News_Themes::getPairs();',1);
-INSERT INTO `z_resources_forms_params` VALUES (41,173,'MultiOptions','return array(\r\n	\'Text\'    =>    \'Текстовая строка\',\r\n	\'Textarea\'    =>    \'Текстовое поле\',\r\n	\'Select\'    =>    \'Выпадающий список\',\r\n	\'Captcha\'    =>    \'Капча\',\r\n	\'Submit\'    =>    \'Сабмит\'\r\n);',1);
+INSERT INTO `z_resources_forms_params` VALUES (41,173,'MultiOptions','return array(\r\n	\'Text\'    =>    \'Текстовая строка\',\r\n	\'Textarea\'    =>    \'Текстовое поле\',\r\n	\'Select\'    =>    \'Выпадающий список\',\r\n	\'File\'    =>    \'Файл\',\r\n	\'Captcha\'    =>    \'Капча\',\r\n	\'Submit\'    =>    \'Сабмит\'\r\n);',1);
 INSERT INTO `z_resources_forms_params` VALUES (42,177,'MultiOptions','return array(\r\n	\'emailAddress\'    =>    \'Email\',\r\n	\'digits\'  =>    \'Цифры\',\r\n	\'alpha\'  =>    \'Буквы\',\r\n	\'int\'  =>    \'Целое число\'\r\n);',1);
 INSERT INTO `z_resources_forms_params` VALUES (44,159,'value','return $this->_getParam(\'parentid\',0);',1);
 /*!40000 ALTER TABLE `z_resources_forms_params` ENABLE KEYS */;
@@ -1560,4 +1560,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-02-08 19:31:04
+-- Dump completed on 2012-02-12 19:19:25

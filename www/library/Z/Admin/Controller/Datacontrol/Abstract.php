@@ -709,7 +709,7 @@ class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controller_Action
 		//создаем документ
 		$doc = new Zend_Search_Lucene_Document();
 		$doc->addField(Zend_Search_Lucene_Field::keyword('_id', $data['id']));
-		$doc->addField(Zend_Search_Lucene_Field::unIndexed('_type', $this->z_model->info('name')));
+		$doc->addField(Zend_Search_Lucene_Field::keyword('_type', $this->z_model->info('name')));
 		foreach ($fields as $field)
 		{
 			if (isset($data[$field]))
@@ -717,7 +717,7 @@ class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controller_Action
 		}
 		
 		//удаляем старый документ
-		$hits = $searchIndex->find('_id:'.$data['id']);
+		$hits = $searchIndex->find('_id:'.$data['id'].' AND _type:'.$this->z_model->info('name'));
 		foreach ($hits as $hit)
 		{
 			$searchIndex->delete($hit->id);
