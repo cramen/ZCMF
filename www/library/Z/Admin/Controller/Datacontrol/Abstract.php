@@ -717,10 +717,15 @@ class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controller_Action
 		}
 		
 		//удаляем старый документ
-		$hits = $searchIndex->find('_id:'.$data['id'].' AND _type:'.$this->z_model->info('name'));
+        $query = new Zend_Search_Lucene_Search_Query_MultiTerm();
+        $query->addTerm(new Zend_Search_Lucene_Index_Term($data['id'],'_id'),true);
+        $query->addTerm(new Zend_Search_Lucene_Index_Term($this->z_model->info('name'),'_type'),true);
+
+        $hits = $searchIndex->find($query);
 		foreach ($hits as $hit)
 		{
 			$searchIndex->delete($hit->id);
+            echo 1;
 		}
 		
 		//добавляем документ
