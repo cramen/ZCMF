@@ -137,21 +137,20 @@ class Z_Admin_Controller_Action extends Zend_Controller_Action
 
     public function ajaxConfirm($question, $confirm_param_name = 'confirmed', array $javaparams = array())
     {
-        if ($this->_getParam($confirm_param_name))
-        {
+        if ($this->_getParam($confirm_param_name)) {
             return true;
         }
         else
         {
-            $params_str = implode(',',$javaparams);
+            $params_str = implode(',', $javaparams);
 
             jQuery::evalScript('
-         	    		if (confirm("'.addcslashes($question,'"').'"))
+         	    		if (confirm("' . addcslashes($question, '"') . '"))
          	    		{
-         	    			z_ajax_go("' . $this->view->url() . '",{'.
-                            $confirm_param_name.':1'.
-                            (empty($javaparams)?'':','.$params_str).
-                            '});
+         	    			z_ajax_go("' . $this->view->url() . '",{' .
+                    $confirm_param_name . ':1' .
+                    (empty($javaparams) ? '' : ',' . $params_str) .
+                    '});
          	    		}
          	    	');
 

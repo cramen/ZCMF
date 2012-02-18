@@ -155,8 +155,7 @@ class Admin_Z_DbtablesController extends Z_Admin_Controller_Datacontrol_Abstract
 
 
         $data = $this->_request->getPost();
-        if (!empty($data) && $form->isValid($data))
-        {
+        if (!empty($data) && $form->isValid($data)) {
             try {
                 $dataArray = Zend_Json::decode($data['data']);
             }
@@ -182,7 +181,6 @@ class Admin_Z_DbtablesController extends Z_Admin_Controller_Datacontrol_Abstract
             $form->reset();
 
         }
-
 
 
     }

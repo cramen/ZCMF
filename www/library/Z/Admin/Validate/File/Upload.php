@@ -40,7 +40,7 @@ class Z_Admin_Validate_File_Upload extends Zend_Validate_File_Upload
      */
     public function isValid($value, $file = null)
     {
-    	if (array_key_exists($value, $this->_files)) {
+        if (array_key_exists($value, $this->_files)) {
             $files[$value] = $this->_files[$value];
         } else {
             foreach ($this->_files as $file => $content) {
@@ -60,7 +60,7 @@ class Z_Admin_Validate_File_Upload extends Zend_Validate_File_Upload
 
         foreach ($files as $file => $content) {
             $this->_value = $file;
-            switch($content['error']) {
+            switch ($content['error']) {
                 case 0:
                     break;
 
@@ -97,7 +97,7 @@ class Z_Admin_Validate_File_Upload extends Zend_Validate_File_Upload
                     break;
             }
         }
-		$a = $this->_messages;
+        $a = $this->_messages;
         if (count($this->_messages) > 0) {
             return false;
         } else {

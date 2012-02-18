@@ -35,13 +35,13 @@ class Z_Sitemap_Xml_Url
     protected $routeName;
     protected $changefreq;
 
-    public function __construct($urlArray=array(), $routeName=null, $lastmod=null, $changefreq=null, $priority=null)
+    public function __construct($urlArray = array(), $routeName = null, $lastmod = null, $changefreq = null, $priority = null)
     {
         $this->urlArray = $urlArray;
-        $this->lastmod = $lastmod?date('Y-m-d',$lastmod):date('Y-m-d');
-        $this->priority = $priority?str_replace(',','.',$priority):'0.8';
-        $this->changefreq = $changefreq?$changefreq:'monthly';
-        $this->routeName = $routeName?$routeName:'default';
+        $this->lastmod = $lastmod ? date('Y-m-d', $lastmod) : date('Y-m-d');
+        $this->priority = $priority ? str_replace(',', '.', $priority) : '0.8';
+        $this->changefreq = $changefreq ? $changefreq : 'monthly';
+        $this->routeName = $routeName ? $routeName : 'default';
     }
 
     public function getLastmod()

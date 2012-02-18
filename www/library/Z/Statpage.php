@@ -53,8 +53,7 @@ class Z_Statpage
             $this->_row = $this->_getRow($sid);
             $cache->save($this->_row, $cache_id);
         }
-        if ($this->_row->sid == 'error')
-        {
+        if ($this->_row->sid == 'error') {
             $this->_isError = true;
         }
     }

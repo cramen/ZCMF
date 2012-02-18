@@ -45,7 +45,7 @@ class Z_Sitemap_Xml
 
     public function addUrls($urls)
     {
-        $this->urls = array_merge($this->urls,$urls);
+        $this->urls = array_merge($this->urls, $urls);
     }
 
 
@@ -62,10 +62,10 @@ class Z_Sitemap_Xml
             $priority = $url->getPriority();
 
             $urlString = '   <url>
-      <loc>'.htmlspecialchars($link).'</loc>
-      <lastmod>'.htmlspecialchars($date).'</lastmod>
-      <changefreq>'.htmlspecialchars($changrfreq).'</changefreq>
-      <priority>'.htmlspecialchars($priority).'</priority>
+      <loc>' . htmlspecialchars($link) . '</loc>
+      <lastmod>' . htmlspecialchars($date) . '</lastmod>
+      <changefreq>' . htmlspecialchars($changrfreq) . '</changefreq>
+      <priority>' . htmlspecialchars($priority) . '</priority>
    </url>
 ';
             $urlsString .= $urlString;
@@ -73,7 +73,7 @@ class Z_Sitemap_Xml
 
         $xml = '<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-'.$urlsString.'
+' . $urlsString . '
 </urlset>';
 
         return $xml;

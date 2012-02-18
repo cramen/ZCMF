@@ -30,8 +30,9 @@
  *
  * User: cramen
  */
- 
-class Z_Version {
+
+class Z_Version
+{
 
     public static $value = '20120502';
 

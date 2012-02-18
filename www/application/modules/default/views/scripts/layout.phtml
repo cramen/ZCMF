@@ -1,95 +1,101 @@
-<?=$this->docType()?>
+<?= $this->docType() ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    
-<?=$this->headTitle(Z_Seo::getTitle())?>
 
-<?=$this->headLink()
-	->headLink(array('rel' => 'shortcut icon', 'href' => '/favicon.ico'))
-	->appendStylesheet( '/img/style.css' )
-	->appendStylesheet( '/img/ie.css', null, "IE")?>
+    <?=$this->headTitle(Z_Seo::getTitle())?>
 
-<?=$this->headMeta()->appendHttpEquiv('Content-Type','text/html; charset=UTF-8')
-	->appendName('keywords', Z_Seo::getKeywords())
-	->appendName('description', Z_Seo::getDescription());?>
+    <?=$this->headLink()
+        ->headLink(array('rel' => 'shortcut icon', 'href' => '/favicon.ico'))
+        ->appendStylesheet('/img/style.css')
+        ->appendStylesheet('/img/ie.css', null, "IE")?>
 
-<?=$this->headScript()
-	->appendFile('/js/jquery.js')
-	->appendFile('/js/main.js')?>
-	
-    
+    <?=$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=UTF-8')
+        ->appendName('keywords', Z_Seo::getKeywords())
+        ->appendName('description', Z_Seo::getDescription());?>
+
+    <?=$this->headScript()
+        ->appendFile('/js/jquery.js')
+        ->appendFile('/js/main.js')?>
+
+
 </head>
 
 <body>
 
 <div id="spacer">
 
-	<div id="header">
-	    <div class="wrapper">
-	        <a href="/" id="logo"></a>
-	        <form id="searchform" action="/search" method="get">
-	            <fieldset>
-	                <input type="text" name="search" value="<?php echo $this->escape($this->searchString) ?>" placeholder="поиск" />
-	                <input class="hidden" type="submit" />
-	            </fieldset>
-	        </form>
-	        
-	<?php $this->placeholder('menu')->set($this->menu())?>
-	<?php echo $this->placeholder('menu')?>
-	
-	    </div>
-	</div><!-- #header-->
+    <div id="header">
+        <div class="wrapper">
+            <a href="/" id="logo"></a>
+
+            <form id="searchform" action="/search" method="get">
+                <fieldset>
+                    <input type="text" name="search" value="<?php echo $this->escape($this->searchString) ?>"
+                           placeholder="поиск"/>
+                    <input class="hidden" type="submit"/>
+                </fieldset>
+            </form>
+
+            <?php $this->placeholder('menu')->set($this->menu())?>
+            <?php echo $this->placeholder('menu')?>
+
+        </div>
+    </div>
+    <!-- #header-->
 
     <div id="blueline">
         <div class="wrapper">
             <?php echo $this->placeholder('top')?>
             <div class="clear"></div>
         </div>
-    </div><!-- #blueline-->
+    </div>
+    <!-- #blueline-->
 
     <div id="content">
         <div class="wrapper">
 
-			<?php $rightContent = (string)$this->placeholder('right')?>
-			
-			<?php if ($rightContent):?>
-			
-				<div class="left">
-				
-					<?php echo $this->layout()->content?>
-					
-				</div>
-				<div class="right">
-				
-					<?php echo $rightContent?>
-					
-				</div>
-				
-			<?php else:?>
-			
-				<?php echo $this->layout()->content?>
-				
-			<?php endif;?>
-	
-	    </div>
-	</div><!-- #content-->
-	
-	<div class="clear"></div>
+            <?php $rightContent = (string)$this->placeholder('right')?>
+
+            <?php if ($rightContent): ?>
+
+            <div class="left">
+
+                <?php echo $this->layout()->content?>
+
+            </div>
+            <div class="right">
+
+                <?php echo $rightContent?>
+
+            </div>
+
+            <?php else: ?>
+
+            <?php echo $this->layout()->content ?>
+
+            <?php endif;?>
+
+        </div>
+    </div>
+    <!-- #content-->
+
+    <div class="clear"></div>
 
 </div>
 
 <div id="footer">
     <div class="wrapper">
-<?php echo $this->placeholder('menu')?>
+        <?php echo $this->placeholder('menu')?>
         <div class="counter">
-        	<?php echo $this->z_Config('counter')?>
+            <?php echo $this->z_Config('counter')?>
         </div>
         <div class="copy">
             <?php echo $this->z_Config('copy')?>
         </div>
     </div>
-</div><!-- #footer -->
+</div>
+<!-- #footer -->
 
 </body>
 </html>

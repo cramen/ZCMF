@@ -14,18 +14,18 @@
 class Zend_View_Helper_Menu
 {
     /**
-     * @var Zend_View_Interface 
+     * @var Zend_View_Interface
      */
     public $view;
 
     /**
      * @return string
      */
-    public function menu ()
+    public function menu()
     {
         $model = new Site_Model_Menu();
-        $items = $model->fetchAll(null,'orderid');
-        $activeItem = $model->fetchRow(array('"/'.addcslashes(trim($_SERVER['REQUEST_URI'],"/"),"'").'" LIKE CONCAT(url,"%")'),'LENGTH(url) desc');
+        $items = $model->fetchAll(null, 'orderid');
+        $activeItem = $model->fetchRow(array('"/' . addcslashes(trim($_SERVER['REQUEST_URI'], "/"), "'") . '" LIKE CONCAT(url,"%")'), 'LENGTH(url) desc');
 
         $this->view->items = $items;
         if ($activeItem)
@@ -38,7 +38,7 @@ class Zend_View_Helper_Menu
      * Sets the view field
      * @param $view Zend_View_Interface
      */
-    public function setView (Zend_View_Interface $view)
+    public function setView(Zend_View_Interface $view)
     {
         $this->view = $view;
     }

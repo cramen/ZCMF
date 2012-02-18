@@ -1,12 +1,13 @@
-<?=$this->admin_Head($this->admin_Breadcrumbs($this->breadcrumbs).':Экспорт').
-$this->admin_Bodybegin()?>
+<?=
+$this->admin_Head($this->admin_Breadcrumbs($this->breadcrumbs) . ':Экспорт') .
+        $this->admin_Bodybegin()?>
 
 <div class="z-form">
     <div class="z-form-inputItem">
         <textarea name="data" class="ui-widget-content ui-corner-all" style="height: 500px;">
-<?php echo $this->data ?>
+            <?php echo $this->data ?>
         </textarea>
     </div>
 </div>
 
-<?=$this->admin_Bodyend()?>
+<?= $this->admin_Bodyend() ?>

@@ -51,7 +51,7 @@ require_once 'Zend/Form/Element/Xhtml.php';
 
 /**
  * Image form element
- * 
+ *
  * @category   Zend
  * @package    Zend_Form
  * @subpackage Element
@@ -81,7 +81,7 @@ class Z_Admin_Form_Element_Image extends Zend_Form_Element_Xhtml
 
     /**
      * Load default decorators
-     * 
+     *
      * @return void
      */
     public function loadDefaultDecorators()
@@ -93,28 +93,28 @@ class Z_Admin_Form_Element_Image extends Zend_Form_Element_Xhtml
         $decorators = $this->getDecorators();
         if (empty($decorators)) {
             $this->addDecorator('Tooltip')
-                 ->addDecorator('Image')
-                 ->addDecorator('Errors')
-                 ->addDecorator('HtmlTag', array('tag' => 'dd'))
-                 ->addDecorator('Label', array('tag' => 'dt'));
+                    ->addDecorator('Image')
+                    ->addDecorator('Errors')
+                    ->addDecorator('HtmlTag', array('tag' => 'dd'))
+                    ->addDecorator('Label', array('tag' => 'dt'));
         }
     }
 
     /**
      * Set image path
-     * 
-     * @param  string $path 
+     *
+     * @param  string $path
      * @return Zend_Form_Element_Image
      */
     public function setImage($path)
     {
-        $this->src = (string) $path;
+        $this->src = (string)$path;
         return $this;
     }
 
     /**
      * Get image path
-     * 
+     *
      * @return string
      */
     public function getImage()
@@ -124,8 +124,8 @@ class Z_Admin_Form_Element_Image extends Zend_Form_Element_Xhtml
 
     /**
      * Set image value to use when submitted
-     * 
-     * @param  mixed $value 
+     *
+     * @param  mixed $value
      * @return Zend_Form_Element_Image
      */
     public function setImageValue($value)
@@ -136,7 +136,7 @@ class Z_Admin_Form_Element_Image extends Zend_Form_Element_Xhtml
 
     /**
      * Get image value to use when submitted
-     * 
+     *
      * @return mixed
      */
     public function getImageValue()
@@ -146,7 +146,7 @@ class Z_Admin_Form_Element_Image extends Zend_Form_Element_Xhtml
 
     /**
      * Was this element used to submit the form?
-     * 
+     *
      * @return bool
      */
     public function isChecked()
@@ -154,5 +154,5 @@ class Z_Admin_Form_Element_Image extends Zend_Form_Element_Xhtml
         $imageValue = $this->getImageValue();
         return ((null !== $imageValue) && ($this->getValue() == $imageValue));
     }
-    
+
 }

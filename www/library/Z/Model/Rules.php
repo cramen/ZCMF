@@ -37,12 +37,12 @@ class Z_Model_Rules extends Z_Db_Table
     );
 
     protected $_referenceMap = array(
-        'Resource'  =>  array(
-            'columns'           => 'resource_id',
-            'refTableClass'     => 'Z_Model_Resources',
-            'refColumns'        => 'id',
-            'onDelete'          =>  self::CASCADE,
-            'onUpdate'          =>  self::CASCADE,
+        'Resource' => array(
+            'columns' => 'resource_id',
+            'refTableClass' => 'Z_Model_Resources',
+            'refColumns' => 'id',
+            'onDelete' => self::CASCADE,
+            'onUpdate' => self::CASCADE,
         ),
     );
 
@@ -53,13 +53,12 @@ class Z_Model_Rules extends Z_Db_Table
     public function getAllRules()
     {
         return $this->select()
-            ->setIntegrityCheck(false)
-            ->from($this->_name)
+                ->setIntegrityCheck(false)
+                ->from($this->_name)
 //            ->order('z_rules.orderid')
-            ->join('z_resources', 'z_resources.id = ' . $this->_name . '.resource_id', array('resourceId'))
-            ->join('z_roles', 'z_roles.id = ' . $this->_name . '.role_id', array('roleId'))
-            ->query()
-            ->fetchAll()
-        ;
+                ->join('z_resources', 'z_resources.id = ' . $this->_name . '.resource_id', array('resourceId'))
+                ->join('z_roles', 'z_roles.id = ' . $this->_name . '.role_id', array('roleId'))
+                ->query()
+                ->fetchAll();
     }
 }

@@ -29,45 +29,45 @@
 
 /**
  * News
- *  
+ *
  * @author cramen
- * @version 
+ * @version
  */
 
 require_once 'Z/Db/Table.php';
 
-class Z_Model_Statpage extends Z_Db_Table {
-	/**
-	 * The default table name 
-	 */
-	protected $_name = 'z_statpages';
+class Z_Model_Statpage extends Z_Db_Table
+{
+    /**
+     * The default table name
+     */
+    protected $_name = 'z_statpages';
 
-	
-	public function ZGetLinks($count=0)
-	{
-		$select = $this->select()
-			->from($this,array('CONCAT("/",sid)','title'))
-			->order('title');
-		if ($count) $select->limit($count);
-		$result = $this->getAdapter()->fetchPairs($select);
 
-        if (array_key_exists('/index',$result))
-        {
-			$result = array_reverse($result);
-			$result['/'] = $result['/index'];
-			unset($result['/index']);
-			$result = array_reverse($result);
-		}
-						
-		return $result;
-	}
+    public function ZGetLinks($count = 0)
+    {
+        $select = $this->select()
+                ->from($this, array('CONCAT("/",sid)', 'title'))
+                ->order('title');
+        if ($count) $select->limit($count);
+        $result = $this->getAdapter()->fetchPairs($select);
+
+        if (array_key_exists('/index', $result)) {
+            $result = array_reverse($result);
+            $result['/'] = $result['/index'];
+            unset($result['/index']);
+            $result = array_reverse($result);
+        }
+
+        return $result;
+    }
 
     public function ZSitemapXml()
     {
         $res = array();
-        foreach($this->fetchAll() as $el)
+        foreach ($this->fetchAll() as $el)
         {
-            $res[] = new Z_Sitemap_Xml_Url(array('controller'=>$el->sid),'default',time());
+            $res[] = new Z_Sitemap_Xml_Url(array('controller' => $el->sid), 'default', time());
         }
         return $res;
     }

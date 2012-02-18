@@ -29,17 +29,17 @@
 
 class Z_View_Helper_FormCodeMirror extends Zend_View_Helper_FormTextarea
 {
- 
+
     public function FormCodeMirror($name, $value = null, $attribs = null)
     {
         $info = $this->_getInfo($name, $value, $attribs);
         extract($info); // name, value, attribs, options, listsep, disable
 
-        $syntax = isset($attribs['syntax'])?$attribs['syntax']:'php';
-        $height = isset($attribs['height'])?$attribs['height']:300;
-        
-        
-        $script = 'var editor_'.$id.' =CodeMirror.fromTextArea(document.getElementById("'.$id.'"), {
+        $syntax = isset($attribs['syntax']) ? $attribs['syntax'] : 'php';
+        $height = isset($attribs['height']) ? $attribs['height'] : 300;
+
+
+        $script = 'var editor_' . $id . ' =CodeMirror.fromTextArea(document.getElementById("' . $id . '"), {
             lineNumbers: true,
             matchBrackets: true,
             mode: "text/x-php",
@@ -48,16 +48,16 @@ class Z_View_Helper_FormCodeMirror extends Zend_View_Helper_FormTextarea
             enterMode: "keep",
             tabMode: "shift",
             onCursorActivity: function() {
-                editor_'.$id.'.setLineClass(hlLine_'.$id.', null);
-                hlLine_'.$id.' = editor_'.$id.'.setLineClass(editor_'.$id.'.getCursor().line, "CodeMirror-activeline");
+                editor_' . $id . '.setLineClass(hlLine_' . $id . ', null);
+                hlLine_' . $id . ' = editor_' . $id . '.setLineClass(editor_' . $id . '.getCursor().line, "CodeMirror-activeline");
               }
         });
 
-        var hlLine_'.$id.' = editor_'.$id.'.setLineClass(0, "CodeMirror-activeline");
+        var hlLine_' . $id . ' = editor_' . $id . '.setLineClass(0, "CodeMirror-activeline");
 
         ';
 
-    	jQuery::evalScript($script);
+        jQuery::evalScript($script);
 
         // build the element
         $xhtml = '<textarea name="' . $this->view->escape($name) . '"'

@@ -1,12 +1,12 @@
 <?php
-	$this->placeholder('top')->set('<h3>'.$this->band->title.'</h3>');
-	Z_Seo::addTitle($this->band->title);
-    Z_Seo::addTitle($this->item->title);
+$this->placeholder('top')->set('<h3>' . $this->band->title . '</h3>');
+Z_Seo::addTitle($this->band->title);
+Z_Seo::addTitle($this->item->title);
 ?>
 
-            <div>
+<div>
 
-<?php print_r($this->item->toArray()) ?>
-<a href="<?php echo $this->list_url?>">Вернуться в список.</a>
+    <?php print_r($this->item->toArray()) ?>
+    <a href="<?php echo $this->list_url?>">Вернуться в список.</a>
 
-            </div>
+</div>

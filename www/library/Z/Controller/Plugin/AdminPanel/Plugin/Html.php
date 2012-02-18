@@ -79,11 +79,11 @@ class Z_Controller_Plugin_AdminPanel_Plugin_Html implements Z_Controller_Plugin_
             };
         </script>';
         $panel .= '<span id="ZFDebug_Html_Tagcount"></span> Tags<br />'
-                . 'HTML Size: '.round(strlen($body)/1024, 2).'K<br />'
+                . 'HTML Size: ' . round(strlen($body) / 1024, 2) . 'K<br />'
                 . '<span id="ZFDebug_Html_Stylecount"></span> Stylesheet Files<br />'
                 . '<span id="ZFDebug_Html_Scriptcount"></span> Javascript Files<br />'
                 . '<span id="ZFDebug_Html_Imgcount"></span> Images<br />'
-                . '<form method="POST" action="http://validator.w3.org/check" target="_blank"><input type="hidden" name="fragment" value="'.htmlentities($body).'"><input type="submit" value="Validate With W3"></form>';
+                . '<form method="POST" action="http://validator.w3.org/check" target="_blank"><input type="hidden" name="fragment" value="' . htmlentities($body) . '"><input type="submit" value="Validate With W3"></form>';
         return $panel;
     }
 }

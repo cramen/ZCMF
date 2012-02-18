@@ -28,7 +28,8 @@
  */
 class Z_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Http
 {
-	protected $_processedFiles = array();
+    protected $_processedFiles = array();
+
 //------------------------------------------------------------------------------
     /**
      * Constructor for Http File Transfers
@@ -44,8 +45,9 @@ class Z_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Http
 
         $this->setOptions($options);
         $this->_prepareFiles();
-		$this->addValidator(new Z_Admin_Validate_File_Upload(), false, $this->_files);
+        $this->addValidator(new Z_Admin_Validate_File_Upload(), false, $this->_files);
     }
+
 //------------------------------------------------------------------------------
     /**
      * Remove an individual validator
@@ -79,6 +81,7 @@ class Z_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Http
 
         return $this;
     }
+
 //------------------------------------------------------------------------------
     /**
      * Remove all validators
@@ -91,11 +94,12 @@ class Z_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Http
         $this->_validators = array();
         foreach (array_keys($this->_files) as $file) {
             $this->_files[$file]['validators'] = array();
-            $this->_files[$file]['validated']  = false;
+            $this->_files[$file]['validated'] = false;
         }
-		$this->addValidator(new Z_Admin_Validate_File_Upload(), false, $this->_files);
+        $this->addValidator(new Z_Admin_Validate_File_Upload(), false, $this->_files);
         return $this;
     }
+
 //------------------------------------------------------------------------------
     /**
      * Checks if the files are valid
@@ -120,11 +124,11 @@ class Z_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Http
             }
 
             $temp = array($files => array(
-                'name'  => $files,
+                'name' => $files,
                 'error' => 1));
-			$validator = $this->_validators['Z_Admin_Validate_File_Upload'];
+            $validator = $this->_validators['Z_Admin_Validate_File_Upload'];
             $validator->setFiles($temp)
-                      ->isValid($files, null);
+                    ->isValid($files, null);
             $this->_messages += $validator->getMessages();
             return false;
         }
@@ -133,12 +137,13 @@ class Z_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Http
             return false;
         }
 
-        $translator      = $this->getTranslator();
+        $translator = $this->getTranslator();
         $this->_messages = array();
-        $break           = false;
-        foreach($check as $key => $content) {
+        $break = false;
+        foreach ($check as $key => $content) {
             if (array_key_exists('validators', $content) &&
-                in_array('Zend_Validate_File_Count', $content['validators'])) {
+                    in_array('Zend_Validate_File_Count', $content['validators'])
+            ) {
                 $validator = $this->_validators['Zend_Validate_File_Count'];
                 if (array_key_exists('destination', $content)) {
                     $checkit = $content['destination'];
@@ -159,7 +164,7 @@ class Z_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Http
         }
 
         foreach ($check as $key => $content) {
-            $fileerrors  = array();
+            $fileerrors = array();
             if (array_key_exists('validators', $content) && $content['validated']) {
                 continue;
             }
@@ -176,7 +181,7 @@ class Z_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Http
                     } else {
                         $tocheck = $content['tmp_name'];
                     }
-					//$tocheck .= $this->_getFileValidationPostfix($class);
+                    //$tocheck .= $this->_getFileValidationPostfix($class);
                     if (!$validator->isValid($tocheck, $content)) {
                         $fileerrors += $validator->getMessages();
                     }
@@ -215,6 +220,7 @@ class Z_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Http
 
         return true;
     }
+
 //------------------------------------------------------------------------------
     /**
      * Receive the file from the client (Upload)
@@ -227,20 +233,20 @@ class Z_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Http
         if (!$this->isValid($files)) {
             return false;
         }
-		$_processedFiles = array();
-		$check = $this->_getFiles($files);
+        $_processedFiles = array();
+        $check = $this->_getFiles($files);
         foreach ($check as $file => $content) {
             if (!$content['received']) {
-                $directory   = '';
+                $directory = '';
                 $destination = $this->getDestination($file);
                 if ($destination !== null) {
                     $directory = $destination . DIRECTORY_SEPARATOR;
                 }
 
                 $filename = $directory . $content['name'];
-                $rename   = $this->getFilter('Rename');
-				$storage = new Z_File_Storage();
-				
+                $rename = $this->getFilter('Rename');
+                $storage = new Z_File_Storage();
+
                 if ($rename !== null) {
                     $tmp = $rename->getNewName($content['tmp_name']);
                     if ($tmp != $content['tmp_name']) {
@@ -254,35 +260,33 @@ class Z_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Http
                     $key = array_search(get_class($rename), $this->_files[$file]['filters']);
                     unset($this->_files[$file]['filters'][$key]);
                 }
-				elseif($storedId == null)
-				{
-					$tmp = $storage->getNewFolderName();
-					if(!$tmp)
-						throw new Exception("Не удалось выбрать имя для папки.<br>Попробуйте использовать более длинное имя или увеличьте количество попыток для подбора");
-					$filename = $tmp;
-				}
+                elseif ($storedId == null)
+                {
+                    $tmp = $storage->getNewFolderName();
+                    if (!$tmp)
+                        throw new Exception("Не удалось выбрать имя для папки.<br>Попробуйте использовать более длинное имя или увеличьте количество попыток для подбора");
+                    $filename = $tmp;
+                }
                 // Should never return false when it's tested by the upload validator
-				$lid = $storedId == null ?
-					$storage->create($content['tmp_name'], array(
-					'filename' => $filename,
-					'realname' => $content['name'],
-					)) :
-					$storage->replace($storedId, $content['tmp_name'], $content['name']);
-                if(!$lid)
-				{
-					if ($content['options']['ignoreNoFile'])
-					{
-						$this->_files[$file]['received'] = true;
-						$this->_files[$file]['filtered'] = true;
-						continue;
-					}
+                $lid = $storedId == null ?
+                        $storage->create($content['tmp_name'], array(
+                            'filename' => $filename,
+                            'realname' => $content['name'],
+                        )) :
+                        $storage->replace($storedId, $content['tmp_name'], $content['name']);
+                if (!$lid) {
+                    if ($content['options']['ignoreNoFile']) {
+                        $this->_files[$file]['received'] = true;
+                        $this->_files[$file]['filtered'] = true;
+                        continue;
+                    }
                     $this->_files[$file]['received'] = false;
                     return false;
-				}
-				$this->_processedFiles[$file] = $storedId == null ? $lid : $storedId;
+                }
+                $this->_processedFiles[$file] = $storedId == null ? $lid : $storedId;
                 if ($rename !== null) {
                     $this->_files[$file]['destination'] = dirname($filename);
-                    $this->_files[$file]['name']        = basename($filename);
+                    $this->_files[$file]['name'] = basename($filename);
                 }
 
                 $this->_files[$file]['tmp_name'] = $filename;
@@ -301,22 +305,24 @@ class Z_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Http
 
         return true;
     }
+
 //------------------------------------------------------------------------------
-	/**
-	 * @return array Возвращает массив с id сохраненных файлов
-	 */
-	public function getProcessedFiles()
-	{
-		return $this->_processedFiles;
-	}
+    /**
+     * @return array Возвращает массив с id сохраненных файлов
+     */
+    public function getProcessedFiles()
+    {
+        return $this->_processedFiles;
+    }
+
 //------------------------------------------------------------------------------
-	/**
-	 * Получить id сохраненного файла по имени элемента Form_File
-	 * @param string $fieldName Имя элеменета формы File
-	 * @return id файла, если он был обработан. В случае неудачи - false
-	 */
-	public function getProcessedFileId($fieldName)
-	{
-		return isset($this->_processedFiles[$fieldName]) ? $this->_processedFiles[$fieldName] : false;
-	}
+    /**
+     * Получить id сохраненного файла по имени элемента Form_File
+     * @param string $fieldName Имя элеменета формы File
+     * @return id файла, если он был обработан. В случае неудачи - false
+     */
+    public function getProcessedFileId($fieldName)
+    {
+        return isset($this->_processedFiles[$fieldName]) ? $this->_processedFiles[$fieldName] : false;
+    }
 }

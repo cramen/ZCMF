@@ -66,7 +66,7 @@ class Admin_Acl_ResourcesController extends Z_Admin_Controller_Datacontrol_Abstr
         $this->view->data = Zend_Json::encode($this->_exportResource($this->_getParam('id')));
     }
 
-    protected  function _exportResource($id)
+    protected function _exportResource($id)
     {
         $model = $this->z_model;
         $modelFormsParams = new Z_Model_Resourceformsparams();
@@ -81,22 +81,20 @@ class Admin_Acl_ResourcesController extends Z_Admin_Controller_Datacontrol_Abstr
         $path = APPLICATION_PATH . $ds . 'modules' . $ds . $this->getRequest()->getModuleName() . $ds . 'controllers'
                 . (($pathAdd = implode($ds, $nameExploded)) ? $ds . $pathAdd : '') . 'Controller.php';
 
-        if (file_exists($path))
-        {
+        if (file_exists($path)) {
             $resourceArray['file_content'] = file_get_contents($path);
         }
 
 
-        foreach($this->_dependencyModels as $dependModelName)
+        foreach ($this->_dependencyModels as $dependModelName)
         {
             $dependModel = new $dependModelName();
-            $dependRowsArray = $dependModel->fetchAll(array('resourceid=?'=>$resourceArray['id']))->toArray();
-            if ($dependModelName == 'Z_Model_Resourceforms')
-            {
+            $dependRowsArray = $dependModel->fetchAll(array('resourceid=?' => $resourceArray['id']))->toArray();
+            if ($dependModelName == 'Z_Model_Resourceforms') {
 
-                foreach ($dependRowsArray as $key=>$dependRowsArrayItem)
+                foreach ($dependRowsArray as $key => $dependRowsArrayItem)
                 {
-                    $formsParamsArray = $modelFormsParams->fetchAll(array('formid=?'=>$dependRowsArrayItem['id']))->toArray();
+                    $formsParamsArray = $modelFormsParams->fetchAll(array('formid=?' => $dependRowsArrayItem['id']))->toArray();
                     $dependRowsArray[$key]['params'] = $formsParamsArray;
                 }
 
@@ -105,10 +103,9 @@ class Admin_Acl_ResourcesController extends Z_Admin_Controller_Datacontrol_Abstr
             $resourceArray['depends'][$dependModelName] = $dependRowsArray;
         }
 
-        $subResources = $model->fetchAll(array('parentid=?'=>$resourceArray['id']),'orderid asc')->toArray();
-        if ($subResources)
-        {
-            foreach($subResources as $subResource)
+        $subResources = $model->fetchAll(array('parentid=?' => $resourceArray['id']), 'orderid asc')->toArray();
+        if ($subResources) {
+            foreach ($subResources as $subResource)
             {
                 $resourceArray['subresources'][] = $this->_exportResource($subResource['id']);
             }
@@ -127,8 +124,8 @@ class Admin_Acl_ResourcesController extends Z_Admin_Controller_Datacontrol_Abstr
 
         $form = new Z_Admin_Form();
         $form->setAction($this->view->url());
-        $form->addElement(new Z_Admin_Form_Element_Select('to_resoutce',array(
-            'label' =>  'Родитель',
+        $form->addElement(new Z_Admin_Form_Element_Select('to_resoutce', array(
+            'label' => 'Родитель',
             'multiOptions' => $parents
         )));
         $form->addElement(new Z_Admin_Form_Element_Textarea('data', array(
@@ -140,8 +137,7 @@ class Admin_Acl_ResourcesController extends Z_Admin_Controller_Datacontrol_Abstr
 
 
         $data = $this->_request->getPost();
-        if (!empty($data) && $form->isValid($data))
-        {
+        if (!empty($data) && $form->isValid($data)) {
             $model->getAdapter()->beginTransaction();
 
             try {
@@ -155,7 +151,7 @@ class Admin_Acl_ResourcesController extends Z_Admin_Controller_Datacontrol_Abstr
 
             try
             {
-                $this->_importResource($dataArray,$data['to_resoutce']);
+                $this->_importResource($dataArray, $data['to_resoutce']);
                 $model->getAdapter()->commit();
             }
             catch (Exception $e)
@@ -172,10 +168,10 @@ class Admin_Acl_ResourcesController extends Z_Admin_Controller_Datacontrol_Abstr
 
     }
 
-    protected function _importResource($data,$to_id)
+    protected function _importResource($data, $to_id)
     {
         $model = $this->z_model;
-        $newOrderId = $model->select(false)->from($model,array('MAX(orderid)'))->query()->fetchColumn()+1;
+        $newOrderId = $model->select(false)->from($model, array('MAX(orderid)'))->query()->fetchColumn() + 1;
 
 
         $modelFormsParams = new Z_Model_Resourceformsparams();
@@ -192,22 +188,20 @@ class Admin_Acl_ResourcesController extends Z_Admin_Controller_Datacontrol_Abstr
         $path = APPLICATION_PATH . $ds . 'modules' . $ds . $this->getRequest()->getModuleName() . $ds . 'controllers'
                 . (($pathAdd = implode($ds, $nameExploded)) ? $ds . $pathAdd : '') . 'Controller.php';
 
-        if (!file_exists($path) && isset($data['file_content']) && $data['file_content'])
-        {
-            Z_Fs::create_file($path,$data['file_content']);
+        if (!file_exists($path) && isset($data['file_content']) && $data['file_content']) {
+            Z_Fs::create_file($path, $data['file_content']);
         }
 
-        foreach($data['depends'] as $dependModelName=>$dependDataArray)
+        foreach ($data['depends'] as $dependModelName => $dependDataArray)
         {
             $dependModel = new $dependModelName();
-            foreach($dependDataArray as $dependDataRowArray)
+            foreach ($dependDataArray as $dependDataRowArray)
             {
                 unset($dependDataRowArray['id']);
                 $dependDataRowArray['resourceid'] = $resourceRowId;
                 $dependDataRow = $dependModel->createRow($dependDataRowArray);
                 $dependDataRowId = $dependDataRow->save();
-                if ($dependModelName == 'Z_Model_Resourceforms')
-                {
+                if ($dependModelName == 'Z_Model_Resourceforms') {
                     foreach ($dependDataRowArray['params'] as $param)
                     {
                         unset($param['id']);
@@ -219,11 +213,10 @@ class Admin_Acl_ResourcesController extends Z_Admin_Controller_Datacontrol_Abstr
             }
         }
 
-        if (isset($data['subresources']) && $data['subresources'])
-        {
-            foreach($data['subresources'] as $subresourceArray)
+        if (isset($data['subresources']) && $data['subresources']) {
+            foreach ($data['subresources'] as $subresourceArray)
             {
-                $this->_importResource($subresourceArray,$resourceRowId);
+                $this->_importResource($subresourceArray, $resourceRowId);
             }
         }
 

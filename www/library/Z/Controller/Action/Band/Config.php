@@ -29,25 +29,24 @@
 
 class Z_Controller_Action_Band_Config extends Z_Controller_Action_Band
 {
-    protected $_template_list='';
-    protected $_template_card='';
+    protected $_template_list = '';
+    protected $_template_card = '';
 
     public function init()
     {
-        $this->_model       =   $this->getRequest()->getParam('_model',false);
-        $this->_perpage     =   $this->getRequest()->getParam('_perpage',-1);
-        $this->_perpage_param   =   $this->getRequest()->getParam('_perpage_param','page');
-        $this->_id_param    =   $this->getRequest()->getParam('_id_param','id');
-        $this->_orderby     =   $this->getRequest()->getParam('_orderby',false);
-        $this->_conditions  =   $this->getRequest()->getParam('_conditions',array());
-        $this->_template_list  =   $this->getRequest()->getParam('_template_list','list');
-        $this->_template_card  =   $this->getRequest()->getParam('_template_card','card');
+        $this->_model = $this->getRequest()->getParam('_model', false);
+        $this->_perpage = $this->getRequest()->getParam('_perpage', -1);
+        $this->_perpage_param = $this->getRequest()->getParam('_perpage_param', 'page');
+        $this->_id_param = $this->getRequest()->getParam('_id_param', 'id');
+        $this->_orderby = $this->getRequest()->getParam('_orderby', false);
+        $this->_conditions = $this->getRequest()->getParam('_conditions', array());
+        $this->_template_list = $this->getRequest()->getParam('_template_list', 'list');
+        $this->_template_card = $this->getRequest()->getParam('_template_card', 'card');
 
-        if($this->getRequest()->getParam('action')=='index')
-        {
+        if ($this->getRequest()->getParam('action') == 'index') {
             $this->_helper->viewRenderer->setRender($this->_template_list);
         }
-        elseif($this->getRequest()->getParam('action')=='card')
+        elseif ($this->getRequest()->getParam('action') == 'card')
         {
             $this->_helper->viewRenderer->setRender($this->_template_card);
         }

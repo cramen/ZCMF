@@ -1,16 +1,16 @@
 <?php
-    $this->placeholder('top')->set('<h1>'.$this->band->title.'</h1>');
-	Z_Seo::addTitle($this->band->title);
+$this->placeholder('top')->set('<h1>' . $this->band->title . '</h1>');
+Z_Seo::addTitle($this->band->title);
 ?>
 
-            <div>
+<div>
 
-<?php foreach ($this->items as $item):?>
+    <?php foreach ($this->items as $item): ?>
 
-                <?php print_r($this->item->toArray()) ?>
+    <?php print_r($this->item->toArray()) ?>
 
-<?php endforeach;?>
+    <?php endforeach;?>
 
-            </div>
+</div>
 
-<?php echo $this->paginationControl($this->items,'Sliding','paginator.phtml')?>
+<?php echo $this->paginationControl($this->items, 'Sliding', 'paginator.phtml') ?>

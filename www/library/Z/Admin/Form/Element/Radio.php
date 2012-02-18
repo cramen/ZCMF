@@ -51,7 +51,7 @@ require_once 'Zend/Form/Element/Multi.php';
 
 /**
  * Radio form element
- * 
+ *
  * @category   Zend
  * @package    Zend_Form
  * @subpackage Element
@@ -66,27 +66,25 @@ class Z_Admin_Form_Element_Radio extends Zend_Form_Element_Radio
      * @var string
      */
     public $helper = 'formRadio';
-    
-	public function loadDefaultDecorators()
-	{
-		if ($this->loadDefaultDecoratorsIsDisabled ())
-		{
-			return;
-		}
-		
-		$this->class = $this->class." z-form-checkbox";
-		
-		$decorators = $this->getDecorators ();
-		if (empty ( $decorators ))
-		{
-	    	$this->setDecorators(array(
-	    		array('Errors',array('class'=>Z_Admin_Form::$_errorDecoratorClass)),
-	    		array(array('cleardiv' => 'HtmlTag'), array('tag' => 'div','class'=>'clear','placement'=>'append')),
-	    		array('Description', array ('tag' => 'p','class' => 'z-form-description','escape'=>false)),
-	    		'ViewHelper',
-	    		array('HtmlTag', array('tag' => 'div','class'=>'z-form-inputItem')),
-	    		array('Label'),
-	    	));
-		}
-	}    
+
+    public function loadDefaultDecorators()
+    {
+        if ($this->loadDefaultDecoratorsIsDisabled()) {
+            return;
+        }
+
+        $this->class = $this->class . " z-form-checkbox";
+
+        $decorators = $this->getDecorators();
+        if (empty ($decorators)) {
+            $this->setDecorators(array(
+                array('Errors', array('class' => Z_Admin_Form::$_errorDecoratorClass)),
+                array(array('cleardiv' => 'HtmlTag'), array('tag' => 'div', 'class' => 'clear', 'placement' => 'append')),
+                array('Description', array('tag' => 'p', 'class' => 'z-form-description', 'escape' => false)),
+                'ViewHelper',
+                array('HtmlTag', array('tag' => 'div', 'class' => 'z-form-inputItem')),
+                array('Label'),
+            ));
+        }
+    }
 }

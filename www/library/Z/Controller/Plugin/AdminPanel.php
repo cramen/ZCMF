@@ -36,11 +36,11 @@ class Z_Controller_Plugin_AdminPanel extends Zend_Controller_Plugin_Abstract
     protected $_plugins = array();
 
     protected $_options = array(
-        'plugins'           => array('Main','Seo','Html'),
-        'z-index'           => 255
+        'plugins' => array('Main', 'Seo', 'Html'),
+        'z-index' => 255
     );
-    
-    public static $standardPlugins = array('Main','Seo','Html');
+
+    public static $standardPlugins = array('Main', 'Seo', 'Html');
 
     /**
      * Creates a new instance of the Debug Bar
@@ -65,19 +65,19 @@ class Z_Controller_Plugin_AdminPanel extends Zend_Controller_Plugin_Abstract
 
             $this->setOptions($options);
         }
-        
+
         /**
          * Creating ZF Version Tab always shown
          */
-//        $main = new Z_Controller_Plugin_AdminPanel_Plugin_Main();
-//        $this->registerPlugin($main);
+        //        $main = new Z_Controller_Plugin_AdminPanel_Plugin_Main();
+        //        $this->registerPlugin($main);
 
         /**
          * Loading aready defined plugins
          */
         $this->_loadPlugins();
     }
-    
+
     /**
      * Sets options of the Debug Bar
      *
@@ -91,7 +91,7 @@ class Z_Controller_Plugin_AdminPanel extends Zend_Controller_Plugin_Abstract
         }
 
         if (isset($options['plugins'])) {
-        	$this->_options['plugins'] = $options['plugins'];
+            $this->_options['plugins'] = $options['plugins'];
         }
         return $this;
     }
@@ -130,7 +130,7 @@ class Z_Controller_Plugin_AdminPanel extends Zend_Controller_Plugin_Abstract
         }
         return $this;
     }
-    
+
     /**
      * Get a registered plugin in the Debug Bar
      *
@@ -145,7 +145,7 @@ class Z_Controller_Plugin_AdminPanel extends Zend_Controller_Plugin_Abstract
         }
         return false;
     }
-    
+
     /**
      * Defined by Zend_Controller_Plugin_Abstract
      */
@@ -154,9 +154,9 @@ class Z_Controller_Plugin_AdminPanel extends Zend_Controller_Plugin_Abstract
         $html = '';
 
         if ($this->getRequest()->isXmlHttpRequest() || isset($_POST['z-ajax-form'])) return;
-        if (Zend_Controller_Front::getInstance()->getRequest()->getModuleName()=='admin') return;
-        if (!Z_Acl::getInstance()->isAllowed(Z_Auth::getInstance()->getUser()->getRole(),'z_adminpanel')) return;
-        
+        if (Zend_Controller_Front::getInstance()->getRequest()->getModuleName() == 'admin') return;
+        if (!Z_Acl::getInstance()->isAllowed(Z_Auth::getInstance()->getUser()->getRole(), 'z_adminpanel')) return;
+
 
         /**
          * Creating menu tab for all registered plugins
@@ -170,7 +170,7 @@ class Z_Controller_Plugin_AdminPanel extends Zend_Controller_Plugin_Abstract
 
             /* @var $plugin ZAdminPanel_Controller_Plugin_Debug_Plugin_Interface */
             $html .= '<div id="ZAdminPanel_' . $plugin->getIdentifier()
-                  . '" class="ZAdminPanel_panel">' . $panel . '</div>';
+                    . '" class="ZAdminPanel_panel">' . $panel . '</div>';
         }
 
         $html .= '<div id="ZAdminPanel_info">';
@@ -206,18 +206,18 @@ class Z_Controller_Plugin_AdminPanel extends Zend_Controller_Plugin_Abstract
      */
     protected function _loadPlugins()
     {
-    	foreach($this->_options['plugins'] as $plugin => $options) {
-    	    if (is_numeric($plugin)) {
-    	        # Plugin passed as array value instead of key
-    	        $plugin = $options;
-    	        $options = array();
-    	    }
-    	    $plugin = (string)$plugin;
-    	    if (in_array($plugin, Z_Controller_Plugin_AdminPanel::$standardPlugins)) {
-    	        // standard plugin
+        foreach ($this->_options['plugins'] as $plugin => $options) {
+            if (is_numeric($plugin)) {
+                # Plugin passed as array value instead of key
+                $plugin = $options;
+                $options = array();
+            }
+            $plugin = (string)$plugin;
+            if (in_array($plugin, Z_Controller_Plugin_AdminPanel::$standardPlugins)) {
+                // standard plugin
                 $pluginClass = 'Z_Controller_Plugin_AdminPanel_Plugin_' . $plugin;
-    	    } else {
-    	        // we use a custom plugin
+            } else {
+                // we use a custom plugin
                 if (!preg_match('~^[\w]+$~D', $plugin)) {
                     throw new Zend_Exception("ZAdminPanel: Invalid plugin name [$plugin]");
                 }
@@ -226,8 +226,8 @@ class Z_Controller_Plugin_AdminPanel extends Zend_Controller_Plugin_Abstract
 
             require_once str_replace('_', DIRECTORY_SEPARATOR, $pluginClass) . '.php';
             $object = new $pluginClass($options);
-    		$this->registerPlugin($object);
-    	}
+            $this->registerPlugin($object);
+        }
     }
 
     /**
@@ -258,7 +258,8 @@ class Z_Controller_Plugin_AdminPanel extends Zend_Controller_Plugin_Abstract
      *
      * @return string
      */
-    protected function _headerOutput() {
+    protected function _headerOutput()
+    {
         $collapsed = isset($_COOKIE['ZAdminPanelCollapsed']) ? $_COOKIE['ZAdminPanelCollapsed'] : 0;
 
         return ('
@@ -285,7 +286,7 @@ class Z_Controller_Plugin_AdminPanel extends Zend_Controller_Plugin_Abstract
                 };
                 
                 function ZAdminPanelCollapsed() {
-                    if ('.$collapsed.' == 1) {
+                    if (' . $collapsed . ' == 1) {
                         ZAdminPanelPanel();
                         jQuery("#ZAdminPanel_toggler").html("&#187;");
                         return jQuery("#ZAdminPanel_debug").css("left", "-"+parseInt(jQuery("#ZAdminPanel_debug").outerWidth()-jQuery("#ZAdminPanel_toggler").outerWidth()+1)+"px");
@@ -341,6 +342,6 @@ class Z_Controller_Plugin_AdminPanel extends Zend_Controller_Plugin_Abstract
     {
         $response = $this->getResponse();
         $response->setBody(preg_replace('/(<head.*>)/i', '$1' . $this->_headerOutput(), $response->getBody()));
-        $response->setBody(str_ireplace('</body>', '<div id="ZAdminPanel_debug">'.$html.'</div></body>', $response->getBody()));
+        $response->setBody(str_ireplace('</body>', '<div id="ZAdminPanel_debug">' . $html . '</div></body>', $response->getBody()));
     }
 }

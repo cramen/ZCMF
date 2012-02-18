@@ -42,12 +42,11 @@ class Z_Controller_Plugin_Cache extends Zend_Controller_Plugin_Abstract
         if (!$this->canCache()) return;
 
         $cache = Z_Cache::getInstance();
-        $url = str_replace('=','_',base64_encode($_SERVER['REQUEST_URI']));
+        $url = str_replace('=', '_', base64_encode($_SERVER['REQUEST_URI']));
 
         $this->canCacheThisPage();
 
-        if ($this->canCache() && $this->canCacheThisPage() && $body = $cache->load($url))
-        {
+        if ($this->canCache() && $this->canCacheThisPage() && $body = $cache->load($url)) {
             $this->_request->setControllerName('dummy');
             $this->_request->setActionName('cache');
             $this->getResponse()->setBody($body);
@@ -61,19 +60,18 @@ class Z_Controller_Plugin_Cache extends Zend_Controller_Plugin_Abstract
 
         $response = $this->getResponse();
 
-        if ($this->canCache() && $this->canCacheThisPage() && $response->getHttpResponseCode() == 200 )
-        {
+        if ($this->canCache() && $this->canCacheThisPage() && $response->getHttpResponseCode() == 200) {
             $cache = Z_Cache::getInstance();
-            $url = str_replace('=','_',base64_encode($_SERVER['REQUEST_URI']));
+            $url = str_replace('=', '_', base64_encode($_SERVER['REQUEST_URI']));
             $data = $response->getBody();
-            $cache->save($data,$url);
+            $cache->save($data, $url);
         }
     }
 
     protected function canCache()
     {
         $request = $this->getRequest();
-        return $request->isGet() && $request->getModuleName()!='admin';
+        return $request->isGet() && $request->getModuleName() != 'admin';
     }
 
 
@@ -82,8 +80,7 @@ class Z_Controller_Plugin_Cache extends Zend_Controller_Plugin_Abstract
         $request = $this->getRequest();
         $cache = Z_Cache::getInstance();
 
-        if (!$cacheArray = $cache->load('nocache_pages_array'))
-        {
+        if (!$cacheArray = $cache->load('nocache_pages_array')) {
             $model = new Z_Model_Nocachepages();
             $dbarray = $model->fetchAll()->toArray();
             $cacheArray = array();
@@ -98,10 +95,9 @@ class Z_Controller_Plugin_Cache extends Zend_Controller_Plugin_Abstract
         foreach ($cacheArray as $condArray)
         {
             $condRelease = true;
-            foreach ($condArray as $key=>$val)
+            foreach ($condArray as $key => $val)
             {
-                if (!(isset($params[$key]) && $params[$key] == $val))
-                {
+                if (!(isset($params[$key]) && $params[$key] == $val)) {
                     $condRelease = false;
                 }
             }

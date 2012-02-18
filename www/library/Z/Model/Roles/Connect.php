@@ -39,16 +39,15 @@ class Z_Model_Roles_Connect extends Z_Db_Table
      */
     public function getParents($roleKeyId)
     {
-        $roleKeyId = (int) $roleKeyId;
+        $roleKeyId = (int)$roleKeyId;
 
         $parentsFields = $this->select($this->_name)
-            ->setIntegrityCheck(false)
-            ->join('z_roles', 'z_roles.id = ' . $this->_name . '.parent_role_id', array('id', 'roleId'))
-            ->where('child_role_id = ?', $roleKeyId)
-            ->order('orderid')
-            ->query()
-            ->fetchAll()
-        ;
+                ->setIntegrityCheck(false)
+                ->join('z_roles', 'z_roles.id = ' . $this->_name . '.parent_role_id', array('id', 'roleId'))
+                ->where('child_role_id = ?', $roleKeyId)
+                ->order('orderid')
+                ->query()
+                ->fetchAll();
 
         return $parentsFields;
     }

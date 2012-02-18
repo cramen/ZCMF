@@ -1,6 +1,6 @@
 <?php $this->placeholder('top')->captureStart() ?>
-    <h1>Поиск</h1>
-        Вы искали: "<?php echo $this->escape($this->searchString) ?>"
+<h1>Поиск</h1>
+Вы искали: "<?php echo $this->escape($this->searchString) ?>"
 <?php $this->placeholder('top')->captureEnd() ?>
 
 
@@ -13,10 +13,10 @@
         <?php
         switch ($item->_type) {
             case "z_statpages":
-                echo $this->partial('search/items/statpage.phtml',array('item'=>$item));
+                echo $this->partial('search/items/statpage.phtml', array('item' => $item));
                 break;
             case "news":
-                echo $this->partial('search/items/news.phtml',array('item'=>$item));
+                echo $this->partial('search/items/news.phtml', array('item' => $item));
                 break;
             default:
         }

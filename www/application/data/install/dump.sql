@@ -719,7 +719,7 @@ CREATE TABLE `z_privileges_connect` (
   PRIMARY KEY (`id`),
   KEY `fk_privilege_id` (`privilege_id`),
   KEY `fk_rule_id` (`rule_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=166 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=168 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -805,7 +805,7 @@ INSERT INTO `z_resources` VALUES (23,'adminstrucsure','',0,53,'Конструк�
 INSERT INTO `z_resources` VALUES (24,'partyes','',0,49,'Участники','','band','','','','','',0,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (31,'filemanager','',0,69,'Файловый менеджер','','band','','','','','',0,1,1,1,1,0,0,'bottom',0,1);
 INSERT INTO `z_resources` VALUES (32,'z_seo','list',0,31,'SEO','Z_Model_Titles','band','','title','','','',15,1,1,1,1,0,1,'bottom',1,1);
-INSERT INTO `z_resources` VALUES (49,'z_cleancache','',53,89,'Очистить кэш','','','','','','','',0,1,1,1,1,0,0,'',1,1);
+INSERT INTO `z_resources` VALUES (49,'z_cleancache','list',53,89,'Очистить кэш','','band','','','','','',0,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (50,'','',0,73,'Все','','','','','','','',0,1,1,1,1,0,0,'',0,1);
 INSERT INTO `z_resources` VALUES (53,'site','',0,26,'Сайт','','band','','','','','',0,1,1,1,1,0,0,'bottom',1,1);
 INSERT INTO `z_resources` VALUES (57,'z_mails','list',53,88,'Шаблоны писем','Z_Model_Mails','band','','title','','title asc','',15,1,1,1,1,0,0,'',1,1);
@@ -1365,7 +1365,7 @@ CREATE TABLE `z_rules` (
   PRIMARY KEY (`id`),
   KEY `fk_roleId` (`role_id`),
   KEY `fk_resourceId` (`resource_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1560,4 +1560,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-02-13 23:37:21
+-- Dump completed on 2012-02-19  1:53:54

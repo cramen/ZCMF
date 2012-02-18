@@ -29,14 +29,15 @@
 
 /**
  * News
- *  
+ *
  * @author cramen
- * @version 
+ * @version
  */
 
 require_once 'Z/Db/Table.php';
 
-class Z_Model_Nocachepages extends Z_Db_Table {
+class Z_Model_Nocachepages extends Z_Db_Table
+{
 
     protected $_name = 'z_nocache_pages';
 

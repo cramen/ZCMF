@@ -51,7 +51,7 @@ require_once 'Zend/Form/Element/Xhtml.php';
 
 /**
  * Hidden form element
- * 
+ *
  * @category   Zend
  * @package    Zend_Form
  * @subpackage Element

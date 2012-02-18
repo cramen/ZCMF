@@ -45,12 +45,12 @@ class Z_Model_Resources extends Z_Db_Table
     );
 
     protected $_referenceMap = array(
-        'Resource'  =>  array(
-            'columns'           => 'parentid',
-            'refTableClass'     => 'Z_Model_Resources',
-            'refColumns'        => 'id',
-            'onDelete'          =>  self::CASCADE,
-            'onUpdate'          =>  self::CASCADE,
+        'Resource' => array(
+            'columns' => 'parentid',
+            'refTableClass' => 'Z_Model_Resources',
+            'refColumns' => 'id',
+            'onDelete' => self::CASCADE,
+            'onUpdate' => self::CASCADE,
         ),
     );
 
@@ -77,23 +77,22 @@ class Z_Model_Resources extends Z_Db_Table
 //            return null;
 //        }
 //    }
-    
-    public function fetchPairsCat($parentid=0,$level=0)
+
+    public function fetchPairsCat($parentid = 0, $level = 0)
     {
-    	$where = array();
-    	$where['parentid=?'] = $parentid;
-    	$items = $this->fetchPairs(array('id','title'),$where,'orderid');
-    	$retitems = array();
-    	$pref = str_repeat('--',$level);
-//    	$level++;
-    	foreach ($items as $key=>$value)
-    	{
-    		$retitems[$key] = $pref.$value;
-    		if ($additems = $this->fetchPairsCat($key,$level+1))
-    		{
-    			$retitems+=$additems;
-    		}
-    	}
-    	return $retitems;
+        $where = array();
+        $where['parentid=?'] = $parentid;
+        $items = $this->fetchPairs(array('id', 'title'), $where, 'orderid');
+        $retitems = array();
+        $pref = str_repeat('--', $level);
+        //    	$level++;
+        foreach ($items as $key => $value)
+        {
+            $retitems[$key] = $pref . $value;
+            if ($additems = $this->fetchPairsCat($key, $level + 1)) {
+                $retitems += $additems;
+            }
+        }
+        return $retitems;
     }
 }

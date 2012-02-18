@@ -29,9 +29,9 @@
 
 class Z_Controller_Plugin_AdminPanel_Plugin_Main implements Z_Controller_Plugin_AdminPanel_Plugin_Interface
 {
-	protected $_version = '0.1';
+    protected $_version = '0.1';
 
-	/**
+    /**
      * Create Z_Controller_Plugin_AdminPanel_Plugin_Main
      *
      * @param string $tab
@@ -69,8 +69,8 @@ class Z_Controller_Plugin_AdminPanel_Plugin_Main implements Z_Controller_Plugin_
      */
     public function getPanel()
     {
-        return '<h4>ZAdminPanel v'.$this->_version.'</h4>'.
-        	'Панель администрирования сайтом';
+        return '<h4>ZAdminPanel v' . $this->_version . '</h4>' .
+                'Панель администрирования сайтом';
     }
 
 }

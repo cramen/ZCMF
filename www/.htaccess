@@ -32,14 +32,14 @@ ExpiresByType application/x-shockwave-flash A604800
 
 <ifModule mod_headers.c>
     <filesMatch ".(ico|pdf|flv|jpg|jpeg|png|gif|swf|bmp)$">
-	Header set Cache-Control "max-age=604800, public"
+        Header set Cache-Control "max-age=604800, public"
     </filesMatch>
     <filesMatch ".(css|js)$">
-	Header set Cache-Control "max-age=604800, public"
+    Header set Cache-Control "max-age=604800, public"
     </filesMatch>
     <filesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
-	Header unset ETag
-	FileETag None
+    Header unset ETag
+        FileETag None
     </filesMatch>
     Header unset Last-Modified
 </ifModule>

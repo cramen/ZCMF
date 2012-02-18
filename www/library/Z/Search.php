@@ -27,57 +27,56 @@
  *
  */
 
-class Z_Search{
+class Z_Search
+{
 
-	protected static $_instance = NULL;
-    public static $spaceChars = array('~','!','@','#','$','%','^','&','*','(',')','_','+','-','"','\'','№',';',':','?','*','(',')','\\','|','/','[',']','{','}',',','.','<','>');
+    protected static $_instance = NULL;
+    public static $spaceChars = array('~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '-', '"', '\'', '№', ';', ':', '?', '*', '(', ')', '\\', '|', '/', '[', ']', '{', '}', ',', '.', '<', '>');
     protected static $stopWords = array('and', 'or');
-	
-	protected function __construct()
-	{		
-	}
-	
-	/**
-	 * 
-	 * @return Zend_Search_Lucene_Interface
-	 */
-	public static function getInstance()
-	{
-		if (self::$_instance === NULL)
-		{
-			$indexDir = APPLICATION_PATH.DIRECTORY_SEPARATOR.'data'.DIRECTORY_SEPARATOR.'lucene';
-//            $stopWordsFilter = new Zend_Search_Lucene_Analysis_TokenFilter_StopWords(self::$stopWords);
-            $analyzer = new Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8_CaseInsensitive();
-//            $analyzer->addFilter($stopWordsFilter);
-			Zend_Search_Lucene_Analysis_Analyzer::setDefault($analyzer);
-			Zend_Search_Lucene_Search_QueryParser::setDefaultEncoding('utf-8');
-			try
-			{
-				$index = Zend_Search_Lucene::open($indexDir);
-			}
-			catch( Exception $e)
-			{
-				$index = Zend_Search_Lucene::create($indexDir);
-			}
-			self::$_instance = $index;
-		}
-		return self::$_instance;
-	}
 
+    protected function __construct()
+    {
+    }
+
+    /**
+     *
+     * @return Zend_Search_Lucene_Interface
+     */
+    public static function getInstance()
+    {
+        if (self::$_instance === NULL) {
+            $indexDir = APPLICATION_PATH . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'lucene';
+            //            $stopWordsFilter = new Zend_Search_Lucene_Analysis_TokenFilter_StopWords(self::$stopWords);
+            $analyzer = new Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8_CaseInsensitive();
+            //            $analyzer->addFilter($stopWordsFilter);
+            Zend_Search_Lucene_Analysis_Analyzer::setDefault($analyzer);
+            Zend_Search_Lucene_Search_QueryParser::setDefaultEncoding('utf-8');
+            try
+            {
+                $index = Zend_Search_Lucene::open($indexDir);
+            }
+            catch (Exception $e)
+            {
+                $index = Zend_Search_Lucene::create($indexDir);
+            }
+            self::$_instance = $index;
+        }
+        return self::$_instance;
+    }
 
 
     public static function buildQueryString($searchString)
     {
         $searchString = strip_tags($searchString);
-        $searchString = trim($searchString,implode('',self::$spaceChars));
-        $searchString = str_replace(self::$spaceChars,' ',$searchString);
-        $searchString = str_ireplace(self::$stopWords,'',$searchString);
+        $searchString = trim($searchString, implode('', self::$spaceChars));
+        $searchString = str_replace(self::$spaceChars, ' ', $searchString);
+        $searchString = str_ireplace(self::$stopWords, '', $searchString);
 
         $searchStringBeforeCutWords = $searchString;
-        $searchString = preg_replace('~(\s|^)[^\s]{1,3}\s~iu',' ',$searchString);
-        $searchString = preg_replace('~(\s|^)[^\s]{1,3}$~iu',' ',$searchString);
+        $searchString = preg_replace('~(\s|^)[^\s]{1,3}\s~iu', ' ', $searchString);
+        $searchString = preg_replace('~(\s|^)[^\s]{1,3}$~iu', ' ', $searchString);
         $searchString = trim($searchString);
-        $searchString = preg_replace('~\s+~iu','~ ',$searchString);
+        $searchString = preg_replace('~\s+~iu', '~ ', $searchString);
         if (!$searchString) $searchString = trim($searchStringBeforeCutWords);
         $searchString .= '~';
         return $searchString;
@@ -102,5 +101,5 @@ class Z_Search{
     {
         return self::getInstance()->find(self::buildQuery($searchString));
     }
-	
+
 }

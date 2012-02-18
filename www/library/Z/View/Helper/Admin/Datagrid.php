@@ -29,10 +29,10 @@
 
 class Z_View_Helper_Admin_Datagrid extends Zend_View_Helper_Abstract
 {
-	public function admin_datagrid($data,$columns,$options=array())
-	{
-		jQuery::evalScript(
-			'$("#z-grid tbody").selectable({
+    public function admin_datagrid($data, $columns, $options = array())
+    {
+        jQuery::evalScript(
+            '$("#z-grid tbody").selectable({
 				filter: "tr",
 				cancel: "a",
 				selected: function(event, ui)
@@ -52,10 +52,10 @@ class Z_View_Helper_Admin_Datagrid extends Zend_View_Helper_Abstract
 					$("#"+ui.unselecting.id).removeClass("ui-state-highlight");
 				}			
 			});'
-		);
-	
-		jQuery::evalScript(
-		'$("#z-grid").tableDnD({
+        );
+
+        jQuery::evalScript(
+            '$("#z-grid").tableDnD({
 			onDragClass: "ui-state-highlight",
 			dragHandle: "drad-handle",
 			scrollAmount: "20",
@@ -72,9 +72,9 @@ class Z_View_Helper_Admin_Datagrid extends Zend_View_Helper_Abstract
 				});
 			}
 		});'
-		);		
+        );
 
-		jQuery::evalScript('
+        jQuery::evalScript('
 			$("input.z-grid-filter-input").keyup(function(event) {
 				if (event.keyCode == "13"){
 					var url = $(this).attr("rel");
@@ -91,12 +91,12 @@ class Z_View_Helper_Admin_Datagrid extends Zend_View_Helper_Abstract
 				param[name] = $(this).attr("value");
 				z_ajax_go(url,param);
 			});
-		');		
-		
-		$this->view->z_grid_data = $data;
-		$this->view->z_grid_columns = $columns;
-		return $this->view->render('admin/datagrid.phtml');
-	}
+		');
+
+        $this->view->z_grid_data = $data;
+        $this->view->z_grid_columns = $columns;
+        return $this->view->render('admin/datagrid.phtml');
+    }
 }
 
 ?>

@@ -38,13 +38,13 @@ class Z_Model_Resourceforms extends Z_Db_Table
     );
 
     protected $_referenceMap = array(
-        'Resource'  =>  array(
-            'columns'           => 'resourceid',
-            'refTableClass'     => 'Z_Model_Resources',
-            'refColumns'        => 'id',
-            'onDelete'          =>  self::CASCADE,
-            'onUpdate'          =>  self::CASCADE,
+        'Resource' => array(
+            'columns' => 'resourceid',
+            'refTableClass' => 'Z_Model_Resources',
+            'refColumns' => 'id',
+            'onDelete' => self::CASCADE,
+            'onUpdate' => self::CASCADE,
         ),
     );
-    
+
 }

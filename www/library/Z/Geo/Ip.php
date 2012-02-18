@@ -32,136 +32,131 @@
  * @author cramen
  *
  */
-class Z_Geo_Ip {
-	
-	protected $namespace = NULL;
-	
-	protected $ip = NULL;
-	
-	protected $block = NULL;
-	protected $city = NULL;
-	protected $area = NULL;
-	
-	public function __construct($ip=NULL,$clearCache=false)
-	{
-		if (NULL===$ip) $ip = $_SERVER['REMOTE_ADDR'];
-		if (!is_numeric($ip))
-		{
-			$ip = explode('.',$ip);
-			$ip = ($ip[0]*256*256*256)+($ip[1]*256*256)+($ip[2]*256)+($ip[3]);
-		}
-		$this->ip = $ip;
-		if ($clearCache)
-		{
-			$this->clearCache();
-		}
-	}
+class Z_Geo_Ip
+{
 
-	/**
-	 * @return Zend_Session_Namespace
-	 */
-	protected function _getNameSpace()
-	{
-		if (NULL===$this->namespace)
-		{
-			$this->namespace = new Zend_Session_Namespace('geoiplocation',true);
-		}
-		return $this->namespace;
-	}
+    protected $namespace = NULL;
 
-	/**
-	 * @return Zend_Db_Table_Row
-	 */
-	protected function _getBlock() {
-		if (NULL===$this->block)
-		{
-			$modelBlock = new Z_Model_Geo_Blocks();
-			$this->block = $modelBlock->fetchRow(array(
-				'start<=?'		=>	$this->ip,
-				'stop>=?'		=>	$this->ip,
-			));
-			if (!$this->block)
-				$this->block = $modelBlock->fetchRow();
-		}
-		return $this->block;
-	}
-	
-	/**
-	 * @return Zend_Db_Table_Row
-	 */
-	protected function _getCity() {
-		if (NULL===$this->city)
-		{
-			$modelCity = new Z_Model_Geo_Cityes();
-			$ns = $this->_getNameSpace();
-			if ($ns->cityId)
-			{
-				$this->city = $modelCity->find($ns->cityId)->current();
-			}
-			else
-			{
-				$this->city = $modelCity->find($this->_getBlock()->z_geo_cityes_id)->current();
-				$ns->cityId = $this->city->id;
-			}
-		}
-		return $this->city;
-	}
+    protected $ip = NULL;
 
-	/**
-	 * @return Zend_Db_Table_Row
-	 */
-	protected function _getArea() {
-		if (NULL===$this->area)
-		{
-			$modelArea = new Z_Model_Geo_Areas();
-			$this->area = $modelArea->find($this->_getCity()->z_geo_areas_id)->current();
-		}
-		return $this->area;
-	}
-	
-	
-	
-	public function getCity()
-	{
-		return $this->_getCity()->city;
-	}
+    protected $block = NULL;
+    protected $city = NULL;
+    protected $area = NULL;
 
-	public function getCityId()
-	{
-		return $this->_getCity()->id;
-	}
+    public function __construct($ip = NULL, $clearCache = false)
+    {
+        if (NULL === $ip) $ip = $_SERVER['REMOTE_ADDR'];
+        if (!is_numeric($ip)) {
+            $ip = explode('.', $ip);
+            $ip = ($ip[0] * 256 * 256 * 256) + ($ip[1] * 256 * 256) + ($ip[2] * 256) + ($ip[3]);
+        }
+        $this->ip = $ip;
+        if ($clearCache) {
+            $this->clearCache();
+        }
+    }
 
-	public function getArea()
-	{
-		return $this->_getArea()->area;
-	}
+    /**
+     * @return Zend_Session_Namespace
+     */
+    protected function _getNameSpace()
+    {
+        if (NULL === $this->namespace) {
+            $this->namespace = new Zend_Session_Namespace('geoiplocation', true);
+        }
+        return $this->namespace;
+    }
 
-	public function getAreaId()
-	{
-		return $this->_getArea()->id;
-	}
-	
-	public function setCity($id)
-	{
-		$modelCity = new Z_Model_Geo_Cityes();
-		$city = $modelCity->find($id)->current();
-		if ($city)
-		{
-			$ns = $this->_getNameSpace();
-			$this->city = $city;
-			$ns->cityId = $city->id;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
-	public function clearCache()
-	{
-		$ns = $this->_getNameSpace();
-		$ns->cityId = NULL;
-	}
+    /**
+     * @return Zend_Db_Table_Row
+     */
+    protected function _getBlock()
+    {
+        if (NULL === $this->block) {
+            $modelBlock = new Z_Model_Geo_Blocks();
+            $this->block = $modelBlock->fetchRow(array(
+                'start<=?' => $this->ip,
+                'stop>=?' => $this->ip,
+            ));
+            if (!$this->block)
+                $this->block = $modelBlock->fetchRow();
+        }
+        return $this->block;
+    }
+
+    /**
+     * @return Zend_Db_Table_Row
+     */
+    protected function _getCity()
+    {
+        if (NULL === $this->city) {
+            $modelCity = new Z_Model_Geo_Cityes();
+            $ns = $this->_getNameSpace();
+            if ($ns->cityId) {
+                $this->city = $modelCity->find($ns->cityId)->current();
+            }
+            else
+            {
+                $this->city = $modelCity->find($this->_getBlock()->z_geo_cityes_id)->current();
+                $ns->cityId = $this->city->id;
+            }
+        }
+        return $this->city;
+    }
+
+    /**
+     * @return Zend_Db_Table_Row
+     */
+    protected function _getArea()
+    {
+        if (NULL === $this->area) {
+            $modelArea = new Z_Model_Geo_Areas();
+            $this->area = $modelArea->find($this->_getCity()->z_geo_areas_id)->current();
+        }
+        return $this->area;
+    }
+
+
+    public function getCity()
+    {
+        return $this->_getCity()->city;
+    }
+
+    public function getCityId()
+    {
+        return $this->_getCity()->id;
+    }
+
+    public function getArea()
+    {
+        return $this->_getArea()->area;
+    }
+
+    public function getAreaId()
+    {
+        return $this->_getArea()->id;
+    }
+
+    public function setCity($id)
+    {
+        $modelCity = new Z_Model_Geo_Cityes();
+        $city = $modelCity->find($id)->current();
+        if ($city) {
+            $ns = $this->_getNameSpace();
+            $this->city = $city;
+            $ns->cityId = $city->id;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function clearCache()
+    {
+        $ns = $this->_getNameSpace();
+        $ns->cityId = NULL;
+    }
 
 //	public static function import()
 //	{
@@ -307,18 +302,17 @@ class Z_Geo_Ip {
 //
 //	}
 
-	public static function status()
-	{
-	  $geoPath = APPLICATION_PATH.DIRECTORY_SEPARATOR.'data'.DIRECTORY_SEPARATOR.'geoip';
-	  $infoFileName = $geoPath.DIRECTORY_SEPARATOR.'info.txt';
-	  if (file_exists($infoFileName))
-	  {
-	    return file_get_contents($infoFileName);
-	  }
-	  else
-	  {
-	    return false;
-	  }
-	}
-	
+    public static function status()
+    {
+        $geoPath = APPLICATION_PATH . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'geoip';
+        $infoFileName = $geoPath . DIRECTORY_SEPARATOR . 'info.txt';
+        if (file_exists($infoFileName)) {
+            return file_get_contents($infoFileName);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 }

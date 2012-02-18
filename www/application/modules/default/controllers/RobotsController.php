@@ -20,10 +20,9 @@ class RobotsController extends Zend_Controller_Action
 
         $sitemap = new Z_Sitemap_Xml();
 
-        foreach($modelNames as $modelName)
+        foreach ($modelNames as $modelName)
         {
-            if (method_exists($modelName,'ZSitemapXml'))
-            {
+            if (method_exists($modelName, 'ZSitemapXml')) {
                 $object = new $modelName();
                 $sitemap->addUrls($object->ZSitemapXml());
             }

@@ -35,19 +35,19 @@ class Z_Admin_Form_Element_Submit extends Zend_Form_Element_Submit
         if ($this->loadDefaultDecoratorsIsDisabled()) {
             return;
         }
-		
-        $this->class = $this->class." ui-button ui-state-default ui-corner-all z-button";
-        
+
+        $this->class = $this->class . " ui-button ui-state-default ui-corner-all z-button";
+
         $decorators = $this->getDecorators();
         if (empty($decorators)) {
-	    	$this->setDecorators(array(
+            $this->setDecorators(array(
 //	    		'Tooltip',
-	    		'ViewHelper',
+                'ViewHelper',
 //	    		'DtDdWrapper',
-	    	));
-//            $this->addDecorator('Tooltip')
-//                 ->addDecorator('ViewHelper')
-//                 ->addDecorator('DtDdWrapper');
+            ));
+            //            $this->addDecorator('Tooltip')
+            //                 ->addDecorator('ViewHelper')
+            //                 ->addDecorator('DtDdWrapper');
         }
     }
 }

@@ -1,5 +1,4 @@
 <?php
-// скрипт предоставлен разработчиками компании ASTRALiENS
 $headers=array("Content-Type: application/json");
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, "http://speller.yandex.net/services/tinyspell");
