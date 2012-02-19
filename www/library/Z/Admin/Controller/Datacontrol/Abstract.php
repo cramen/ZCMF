@@ -134,6 +134,12 @@ abstract class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controlle
     protected $z_additional_buttons = array();
 
     /**
+     * пара полей для генерации sid
+     * @var string
+     */
+    protected $z_gen_sid_fields = NULL;
+
+    /**
      * Список полей для индексации при поиске
      * @var string
      */
@@ -191,6 +197,14 @@ abstract class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controlle
 
             //оверрайд
             $dataForm = $this->addOverride($dataForm);
+            if ($this->z_gen_sid_fields)
+            {
+                $genSidPair = explode(';',$this->z_gen_sid_fields);
+                if (!array_key_exists($genSidPair[1], $dataForm) || !$dataForm[$genSidPair[1]])
+                {
+                    $dataForm[$genSidPair[1]] = $this->z_model->generateSid($dataForm[$genSidPair[0]],$genSidPair[1]);
+                }
+            }
             //добавление элемента в таблицу
             $item = $this->z_model->createRow($dataForm);
             $item->save();
@@ -885,6 +899,7 @@ abstract class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controlle
             'sortable',
             'sortable_position',
             'indexate',
+            'gen_sid_fields'
         );
 
         //установка моделей

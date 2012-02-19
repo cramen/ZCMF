@@ -36,7 +36,7 @@ if ($this->theme) Z_Seo::addTitle($this->themes[$this->theme]);
 
         <?php if ($item->text): ?>
         <h3>
-            <a href="<?php echo $this->url(array('id' => $item->id), 'newscard')?>"><?php echo $item->title?></a>
+            <a href="<?php echo $this->url(array('id' => $item->sid), 'newscard')?>"><?php echo $item->title?></a>
         </h3>
         <?php else: ?>
         <h3><?php echo $item->title?></h3>
@@ -51,7 +51,7 @@ if ($this->theme) Z_Seo::addTitle($this->themes[$this->theme]);
             <?php echo $item->description?>
 
             <?php if ($item->text): ?>
-            <a href="<?php echo $this->url(array('id' => $item->id), 'newscard')?>">Читать далее...</a>
+            <a href="<?php echo $this->url(array('id' => $item->sid), 'newscard')?>">Читать далее...</a>
             <?php endif;?>
 
         </div>

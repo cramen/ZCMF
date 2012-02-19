@@ -95,6 +95,9 @@ class Z_Transliterator
         "Э" => "E",
         "Ю" => "Yu",
         "Я" => "Ya",
+    );
+
+    public static $spec_chars = array(
         " " => "_",
         "-" => "_",
         "~" => "_",
@@ -133,5 +136,10 @@ class Z_Transliterator
     {
         return strtr($val, self::$cyr_eng);
 
+    }
+
+    public static function transliterateSpecialChars($val)
+    {
+        return preg_replace('~_+~','_',strtr($val, self::$spec_chars));
     }
 }

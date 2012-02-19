@@ -79,7 +79,7 @@ class Z_File_Storage
     public function create($localName, $param = array()) //может, $localName засунуть в массив?
     {
         $folder = isset($param['foldername']) ? $param['foldername'] : $this->getNewFolderName();
-        $name = Z_Transliterator::translateCyr($param['realname']);
+        $name = Z_Transliterator::transliterateSpecialChars(Z_Transliterator::translateCyr($param['realname']));
         if (!$name || !$this->copyFileNewDir($localName, $folder, $name))
             return false;
         $auth = Z_Auth::getInstance();
@@ -106,7 +106,7 @@ class Z_File_Storage
             unlink($file->getFullName());
         }
         $auth = Z_Auth::getInstance();
-        $name = Z_Transliterator::translateCyr($realname);
+        $name = Z_Transliterator::transliterateSpecialChars(Z_Transliterator::translateCyr($realname));
         $data = array('user_id' => $auth->getUser()->getId(),
             'name' => $name,
             'realname' => $realname);

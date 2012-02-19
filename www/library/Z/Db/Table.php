@@ -89,4 +89,18 @@ class Z_Db_Table extends Zend_Db_Table_Abstract
         return $select;
     }
 
+    public function generateSid($str,$field = 'sid',$iter = 1)
+    {
+        $sid = Z_Transliterator::translateCyr($str);
+        $sid = str_replace(array(' ','<','>','#','%','"','\'','{','}','|','\\','^','[',']','`',';','?',':','@','&','=','+','$',',','—'),'_',$sid);
+        $sid .= ($iter==1?"":"_".$iter);
+        $sid = preg_replace('~_+~','_',$sid);
+        $sid = trim($sid,'_');
+        if ($this->fetchRow(array($field.'=?'=>$sid)))
+        {
+            $sid = $this->generateSid($str,$field,$iter+1);
+        }
+        return $sid;
+    }
+
 }

@@ -31,7 +31,12 @@ class NewsController extends Zend_Controller_Action
         $id = $this->_getParam('id', null);
         $modelNews = new Site_Model_News();
 
-        $this->view->item = $modelNews->find($id)->current();
+        $this->view->item = $modelNews->fetchRow(array('sid=?'=>$id));
+        if(!$this->view->item)
+        {
+            $this->_forward('error','error');
+            return;
+        }
         $this->view->themes = Site_Model_News_Themes::getPairs();
 
     }
