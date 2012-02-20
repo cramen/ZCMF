@@ -1030,7 +1030,7 @@ CREATE TABLE `z_resources_forms` (
 LOCK TABLES `z_resources_forms` WRITE;
 /*!40000 ALTER TABLE `z_resources_forms` DISABLE KEYS */;
 INSERT INTO `z_resources_forms` VALUES (1,21,1,'Text','title','Название',1,'','',0,'',0);
-INSERT INTO `z_resources_forms` VALUES (2,21,2,'Text','sid','Адрес страницы',0,'','<p>Только латинские буквы, цифры и симпол подчеркивания. Пример адреса: about</p>\r\n<p>для расположения на главной странице необходимо ввести \"index\"</p>',1,'',0);
+INSERT INTO `z_resources_forms` VALUES (2,21,2,'Text','sid','Адрес страницы',0,'','<p>Только латинские буквы, цифры и симпол подчеркивания. Пример адреса: about</p>\r\n<p>Если оставить поле пустым, значение будет сгенерировано автоматически.</p>',1,'',0);
 INSERT INTO `z_resources_forms` VALUES (3,21,3,'mce','text','Текст',1,'','',0,'',0);
 INSERT INTO `z_resources_forms` VALUES (4,21,4,'checkbox','z_can_delete','Разрешить удалять?',0,'1','',1,'',0);
 INSERT INTO `z_resources_forms` VALUES (8,57,8,'text','title','Название',1,'','',0,'',0);
@@ -1414,7 +1414,7 @@ CREATE TABLE `z_statpages` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `sid` (`sid`),
   KEY `crated_on` (`crated_on`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1567,4 +1567,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-02-20  7:48:13
+-- Dump completed on 2012-02-20 12:45:28

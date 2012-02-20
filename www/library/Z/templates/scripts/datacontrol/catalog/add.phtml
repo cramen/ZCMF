@@ -5,3 +5,27 @@ $this->admin_Head($this->admin_Breadcrumbs($this->breadcrumbs) . ':Добавл�
 <?= $this->form ?>
 
 <?= $this->admin_Bodyend() ?>
+
+<?php
+//Код для автоматического подставления сгенерированного sid
+if ($this->gen_sid_fields)
+{
+    list($fieldFrom,$fieldTo) = explode(';',$this->gen_sid_fields);
+    $elements = $this->form->getElements();
+    if (    array_key_exists($fieldFrom,$elements) &&
+            array_key_exists($fieldTo,$elements))
+    {
+        $idFrom = $elements[$fieldFrom]->getId();
+        $idTo   = $elements[$fieldTo]->getId();
+        $urlGetnSid = $this->url(array('action'=>'generatesid'));
+        jQuery::evalScript('
+            $("#'.$idFrom.'").change(function(){
+                var keyword = $(this).val();
+                $.post("'.$urlGetnSid.'",{keyword:keyword},function(data){
+                    $("#'.$idTo.'").val(data.sid);
+                },"json");
+            });
+        ');
+    }
+}
+?>

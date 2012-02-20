@@ -255,7 +255,6 @@ abstract class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controlle
                 $this->ajaxGo($this->view->url(array('action' => $this->z_defaultAction)));
             }
         }
-
         $this->view->form = $form;
     }
 
@@ -610,6 +609,22 @@ abstract class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controlle
             }
         }
         $this->ajaxGo($this->view->url($paramsArray));
+    }
+
+    public function generatesidAction()
+    {
+        $this->disableRenderAll();
+
+        $res = array('sid'=>'');
+
+        if ($this->z_gen_sid_fields)
+        {
+            $kw = $this->_getParam('keyword','');
+            $genSidPair = explode(';',$this->z_gen_sid_fields);
+            $res['sid'] = $this->z_model->generateSid($kw,$genSidPair[1]);
+        }
+
+        echo Zend_Json::encode($res);
     }
 
     public function indexateAction()
