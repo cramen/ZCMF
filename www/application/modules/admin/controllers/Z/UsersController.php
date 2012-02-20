@@ -18,7 +18,7 @@ class Admin_Z_UsersController extends Z_Admin_Controller_Datacontrol_Abstract
     {
         $user = new Z_User($param['login']);
         if ($user->getRole() == 'root' && Z_Auth::getInstance()->getUser()->getRole() != 'root') {
-            Z_FlashMessenger::addMessage('Нельзя изменить суперпользователя!');
+            $this->dropError('Нельзя изменить суперпользователя!');
             return false;
         }
         return true;

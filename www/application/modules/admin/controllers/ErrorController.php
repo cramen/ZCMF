@@ -34,7 +34,7 @@ class Admin_ErrorController extends Z_Admin_Controller_Action
         $resource = $resources->fetchRow(array('resourceId=?' => 'admin_' . $this->_getParam('controller')));
         $privilege = $privileges->fetchRow(array('name=?' => $this->_getParam('action')));
 
-        Z_FlashMessenger::addMessage('Доступ к действию данного модуля запрещен.');
+        $this->dropError('Доступ к действию данного модуля запрещен.');
 
         if (Z_Auth::getInstance()->getUser()->getRole() == 'guest') {
             $this->ajaxGo($this->view->url(array('controller' => 'z_user', 'action' => 'login')));
@@ -44,9 +44,9 @@ class Admin_ErrorController extends Z_Admin_Controller_Action
         else
         {
             if ($privilege)
-                Z_FlashMessenger::addMessage('Действие: ' . ($privilege ? $privilege->title : 'Неизвестно'));
+                $this->dropError(sprintf('Действие: %s' , ($privilege ? $privilege->title : 'Неизвестно')));
             if ($resource)
-                Z_FlashMessenger::addMessage('Модуль: ' . ($resource ? $resource->title : 'Неизвестно'));
+                $this->dropError(sprintf('Модуль: %s' , ($resource ? $resource->title : 'Неизвестно')));
         }
 
         $this->disableRenderView();

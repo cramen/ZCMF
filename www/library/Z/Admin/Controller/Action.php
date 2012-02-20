@@ -63,16 +63,16 @@ class Z_Admin_Controller_Action extends Zend_Controller_Action
             $role = Z_Auth::getInstance()->getUser()->getRole();
             $acl = Z_Acl::getInstance();
             $allowed = true;
+
             try {
                 $allowed = $acl->isAllowed($role, $controller, $action);
             }
             catch (Exception $e)
             {
-                if (Z_Auth::getInstance()->getUser()->getRole() == 'root')
-                    Z_FlashMessenger::addMessage('Роль, ресурс или привилегия не существует.');
+                Z_FlashMessenger::addMessage('Роль, ресурс или привилегия не существует.');
                 $allowed = false;
             }
-            //			if ($role=='root') $allowed=true;
+
             if (!$allowed) {
                 $this->_forward('deny', 'error');
             }
@@ -105,13 +105,11 @@ class Z_Admin_Controller_Action extends Zend_Controller_Action
         if ($this->getRequest()->isXmlHttpRequest() || isset($_POST['z-ajax-form'])) {
             $this->view->target = $this->_target;
         }
-        //		$this->getFrontController()->setDefaultModule($this->getRequest()->getModuleName());
     }
 
     public function dropError($text)
     {
         Z_FlashMessenger::addMessage($text);
-        //		$this->_helper->viewRenderer->setNoRender(true);
     }
 
     public function disableRenderView()
@@ -145,14 +143,14 @@ class Z_Admin_Controller_Action extends Zend_Controller_Action
             $params_str = implode(',', $javaparams);
 
             jQuery::evalScript('
-         	    		if (confirm("' . addcslashes($question, '"') . '"))
-         	    		{
-         	    			z_ajax_go("' . $this->view->url() . '",{' .
+                        if (confirm("' . addcslashes($question, '"') . '"))
+                        {
+                            z_ajax_go("' . $this->view->url() . '",{' .
                     $confirm_param_name . ':1' .
                     (empty($javaparams) ? '' : ',' . $params_str) .
                     '});
-         	    		}
-         	    	');
+                        }
+                    ');
 
             return false;
         }

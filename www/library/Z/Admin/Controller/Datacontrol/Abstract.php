@@ -191,7 +191,7 @@ abstract class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controlle
 
             if (!$this->addCheck($dataForm)) {
                 $this->disableRenderView();
-                Z_FlashMessenger::addMessage('Нельзя добавить новый элемент!');
+                $this->dropError('Нельзя добавить новый элемент!');
                 return;
             }
 
@@ -281,7 +281,7 @@ abstract class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controlle
 
                 if (!$this->editCheck($dataForm)) {
                     $this->disableRenderView();
-                    Z_FlashMessenger::addMessage('Нельзя изменить этот элемент!');
+                    $this->dropError('Нельзя изменить этот элемент!');
                     return;
                 }
 
@@ -357,7 +357,7 @@ abstract class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controlle
     public function multyeditAction()
     {
         $this->setViewPathes();
-        Z_FlashMessenger::addMessage('Множественное редактирование не поддерживается');
+        $this->dropError('Множественное редактирование не поддерживается');
         $this->disableRenderView();
     }
 
@@ -367,7 +367,7 @@ abstract class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controlle
         $this->disableRenderView(); //отключение вывода
         //проверка на возможность удаления
         if (!$this->z_can_delete) {
-            Z_FlashMessenger::addMessage('Удаление запрещено!');
+            $this->dropError('Удаление запрещено!');
             return;
         }
         //получение списка удаляемых элементов
@@ -392,7 +392,7 @@ abstract class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controlle
                 $itemArray = $item->toArray();
 
                 if (!$this->deleteCheck($itemArray)) {
-                    Z_FlashMessenger::addMessage('Удаление записи "' . $itemArray[$this->z_default_field] . '" Запрещено!');
+                    $this->dropError(sprintf('Удаление записи "%s" Запрещено!',$itemArray[$this->z_default_field]));
                     continue;
                 }
 
@@ -405,7 +405,7 @@ abstract class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controlle
                             ->where('parentid=?', $item->id)->query()->fetchColumn();
                     if ($subCatCount > 0) {
                         $haveSubcat = true;
-                        Z_FlashMessenger::addMessage('Раздел "' . $itemArray[$this->z_default_field] . '" имеет подразделы');
+                        $this->dropError(sprintf('Раздел "%s" имеет подразделы',$itemArray[$this->z_default_field]));
                     }
                 }
 
@@ -418,7 +418,7 @@ abstract class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controlle
                         $childItem = $childModel->fetchRow(array($resource['parent_field'] . '=?' => $item->id));
                         if ($childItem) {
                             $haveChild = true;
-                            Z_FlashMessenger::addMessage('"' . $itemArray[$this->z_default_field] . '" имеет подчиненные "' . $resource['title'] . '"');
+                            $this->dropError(sprintf('"%s" имеет подчиненные "%s"',$itemArray[$this->z_default_field],$resource['title']));
                         }
                     }
                 }
@@ -448,7 +448,7 @@ abstract class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controlle
                     $deletedItemsCount++;
                 }
                 else
-                    Z_FlashMessenger::addMessage('Удаление записи "' . $itemArray[$this->z_default_field] . '" Запрещено!');
+                    $this->dropError(sprintf('Удаление записи "%s" Запрещено!',$itemArray[$this->z_default_field]));
             }
             if ($deletedItemsCount > 0) $this->ajaxGo($this->view->url(array('action' => $this->z_defaultAction, 'id' => NULL, 'confirmed' => NULL)));
         }
@@ -627,7 +627,7 @@ abstract class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controlle
             $i++;
             $this->addToIndex($el->toArray());
         }
-        Z_FlashMessenger::addMessage('Переиндексировано документов: ' . $i);
+        $this->dropError(sprintf('Переиндексировано документов: %s',$i));
         $this->ajaxGo($this->view->url(array('action' => $this->z_defaultAction)));
         $this->disableRenderView();
     }

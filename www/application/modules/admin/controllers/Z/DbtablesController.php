@@ -17,7 +17,7 @@ class Admin_Z_DbtablesController extends Z_Admin_Controller_Datacontrol_Abstract
         $fieldObjects = $fieldModel->fetchAll(array('dbtable_id=?' => $id), 'orderid asc');
 
         if ($fieldObjects->count() == 0) {
-            Z_FlashMessenger::addMessage('Не заданы поля для таблицы');
+            $this->dropError('Не заданы поля для таблицы');
             return;
         }
 
@@ -52,7 +52,7 @@ class Admin_Z_DbtablesController extends Z_Admin_Controller_Datacontrol_Abstract
         if (!in_array($tableObject->title, $tableExists))
             Z_Db_Table::getDefaultAdapter()->query($queryString);
         else
-            Z_FlashMessenger::addMessage('Таблица "' . $tableObject->title . '" уже существует');
+            $this->dropError(sprintf('Таблица "%s" уже существует' , $tableObject->title));
 
         //генерация модели
         Z_Db_Model_Generator::generate($tableObject->title);
@@ -102,7 +102,7 @@ class Admin_Z_DbtablesController extends Z_Admin_Controller_Datacontrol_Abstract
             {
                 $queryStr = 'ALTER TABLE `' . $tableObject->title . '` ADD ' . $queryStr;
             }
-            Z_FlashMessenger::addMessage($queryStr);
+            $this->dropError($queryStr);
             Z_Db_Table::getDefaultAdapter()->query($queryStr);
         }
 
@@ -113,7 +113,7 @@ class Admin_Z_DbtablesController extends Z_Admin_Controller_Datacontrol_Abstract
 
             if (!in_array($column, $fieldset)) {
                 $queryStr = 'ALTER TABLE `' . $tableObject->title . '` DROP `' . $column . '`';
-                Z_FlashMessenger::addMessage($queryStr);
+                $this->dropError($queryStr);
                 Z_Db_Table::getDefaultAdapter()->query($queryStr);
             }
         }
@@ -126,7 +126,7 @@ class Admin_Z_DbtablesController extends Z_Admin_Controller_Datacontrol_Abstract
 
         $id = $this->_getParam('id');
         if (!$id) {
-            Z_FlashMessenger::addMessage('Не пределен id');
+            $this->dropError('Не пределен id');
         }
 
         $table = $modelTales->find($id)->current()->toArray();
@@ -161,7 +161,7 @@ class Admin_Z_DbtablesController extends Z_Admin_Controller_Datacontrol_Abstract
             }
             catch (Exception $e)
             {
-                Z_FlashMessenger::addMessage('Ошибка Json');
+                $this->dropError('Ошибка Json');
                 return;
             }
 

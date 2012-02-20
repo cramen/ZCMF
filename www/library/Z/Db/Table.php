@@ -89,6 +89,13 @@ class Z_Db_Table extends Zend_Db_Table_Abstract
         return $select;
     }
 
+    /**
+     * Генерирует уникальный идентификатор sid на основе строки $str
+     * @param strong $str
+     * @param string $field
+     * @param int $iter
+     * @return string
+     */
     public function generateSid($str,$field = 'sid',$iter = 1)
     {
         $sid = Z_Transliterator::translateCyr($str);

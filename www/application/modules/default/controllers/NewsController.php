@@ -6,14 +6,19 @@ class NewsController extends Zend_Controller_Action
     public function listAction()
     {
         $modelNews = new Site_Model_News();
+        $modelNewsThemes = new Site_Model_News_Themes();
 
         $theme = $this->_getParam('theme', null);
         $page = $this->_getParam('page', 1);
 
         $select = $modelNews->select(true)->order(array('date desc', 'id desc'));
         if ($theme) {
-            if (is_array($theme)) $select->where('theme_id in (?)', $theme);
-            else $select->where('theme_id = ?', $theme);
+            if (!$themeRow = $modelNewsThemes->fetchRow(array('sid=?'=>$theme)))
+            {
+                $this->_forward('error','error');
+                return;
+            }
+            $select->where('theme_id = ?', $themeRow->id);
         }
 
         $adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
@@ -22,7 +27,7 @@ class NewsController extends Zend_Controller_Action
         $paginator->setCurrentPageNumber($page);
 
         $this->view->items = $paginator;
-        $this->view->themes = Site_Model_News_Themes::getPairs();
+        $this->view->themes = Site_Model_News_Themes::getPairs(array('sid','title'));
         $this->view->theme = $theme;
     }
 

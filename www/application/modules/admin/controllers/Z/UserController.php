@@ -70,12 +70,12 @@ class Admin_Z_UserController extends Z_Admin_Controller_Action
                 }
                 else
                 {
-                    Z_FlashMessenger::addMessage('Логин или пароль не верны');
+                    $this->dropError('Логин или пароль не верны');
                 }
             }
             else
             {
-                Z_FlashMessenger::addMessage('Введите логин и пароль');
+                $this->dropError('Введите логин и пароль');
             }
         }
 
