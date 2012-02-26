@@ -78,7 +78,7 @@ class Z_Search
         $searchString = trim($searchString);
         $searchString = preg_replace('~\s+~iu', '~ ', $searchString);
         if (!$searchString) $searchString = trim($searchStringBeforeCutWords);
-        $searchString .= '~';
+        $searchString = $searchString?$searchString.'~':$searchString;
         return $searchString;
     }
 

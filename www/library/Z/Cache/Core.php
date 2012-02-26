@@ -37,7 +37,7 @@ class Z_Cache_Core extends Zend_Cache_Core
     protected function _id($id)
     {
         $id = parent::_id($id);
-        $id = str_replace('=','_',base64_encode($id));
+        $id = preg_replace('~[^a-zA-Z0-9]~','_',base64_encode($id));
         return $id;
     }
 
