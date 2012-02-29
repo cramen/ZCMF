@@ -65,6 +65,11 @@ class Z_Search
     }
 
 
+    /**
+     * @static
+     * @param $searchString
+     * @return mixed|string
+     */
     public static function buildQueryString($searchString)
     {
         $searchString = strip_tags($searchString);
