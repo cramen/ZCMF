@@ -716,7 +716,7 @@ abstract class Z_Admin_Controller_Datacontrol_Abstract extends Z_Admin_Controlle
         foreach ($fields as $field)
         {
             if (isset($data[$field]))
-                $doc->addField(Zend_Search_Lucene_Field::text($field, $data[$field]));
+                $doc->addField(Zend_Search_Lucene_Field::text($field, $data[$field],'utf-8'));
         }
 
         //удаляем старый документ
