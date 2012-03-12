@@ -68,13 +68,13 @@ class Z_Seo
 
     public static function addDescription($desc)
     {
-        if (!is_string($desc) && !$desc) return;
+        if (!is_string($desc) || !$desc) return;
         self::$description[] = $desc;
     }
 
     public static function addKeywords($Keywords)
     {
-        if (!is_string($Keywords) && !$Keywords) return;
+        if (!is_string($Keywords) || !$Keywords) return;
         self::$keywords[] = $Keywords;
     }
 

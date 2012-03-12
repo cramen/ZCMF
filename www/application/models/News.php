@@ -28,7 +28,7 @@ class Site_Model_News extends Z_Db_Table
         $res = array();
         foreach($this->fetchAll() as $el)
         {
-            $res[] = new Z_Sitemap_Xml_Url(array('id'=>$el->id), 'news', strtotime($el->date));
+            $res[] = new Z_Sitemap_Xml_Url(array('id'=>$el->sid), 'newscard', strtotime($el->date));
         }
         return $res;
     }
